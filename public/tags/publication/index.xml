@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Publication | JH Rony</title>
+    <link>http://localhost:1313/tags/publication/</link>
+      <atom:link href="http://localhost:1313/tags/publication/index.xml" rel="self" type="application/rss+xml" />
+    <description>Publication</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Wed, 20 Nov 2024 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://localhost:1313/media/icon_hu_2544d50e451968a5.png</url>
+      <title>Publication</title>
+      <link>http://localhost:1313/tags/publication/</link>
+    </image>
+    
+    <item>
+      <title>🎉 Paper Accepted in Nature Scientific Data</title>
+      <link>http://localhost:1313/post/natureacceptpaper/</link>
+      <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/natureacceptpaper/</guid>
+      <description>&lt;p&gt;Thrilled to share that our research work has been accepted in &lt;em&gt;Nature Scientific Data&lt;/em&gt;! This marks a significant milestone in our journey and reinforces the impact of our research. Thank you to everyone who contributed to this success!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

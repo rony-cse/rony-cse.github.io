@@ -1,140 +1,35 @@
 ---
-title: Learn Python
-summary: Easily learn Python in 10 minutes!
+title: CIS-101 Fundamentals of Computer System
+summary: A foundational course to understand the core concepts of computer systems and their components.
 date: 2023-10-24
 type: docs
 math: false
 tags:
-  - Python
-image:
-  caption: 'Embed rich media such as videos and LaTeX math'
+  - Teaching
+# image:
+#   caption: 'Embed rich media such as videos and LaTeX math'
 ---
 
-[Hugo Blox Builder](https://hugoblox.com) is designed to give technical content creators a seamless experience. You can focus on the content and the Hugo Blox Builder which this template is built upon handles the rest.
+CIS-101: **Fundamentals of Computer System**  
 
-**Embed videos, podcasts, code, LaTeX math, and even test students!**
+### Course Details:
+- *Department of CSE*, __**Independent University, Bangladesh**__
+- **Class Size**: 30-35 students per section
+- **Sections Available**: 2 per semester
+- **Semester Availability**: Offered every semester
 
-On this page, you'll find some examples of the types of technical content that can be rendered with Hugo Blox.
+### Watch a class record of the Course:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qBema5E8RuY?si=8A-oZJlChrikKpLJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-## Video
+CIS-101 is an introductory course that aims to provide students with a comprehensive understanding of computer systems. The course covers the fundamental components of a computer system, including hardware, software, operating systems, and basic networking concepts. It is designed to introduce students to the essentials of how computer systems function, as well as their role in modern computing environments.
 
-Teach your course by sharing videos with your students. Choose from one of the following approaches:
+Throughout the course, students will explore the relationships between the computer’s hardware and the software that drives it. They will gain knowledge in areas such as memory management, file systems, and the role of the operating system in managing computer resources. This course also includes hands-on experience with basic system commands and programming.
 
-{{< youtube D2vj0WcvH5c >}}
+### Key Course Highlights:
+- **Core Concepts**: Computer architecture, operating systems, memory management, file systems, basic networking
+- **Languages Used**: Basic prompting for system interaction (Prompt Engineering, MS Power App)
+- **Skills Developed**: Understanding computer hardware/software integration, basic system programming, problem-solving in computing systems
+- **Intended For**: Students seeking to understand the inner workings of computers
+- **Pre-requisite Knowledge**: No prior programming or system knowledge required
 
-**Youtube**:
-
-    {{</* youtube w7Ft2ymGmfc */>}}
-
-**Bilibili**:
-
-    {{</* bilibili id="BV1WV4y1r7DF" */>}}
-
-**Video file**
-
-Videos may be added to a page by either placing them in your `assets/media/` media library or in your [page's folder](https://gohugo.io/content-management/page-bundles/), and then embedding them with the _video_ shortcode:
-
-    {{</* video src="my_video.mp4" controls="yes" */>}}
-
-## Podcast
-
-You can add a podcast or music to a page by placing the MP3 file in the page's folder or the media library folder and then embedding the audio on your page with the _audio_ shortcode:
-
-    {{</* audio src="ambient-piano.mp3" */>}}
-
-Try it out:
-
-{{< audio src="ambient-piano.mp3" >}}
-
-## Test students
-
-Provide a simple yet fun self-assessment by revealing the solutions to challenges with the `spoiler` shortcode:
-
-```markdown
-{{</* spoiler text="👉 Click to view the solution" */>}}
-You found me!
-{{</* /spoiler */>}}
-```
-
-renders as
-
-{{< spoiler text="👉 Click to view the solution" >}} You found me 🎉 {{< /spoiler >}}
-
-## Math
-
-Hugo Blox Builder supports a Markdown extension for $\LaTeX$ math. You can enable this feature by toggling the `math` option in your `config/_default/params.yaml` file.
-
-To render _inline_ or _block_ math, wrap your LaTeX math with `{{</* math */>}}$...${{</* /math */>}}` or `{{</* math */>}}$$...$${{</* /math */>}}`, respectively.
-
-{{% callout note %}}
-We wrap the LaTeX math in the Hugo Blox _math_ shortcode to prevent Hugo rendering our math as Markdown.
-{{% /callout %}}
-
-Example **math block**:
-
-```latex
-{{</* math */>}}
-$$
-\gamma_{n} = \frac{ \left | \left (\mathbf x_{n} - \mathbf x_{n-1} \right )^T \left [\nabla F (\mathbf x_{n}) - \nabla F (\mathbf x_{n-1}) \right ] \right |}{\left \|\nabla F(\mathbf{x}_{n}) - \nabla F(\mathbf{x}_{n-1}) \right \|^2}
-$$
-{{</* /math */>}}
-```
-
-renders as
-
-{{< math >}}
-$$\gamma_{n} = \frac{ \left | \left (\mathbf x_{n} - \mathbf x_{n-1} \right )^T \left [\nabla F (\mathbf x_{n}) - \nabla F (\mathbf x_{n-1}) \right ] \right |}{\left \|\nabla F(\mathbf{x}_{n}) - \nabla F(\mathbf{x}_{n-1}) \right \|^2}$$
-{{< /math >}}
-
-Example **inline math** `{{</* math */>}}$\nabla F(\mathbf{x}_{n})${{</* /math */>}}` renders as {{< math >}}$\nabla F(\mathbf{x}_{n})${{< /math >}}.
-
-Example **multi-line math** using the math linebreak (`\\`):
-
-```latex
-{{</* math */>}}
-$$f(k;p_{0}^{*}) = \begin{cases}p_{0}^{*} & \text{if }k=1, \\
-1-p_{0}^{*} & \text{if }k=0.\end{cases}$$
-{{</* /math */>}}
-```
-
-renders as
-
-{{< math >}}
-
-$$
-f(k;p_{0}^{*}) = \begin{cases}p_{0}^{*} & \text{if }k=1, \\
-1-p_{0}^{*} & \text{if }k=0.\end{cases}
-$$
-
-{{< /math >}}
-
-## Code
-
-Hugo Blox Builder utilises Hugo's Markdown extension for highlighting code syntax. The code theme can be selected in the `config/_default/params.yaml` file.
-
-
-    ```python
-    import pandas as pd
-    data = pd.read_csv("data.csv")
-    data.head()
-    ```
-
-renders as
-
-```python
-import pandas as pd
-data = pd.read_csv("data.csv")
-data.head()
-```
-
-## Inline Images
-
-```go
-{{</* icon name="python" */>}} Python
-```
-
-renders as
-
-{{< icon name="python" >}} Python
-
-## Did you find this page helpful? Consider sharing it 🙌
+This course lays the groundwork for students aiming to pursue more advanced topics in computer systems, networking, and computer engineering, providing essential knowledge for careers in IT, system administration, and software development.

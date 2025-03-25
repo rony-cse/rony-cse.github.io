@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Teaching | JH Rony</title>
+    <link>http://localhost:1313/teaching/</link>
+      <atom:link href="http://localhost:1313/teaching/index.xml" rel="self" type="application/rss+xml" />
+    <description>Teaching</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Tue, 24 Oct 2023 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://localhost:1313/media/icon_hu_2544d50e451968a5.png</url>
+      <title>Teaching</title>
+      <link>http://localhost:1313/teaching/</link>
+    </image>
+    
+    <item>
+      <title>CIS-101 Fundamentals of Computer System</title>
+      <link>http://localhost:1313/teaching/python/</link>
+      <pubDate>Tue, 24 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/teaching/python/</guid>
+      <description>&lt;p&gt;CIS-101: &lt;strong&gt;Fundamentals of Computer System&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;course-details&#34;&gt;Course Details:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Department of CSE&lt;/em&gt;, &lt;strong&gt;&lt;strong&gt;Independent University, Bangladesh&lt;/strong&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Class Size&lt;/strong&gt;: 30-35 students per section&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sections Available&lt;/strong&gt;: 2 per semester&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Semester Availability&lt;/strong&gt;: Offered every semester&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;watch-a-class-record-of-the-course&#34;&gt;Watch a class record of the Course:&lt;/h3&gt;
+&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/qBema5E8RuY?si=8A-oZJlChrikKpLJ&#34; title=&#34;YouTube video player&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;CIS-101 is an introductory course that aims to provide students with a comprehensive understanding of computer systems. The course covers the fundamental components of a computer system, including hardware, software, operating systems, and basic networking concepts. It is designed to introduce students to the essentials of how computer systems function, as well as their role in modern computing environments.&lt;/p&gt;
+&lt;p&gt;Throughout the course, students will explore the relationships between the computer’s hardware and the software that drives it. They will gain knowledge in areas such as memory management, file systems, and the role of the operating system in managing computer resources. This course also includes hands-on experience with basic system commands and programming.&lt;/p&gt;
+&lt;h3 id=&#34;key-course-highlights&#34;&gt;Key Course Highlights:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Core Concepts&lt;/strong&gt;: Computer architecture, operating systems, memory management, file systems, basic networking&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Languages Used&lt;/strong&gt;: Basic prompting for system interaction (Prompt Engineering, MS Power App)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Skills Developed&lt;/strong&gt;: Understanding computer hardware/software integration, basic system programming, problem-solving in computing systems&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Intended For&lt;/strong&gt;: Students seeking to understand the inner workings of computers&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pre-requisite Knowledge&lt;/strong&gt;: No prior programming or system knowledge required&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This course lays the groundwork for students aiming to pursue more advanced topics in computer systems, networking, and computer engineering, providing essential knowledge for careers in IT, system administration, and software development.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>CSC-101 Introduction to Computer Programming</title>
+      <link>http://localhost:1313/teaching/js/</link>
+      <pubDate>Tue, 24 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/teaching/js/</guid>
+      <description>&lt;p&gt;CSC-101: &lt;strong&gt;Introduction to Computer Programming&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;course-details&#34;&gt;Course Details:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Department of CSE&lt;/em&gt;, &lt;strong&gt;&lt;strong&gt;Independent University, Bangladesh&lt;/strong&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Class Size&lt;/strong&gt;: 30-35 students per section&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sections Available&lt;/strong&gt;: 2 per semester&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Semester Availability&lt;/strong&gt;: Offered every semester&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;CSC-101 is an introductory course designed to provide students with a solid foundation in computer programming. This course focuses on essential programming concepts such as data types, control structures (loops, conditionals), functions, and arrays. Students will learn to code using beginner-friendly languages like Python or C++, developing problem-solving skills and an understanding of how software applications are built.&lt;/p&gt;
+&lt;p&gt;The course emphasizes algorithm design, aiming to teach students how to write efficient and readable code while introducing them to critical thinking required for software development. It is ideal for students with no prior programming experience.&lt;/p&gt;
+&lt;h3 id=&#34;key-course-highlights&#34;&gt;Key Course Highlights:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Languages Used&lt;/strong&gt;: Python&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Core Concepts&lt;/strong&gt;: Data types, control structures, functions, arrays, algorithm design&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Skills Developed&lt;/strong&gt;: Logical thinking, problem-solving, software development&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Intended For&lt;/strong&gt;: Students new to programming&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pre-requisite Knowledge&lt;/strong&gt;: No prior programming experience required&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This course serves as the foundational step for students pursuing a career in computer science or software engineering and prepares them for more advanced topics in future courses.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

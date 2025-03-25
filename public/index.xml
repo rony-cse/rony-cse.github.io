@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JH Rony</title>
+    <link>http://localhost:1313/</link>
+      <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <description>JH Rony</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Tue, 25 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://localhost:1313/media/icon_hu_2544d50e451968a5.png</url>
+      <title>JH Rony</title>
+      <link>http://localhost:1313/</link>
+    </image>
+    
+    <item>
+      <title>The Business Standard - Coverage on RIoT Center’s Research Outcome</title>
+      <link>http://localhost:1313/event/bs/</link>
+      <pubDate>Thu, 20 Mar 2025 07:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/event/bs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>📰 Our Research Featured in National News Media</title>
+      <link>http://localhost:1313/post/newpaperfeature/</link>
+      <pubDate>Thu, 20 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/newpaperfeature/</guid>
+      <description>&lt;p&gt;Exciting news! Our research has been featured in a national news media today. This recognition highlights the impact of our work and its relevance in the field. Stay tuned for more updates on our journey!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>🎉 Paper Accepted in Nature Scientific Data</title>
+      <link>http://localhost:1313/post/natureacceptpaper/</link>
+      <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/natureacceptpaper/</guid>
+      <description>&lt;p&gt;Thrilled to share that our research work has been accepted in &lt;em&gt;Nature Scientific Data&lt;/em&gt;! This marks a significant milestone in our journey and reinforces the impact of our research. Thank you to everyone who contributed to this success!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>AqUavplant Dataset: A High-Resolution Aquatic Plant Classification and Segmentation Image Dataset Using UAV</title>
+      <link>http://localhost:1313/publication/istiak-2024-aquavplant/</link>
+      <pubDate>Fri, 01 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/istiak-2024-aquavplant/</guid>
+      <description>&lt;!-- 
+
+
+
+
+
+  
+    
+  
+
+&lt;div class=&#34;flex px-4 py-3 mb-6 rounded-md bg-primary-100 dark:bg-primary-900&#34;&gt;
+&lt;span class=&#34;pr-3 pt-1 text-primary-600 dark:text-primary-300&#34;&gt;
+  &lt;svg height=&#34;24&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34;&gt;&lt;path fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; stroke-width=&#34;1.5&#34; d=&#34;m11.25 11.25l.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0a9 9 0 0 1 18 0m-9-3.75h.008v.008H12z&#34;/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+  &lt;span class=&#34;dark:text-neutral-300&#34;&gt;Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.&lt;/span&gt;
+&lt;/div&gt;
+
+
+
+
+
+
+  
+    
+  
+
+&lt;div class=&#34;flex px-4 py-3 mb-6 rounded-md bg-primary-100 dark:bg-primary-900&#34;&gt;
+&lt;span class=&#34;pr-3 pt-1 text-primary-600 dark:text-primary-300&#34;&gt;
+  &lt;svg height=&#34;24&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34;&gt;&lt;path fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; stroke-width=&#34;1.5&#34; d=&#34;m11.25 11.25l.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0a9 9 0 0 1 18 0m-9-3.75h.008v.008H12z&#34;/&gt;&lt;/svg&gt;
+&lt;/span&gt;
+  &lt;span class=&#34;dark:text-neutral-300&#34;&gt;Create your slides in Markdown - click the &lt;em&gt;Slides&lt;/em&gt; button to check out the example.&lt;/span&gt;
+&lt;/div&gt;
+
+Add the publication&#39;s **full text** or **supplementary notes** here. You can use rich formatting such as including [code, math, and images](https://docs.hugoblox.com/content/writing-markdown-latex/). --&gt;</description>
+    </item>
+    
+    <item>
+      <title>Predicting Depression Among University Students: a Comparative Assessment of ML &amp; DL models using XAI</title>
+      <link>http://localhost:1313/publication/rony-2024-predicting/</link>
+      <pubDate>Sat, 01 Jun 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/rony-2024-predicting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Award and Achievements</title>
+      <link>http://localhost:1313/awards/</link>
+      <pubDate>Sun, 19 May 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/awards/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Real-time obstacle detection with YOLOv8 in a WSN using UAV aerial photography</title>
+      <link>http://localhost:1313/publication/rahman-2023-real/</link>
+      <pubDate>Thu, 01 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/rahman-2023-real/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mosquito Species Classification through Wingbeat Analysis: A Hybrid Machine Learning Approach</title>
+      <link>http://localhost:1313/publication/rony-2023-mosquito/</link>
+      <pubDate>Thu, 11 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/rony-2023-mosquito/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A cost-effective IoT model for a smart sewerage management system using sensors</title>
+      <link>http://localhost:1313/publication/rony-2021-cost/</link>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/rony-2021-cost/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Performance Analysis of Food Delivery Service using UML and SPN</title>
+      <link>http://localhost:1313/publication/khan-2024-performance/</link>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/khan-2024-performance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pandas</title>
+      <link>http://localhost:1313/project/pandas/</link>
+      <pubDate>Thu, 26 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/project/pandas/</guid>
+      <description>&lt;p&gt;Flexible and powerful data analysis / manipulation library for Python, providing labeled data structures.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PyTorch</title>
+      <link>http://localhost:1313/project/pytorch/</link>
+      <pubDate>Thu, 26 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/project/pytorch/</guid>
+      <description>&lt;p&gt;PyTorch is a Python package that provides tensor computation (like NumPy) with strong GPU acceleration.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>scikit-learn</title>
+      <link>http://localhost:1313/project/scikit/</link>
+      <pubDate>Thu, 26 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/project/scikit/</guid>
+      <description>&lt;p&gt;scikit-learn is a Python module for machine learning built on top of SciPy and is distributed under the 3-Clause BSD license.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CIS-101 Fundamentals of Computer System</title>
+      <link>http://localhost:1313/teaching/python/</link>
+      <pubDate>Tue, 24 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/teaching/python/</guid>
+      <description>&lt;p&gt;CIS-101: &lt;strong&gt;Fundamentals of Computer System&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;course-details&#34;&gt;Course Details:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Department of CSE&lt;/em&gt;, &lt;strong&gt;&lt;strong&gt;Independent University, Bangladesh&lt;/strong&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Class Size&lt;/strong&gt;: 30-35 students per section&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sections Available&lt;/strong&gt;: 2 per semester&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Semester Availability&lt;/strong&gt;: Offered every semester&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;watch-a-class-record-of-the-course&#34;&gt;Watch a class record of the Course:&lt;/h3&gt;
+&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/qBema5E8RuY?si=8A-oZJlChrikKpLJ&#34; title=&#34;YouTube video player&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;CIS-101 is an introductory course that aims to provide students with a comprehensive understanding of computer systems. The course covers the fundamental components of a computer system, including hardware, software, operating systems, and basic networking concepts. It is designed to introduce students to the essentials of how computer systems function, as well as their role in modern computing environments.&lt;/p&gt;
+&lt;p&gt;Throughout the course, students will explore the relationships between the computer’s hardware and the software that drives it. They will gain knowledge in areas such as memory management, file systems, and the role of the operating system in managing computer resources. This course also includes hands-on experience with basic system commands and programming.&lt;/p&gt;
+&lt;h3 id=&#34;key-course-highlights&#34;&gt;Key Course Highlights:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Core Concepts&lt;/strong&gt;: Computer architecture, operating systems, memory management, file systems, basic networking&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Languages Used&lt;/strong&gt;: Basic prompting for system interaction (Prompt Engineering, MS Power App)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Skills Developed&lt;/strong&gt;: Understanding computer hardware/software integration, basic system programming, problem-solving in computing systems&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Intended For&lt;/strong&gt;: Students seeking to understand the inner workings of computers&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pre-requisite Knowledge&lt;/strong&gt;: No prior programming or system knowledge required&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This course lays the groundwork for students aiming to pursue more advanced topics in computer systems, networking, and computer engineering, providing essential knowledge for careers in IT, system administration, and software development.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>CSC-101 Introduction to Computer Programming</title>
+      <link>http://localhost:1313/teaching/js/</link>
+      <pubDate>Tue, 24 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/teaching/js/</guid>
+      <description>&lt;p&gt;CSC-101: &lt;strong&gt;Introduction to Computer Programming&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;course-details&#34;&gt;Course Details:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Department of CSE&lt;/em&gt;, &lt;strong&gt;&lt;strong&gt;Independent University, Bangladesh&lt;/strong&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Class Size&lt;/strong&gt;: 30-35 students per section&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sections Available&lt;/strong&gt;: 2 per semester&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Semester Availability&lt;/strong&gt;: Offered every semester&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;CSC-101 is an introductory course designed to provide students with a solid foundation in computer programming. This course focuses on essential programming concepts such as data types, control structures (loops, conditionals), functions, and arrays. Students will learn to code using beginner-friendly languages like Python or C++, developing problem-solving skills and an understanding of how software applications are built.&lt;/p&gt;
+&lt;p&gt;The course emphasizes algorithm design, aiming to teach students how to write efficient and readable code while introducing them to critical thinking required for software development. It is ideal for students with no prior programming experience.&lt;/p&gt;
+&lt;h3 id=&#34;key-course-highlights&#34;&gt;Key Course Highlights:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Languages Used&lt;/strong&gt;: Python&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Core Concepts&lt;/strong&gt;: Data types, control structures, functions, arrays, algorithm design&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Skills Developed&lt;/strong&gt;: Logical thinking, problem-solving, software development&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Intended For&lt;/strong&gt;: Students new to programming&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pre-requisite Knowledge&lt;/strong&gt;: No prior programming experience required&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This course serves as the foundational step for students pursuing a career in computer science or software engineering and prepares them for more advanced topics in future courses.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Experience</title>
+      <link>http://localhost:1313/experience/</link>
+      <pubDate>Tue, 24 Oct 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/experience/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jamuna Tv - Robotics &amp; Bangladesh</title>
+      <link>http://localhost:1313/event/jamunatv2/</link>
+      <pubDate>Tue, 11 Jul 2023 07:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/event/jamunatv2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Drone Detection from Video Streams Using Image Processing Techniques and YOLOv7</title>
+      <link>http://localhost:1313/publication/kabir-2024-drone/</link>
+      <pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/kabir-2024-drone/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Long-term Software Fault Prediction Model Using Box-Cox and Linear Regression</title>
+      <link>http://localhost:1313/publication/momotaz-2023-long/</link>
+      <pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/momotaz-2023-long/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Long-Term Software Fault Prediction Model with Linear Regression and Data Transformation</title>
+      <link>http://localhost:1313/publication/begum-2023-long/</link>
+      <pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/begum-2023-long/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jamuna Tv - Voice</title>
+      <link>http://localhost:1313/event/jamunatv1/</link>
+      <pubDate>Tue, 01 Nov 2022 07:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/event/jamunatv1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Water monitoring using Internet of Things</title>
+      <link>http://localhost:1313/publication/islam-2022-water/</link>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/islam-2022-water/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Develop a dynamic DBSCAN algorithm for solving initial parameter selection problem of the DBSCAN algorithm</title>
+      <link>http://localhost:1313/publication/md-2021-develop/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/md-2021-develop/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Stroke prediction analysis using machine learning classifiers and feature technique</title>
+      <link>http://localhost:1313/publication/islam-2021-stroke/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publication/islam-2021-stroke/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

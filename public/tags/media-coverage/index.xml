@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Media Coverage | JH Rony</title>
+    <link>http://localhost:1313/tags/media-coverage/</link>
+      <atom:link href="http://localhost:1313/tags/media-coverage/index.xml" rel="self" type="application/rss+xml" />
+    <description>Media Coverage</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Thu, 20 Mar 2025 07:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://localhost:1313/media/icon_hu_2544d50e451968a5.png</url>
+      <title>Media Coverage</title>
+      <link>http://localhost:1313/tags/media-coverage/</link>
+    </image>
+    
+    <item>
+      <title>The Business Standard - Coverage on RIoT Center’s Research Outcome</title>
+      <link>http://localhost:1313/event/bs/</link>
+      <pubDate>Thu, 20 Mar 2025 07:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/event/bs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>📰 Our Research Featured in National News Media</title>
+      <link>http://localhost:1313/post/newpaperfeature/</link>
+      <pubDate>Thu, 20 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/newpaperfeature/</guid>
+      <description>&lt;p&gt;Exciting news! Our research has been featured in a national news media today. This recognition highlights the impact of our work and its relevance in the field. Stay tuned for more updates on our journey!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Jamuna Tv - Robotics &amp; Bangladesh</title>
+      <link>http://localhost:1313/event/jamunatv2/</link>
+      <pubDate>Tue, 11 Jul 2023 07:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/event/jamunatv2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Jamuna Tv - Voice</title>
+      <link>http://localhost:1313/event/jamunatv1/</link>
+      <pubDate>Tue, 01 Nov 2022 07:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/event/jamunatv1/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

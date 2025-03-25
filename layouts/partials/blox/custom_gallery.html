@@ -1,0 +1,117 @@
+<section class="photo-gallery">
+    <h2>{{ .title }}</h2>
+    <p>{{ .description }}</p>
+    <div class="gallery-container">
+        <table class="photo-table">
+            <tbody>
+                {{ $counter := 0 }}
+                {{ range (readDir "assets/media/photo") }}
+                    {{ if not .IsDir }}
+                        {{ if eq (mod $counter 3) 0 }}
+                            <tr> <!-- Start a new row after every 3 images -->
+                        {{ end }}
+                        <td>
+                            <a href="/photo/{{ .Name }}" data-lightbox="gallery" data-title="{{ .Name }}">
+                                <img src="/photo/{{ .Name }}" alt="Gallery Image">
+                            </a>
+                        </td>
+                        {{ $counter = add $counter 1 }}
+                        {{ if eq (mod $counter 3) 0 }}
+                            </tr> <!-- End the row after 3 images -->
+                        {{ end }}
+                    {{ end }}
+                {{ end }}
+                <!-- Ensure a closing </tr> if the last row has fewer than 3 images -->
+                {{ if ne (mod $counter 3) 0 }}
+                    </tr>
+                {{ end }}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Lightbox CSS (if you need to use Lightbox for enlarged images) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+
+<style>
+    /* Gallery Section Styles */
+    .photo-gallery {
+        margin: 2rem 0;
+        text-align: center;
+    }
+
+    .photo-gallery h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .photo-gallery p {
+        font-size: 1rem;
+        color: #666;
+        margin-bottom: 2rem;
+    }
+
+    /* Container for Gallery to control width */
+    .gallery-container {
+        width: 75%; /* Restrict the gallery to 75% of the page width */
+        margin: 0 auto; /* Center the gallery */
+    }
+
+    /* Table Styling for the Gallery */
+    .photo-table {
+        width: 100%;
+        border-collapse: collapse; /* Ensure borders don't double up */
+        border: 1px dashed #ccc; /* Dashed border around the table */
+    }
+
+    .photo-table td {
+        padding: 10px;
+        text-align: center;
+    }
+
+    /* Set all images to be of the same medium size */
+    .photo-table img {
+        width: 100%; /* Fill the container */
+        max-width: 250px; /* Limit the width of each image */
+        height: 200px; /* Fixed height */
+        object-fit: cover; /* Ensures images maintain their aspect ratio */
+        border-radius: 8px; /* Rounded corners */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        transition: transform 0.3s ease; /* Smooth hover effect */
+    }
+
+    .photo-table img:hover {
+        transform: scale(1.05); /* Slight zoom on hover */
+    }
+
+    /* Lightbox Style */
+    .gallery-container a {
+        display: block;
+        position: relative;
+    }
+
+    .gallery-container a:focus, .gallery-container a:hover {
+        text-decoration: none;
+    }
+
+    /* Mobile View - 1 image per row */
+    @media (max-width: 768px) {
+        .photo-table {
+            width: 100%; /* Ensure the table takes up full width */
+        }
+        .photo-table td {
+            display: block; /* Make each <td> block-level so they stack */
+            width: 100%;
+            text-align: center;
+        }
+        .photo-table img {
+            width: 100%; /* Ensure the image takes up full width of the table cell */
+            max-width: 100%; /* Allow the image to resize dynamically */
+            height: auto; /* Adjust height automatically */
+        }
+    }
+</style>
+
+<!-- Lightbox JS (if you need to use Lightbox for enlarged images) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>

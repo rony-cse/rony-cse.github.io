@@ -1,23 +1,20 @@
-# SITE SETUP
-# Guide: https://docs.hugoblox.com/tutorial/
-# Documentation: https://docs.hugoblox.com/
-# This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
 # Appearance
 appearance:
   mode: system
-  color: emerald
-
+  color: cyan
+  # emerald
+# blue, cyan, green, indigo, purple, red, rose, sky, teal, and zinc.
 # SEO
 marketing:
   seo:
     site_type: Person
     local_business_type: ''
-    org_name: ''
-    description: 'The highly-customizable Hugo Academic theme powered by Hugo Blox Builder. Easily create your personal academic website.'
-    twitter: 'GetResearchDev'
+    org_name: 'Independent University Bangladesh'
+    description: 'Jahid Hasan Rony is a reseracher at Independent University, Bangladesh, specializing in computer vision, machine learning, and the AI.'
+    twitter: ''
   analytics:
-    google_analytics: ''
+    google_analytics: 'G-5DJD56KQ54'
     baidu_tongji: ''
     plausible: ''
     fathom: ''
@@ -32,25 +29,32 @@ header:
     enable: true
     blox: "navbar"
     fixed_to_top: true
-    show_search: true
+    show_search: false
     show_theme_chooser: true
     logo:
-      text: "Your Name"
+      text: "Jahid Hasan Rony"
 
-# Site footer
+# # Site footer
 footer:
   copyright:
-    notice: '© {year} Me. This work is licensed under {license}'
-    license:
-      enable: true
-      allow_derivatives: false
-      share_alike: true
-      allow_commercial: false
+    notice: '© {year} JH Rony.'
+#     # license:
+#     #   enable: true
+#     #   allow_derivatives: false
+#     #   share_alike: true
+#     #   allow_commercial: false
+
+
+# # Site footer
+# footer:
+#   copyright:
+#     notice: '© {year} JH Rony. Last updated on {{ .Site.Lastmod.Format "2006-01-02" }}'
+
 
 # Localization
-locale:
-  date_format: 'Jan 2, 2006'
-  time_format: '3:04 PM'
+# locale:
+#   date_format: 'Jan 2, 2025'
+#   time_format: '3:04 PM'
 
 # Site features
 features:
