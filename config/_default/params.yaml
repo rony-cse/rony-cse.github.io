@@ -37,7 +37,7 @@ header:
 # # Site footer
 footer:
   copyright:
-    notice: '© {year} JH Rony.'
+    notice: '© {year} JH Rony'
 #     # license:
 #     #   enable: true
 #     #   allow_derivatives: false
