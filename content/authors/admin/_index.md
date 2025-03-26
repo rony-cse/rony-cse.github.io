@@ -37,6 +37,10 @@ profiles:
     label: E-mail Me
   # - icon: brands/github
   #   url: https://github.com/gcushen
+  - icon: brands/whatsapp
+    url: https://wa.me/8801753296896
+  - icon: brands/facebook
+    url: https://www.facebook.com/zhrony.bd/
   - icon: brands/linkedin
     url: https://www.linkedin.com/in/j-h-r/
   - icon: academicons/google-scholar
