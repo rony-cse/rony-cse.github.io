@@ -20,7 +20,7 @@ superuser: true
 highlight_name: false
 
 # Role/position/tagline
-role: AI Researcher
+role: AI Research Aficionado
 
 # Organizations/Affiliations to display in Biography blox
 organizations:
