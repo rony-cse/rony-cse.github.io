@@ -65,36 +65,12 @@ education:
       Supervised by [Prof Fazlul Hasan Siddiqui](https://profile.duet.ac.bd/u/siddiqui). Presented papers at  IEEE conferences.
 
 
-    # button:
-    #   text: 'Read Thesis'
-    #   url: 'https://example.com'
-  # - area: MEng Artificial Intelligence
-  #   institution: Massachusetts Institute of Technology
-  #   date_start: 2016-01-01
-  #   date_end: 2020-12-31
-  #   summary: |
-  #     GPA: 3.8/4.0
 
-  #     Courses included:
-  #     - lorem ipsum dolor sit amet, consectetur adipiscing elit
-  #     - lorem ipsum dolor sit amet, consectetur adipiscing elit
-  #     - lorem ipsum dolor sit amet, consectetur adipiscing elit
-  # - area: BSc Artificial Intelligence
-  #   institution: Massachusetts Institute of Technology
-  #   date_start: 2016-01-01
-  #   date_end: 2020-12-31
-  #   summary: |
-  #     GPA: 3.4/4.0
-      
-  #     Courses included:
-  #     - lorem ipsum dolor sit amet, consectetur adipiscing elit
-  #     - lorem ipsum dolor sit amet, consectetur adipiscing elit
-  #     - lorem ipsum dolor sit amet, consectetur adipiscing elit
 work:
   - position: Researcher
     company_name: Center for Industrial Automation Robotics & Internet of Things (RIoT)
     company_url: "https://www.iub.edu.bd/"
-    company_logo: ""
+    company_logo: 
     date_start: 2023-10-01
     date_end: 
     summary: |2-
@@ -117,39 +93,28 @@ work:
       - CSC-101: Introduction to Computer Programming
       - CIS-101: Fundamentals of Computer System
       
-  - position: Intern, Web and IoT Developer
+  - position: Internship
     company_name: Texon Limited
     company_url: "https://texonltd.com/"
     company_logo: ""
     date_start: 2022-09-01
-    date_end: 
+    date_end: 2022-11-01
     summary: |2-
       - Developed interactive web applications and IoT solutions using Flutter, Arduino, ESP, Firebase, and ThingSpeak.
 
 
-# work:
-#   - position: Researcher
-#     company_name: Center for Industrial Automation Robotics & Internet of Things
-#     company_url: ''
-#     company_logo: ''
-#     date_start: 2021-01-01
-#     date_end: ''
-#     summary: |2-
-#       Responsibilities include:
-#       - lorem ipsum dolor sit amet, consectetur adipiscing elit
-#       - lorem ipsum dolor sit amet, consectetur adipiscing elit
-#       - lorem ipsum dolor sit amet, consectetur adipiscing elit
-#   - position: Backend Software Engineer
-#     company_name: X
-#     company_url: ''
-#     company_logo: ''
-#     date_start: 2016-01-01
-#     date_end: 2020-12-31
-#     summary: |
-#       Responsibilities include:
-#       - Migrated infrastructure to a new data center
-#       - lorem ipsum dolor sit amet, consectetur adipiscing elit
-#       - lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - position: Co-curricular/ Leadership
+    company_name: DUET Robotics Club
+    company_url: https://drc.duetbd.org/excom2023/
+    company_logo: ""
+    date_start: 2020-01-01
+    date_end: 2023-06-01
+    summary: |2-
+      -  President (2022-2023), General Secretary (2021-2022)
+      -  Convenor of National Robotics Festivals (DUET Techfest 2023, DRC Fest 2022), Co-convener DUET Techfest 2022
+      -  International Robotics Competition: Head of organizing committee of Techfest IIT Bombay Bangladesh Round 2023
+      - Link: <a href="https://drc.duetbd.org/excom2023/" target="_blank">DUET Robotics Club</a>
+
 
 # Skills
 skills:
@@ -272,7 +237,7 @@ awards:
     awarder: International Conference
     icon: academicons/orcid 
     summary: |
-      • Awarded **Best Poster Presentation** at International Conference on Sustainable Engineering Development (ICSED 2023).
+      • Awarded **Best Poster Presentation** at International Conference on Sustainable Engineering Development (ICSED 2023). 
 
   - title: International Robotics Competitions  
     url: https://example.com/competitions  
