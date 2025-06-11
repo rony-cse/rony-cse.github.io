@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Arduino | JH Rony</title>
+    <link>http://localhost:1313/tags/arduino/</link>
+      <atom:link href="http://localhost:1313/tags/arduino/index.xml" rel="self" type="application/rss+xml" />
+    <description>Arduino</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Thu, 29 May 2025 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://localhost:1313/media/icon_hu_2544d50e451968a5.png</url>
+      <title>Arduino</title>
+      <link>http://localhost:1313/tags/arduino/</link>
+    </image>
+    
+    <item>
+      <title>🤖 Conducted Robotics Workshop at Cadet College – Inspiring Future Innovators</title>
+      <link>http://localhost:1313/post/roboticsworkshopjgcc/</link>
+      <pubDate>Thu, 29 May 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/roboticsworkshopjgcc/</guid>
+      <description>&lt;p&gt;It was an incredible experience to conduct a two-day &lt;strong&gt;Robotics Workshop&lt;/strong&gt; at a Cadet College, where I had the opportunity to introduce young minds to the fundamentals of robotics and embedded systems. The workshop provided a practical introduction to working with simple sensors, actuators, and Arduino boards.&lt;/p&gt;
+&lt;p&gt;The cadets, full of curiosity and talent, quickly grasped the concepts and surprised us by building their own small projects — all from scratch and based on their unique ideas. Their enthusiasm and creativity were truly inspiring!&lt;/p&gt;
+&lt;p&gt;This initiative was aimed at kickstarting their journey into the world of robotics, and I believe some of these brilliant students will one day become pioneers in the field.&lt;/p&gt;
+&lt;p&gt;Wishing them all the best in their future endeavors. Looking forward to seeing some of them excel in robotics and technology in the years ahead!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

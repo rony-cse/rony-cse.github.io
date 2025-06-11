@@ -13,7 +13,19 @@
     </image>
     
     <item>
-      <title>The Business Standard - Coverage on RIoT Center’s Research Outcome</title>
+      <title>🤖 Conducted Robotics Workshop at Cadet College – Inspiring Future Innovators</title>
+      <link>http://localhost:1313/post/roboticsworkshopjgcc/</link>
+      <pubDate>Thu, 29 May 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/roboticsworkshopjgcc/</guid>
+      <description>&lt;p&gt;It was an incredible experience to conduct a two-day &lt;strong&gt;Robotics Workshop&lt;/strong&gt; at a Cadet College, where I had the opportunity to introduce young minds to the fundamentals of robotics and embedded systems. The workshop provided a practical introduction to working with simple sensors, actuators, and Arduino boards.&lt;/p&gt;
+&lt;p&gt;The cadets, full of curiosity and talent, quickly grasped the concepts and surprised us by building their own small projects — all from scratch and based on their unique ideas. Their enthusiasm and creativity were truly inspiring!&lt;/p&gt;
+&lt;p&gt;This initiative was aimed at kickstarting their journey into the world of robotics, and I believe some of these brilliant students will one day become pioneers in the field.&lt;/p&gt;
+&lt;p&gt;Wishing them all the best in their future endeavors. Looking forward to seeing some of them excel in robotics and technology in the years ahead!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The Business Standard - Coverage on RIoT Center’s Research Outcome [Newspaper]</title>
       <link>http://localhost:1313/event/bs/</link>
       <pubDate>Thu, 20 Mar 2025 07:00:00 +0000</pubDate>
       <guid>http://localhost:1313/event/bs/</guid>
@@ -216,7 +228,7 @@ Add the publication&#39;s **full text** or **supplementary notes** here. You can
     </item>
     
     <item>
-      <title>Jamuna Tv - Robotics &amp; Bangladesh</title>
+      <title>Jamuna Tv Talkshow- Robotics &amp; Bangladesh [Television]</title>
       <link>http://localhost:1313/event/jamunatv2/</link>
       <pubDate>Tue, 11 Jul 2023 07:00:00 +0000</pubDate>
       <guid>http://localhost:1313/event/jamunatv2/</guid>
@@ -248,7 +260,7 @@ Add the publication&#39;s **full text** or **supplementary notes** here. You can
     </item>
     
     <item>
-      <title>Jamuna Tv - Voice</title>
+      <title>Jamuna Tv Interview - Voice [Television]</title>
       <link>http://localhost:1313/event/jamunatv1/</link>
       <pubDate>Tue, 01 Nov 2022 07:00:00 +0000</pubDate>
       <guid>http://localhost:1313/event/jamunatv1/</guid>

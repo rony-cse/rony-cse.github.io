@@ -1,5 +1,5 @@
 ---
-title: The Business Standard - Coverage on RIoT Center’s Research Outcome
+title: The Business Standard - Coverage on RIoT Center’s Research Outcome [Newspaper]
 
 event: The Business Standard Feature on RIoT Center’s Q1 Dataset Publication
 event_url: https://www.tbsnews.net/economy/corporates/iubs-riot-research-center-publishes-datasets-nature-scientific-data-1097656

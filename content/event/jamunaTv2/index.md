@@ -1,5 +1,5 @@
 ---
-title: Jamuna Tv - Robotics & Bangladesh
+title: Jamuna Tv Talkshow- Robotics & Bangladesh [Television]
 
 event: Jamuna TV Robotics Talk Show
 event_url: https://www.youtube.com/watch?v=iuqAIMUWIdM

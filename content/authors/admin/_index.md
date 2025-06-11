@@ -338,4 +338,4 @@ awards:
 
 ## About Me
 
-Jahid Hasan Rony is a reseracher at Independent University, Bangladesh, specializing in computer vision, machine learning, and the AI. He is actively involved in the Dental and AqUAVPlant project, where he contributes to UAV-based semantic segmentation of aquatic plants and Dental Dataset complex segmentation task. His research interests span AI, robotics, and industrial automation, and he has contributed to various national and international competitions, securing top positions.
+Jahid Hasan Rony is a reseracher at Independent University, Bangladesh, specializing in computer vision, machine learning, and the AI. He is actively involved in the segmentation project for Aquatic species and Dental Images. His research interests span AI, robotics, and industrial automation, and he has contributed to various national and international competitions, securing top positions.
