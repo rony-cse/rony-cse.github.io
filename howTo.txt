@@ -1,0 +1,5 @@
+cmd:
+	hugo server -D
+	code .
+
+git hub- commit and push
