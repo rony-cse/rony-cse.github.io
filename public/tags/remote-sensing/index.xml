@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Remote Sensing | JH Rony</title>
+    <link>http://localhost:1313/tags/remote-sensing/</link>
+      <atom:link href="http://localhost:1313/tags/remote-sensing/index.xml" rel="self" type="application/rss+xml" />
+    <description>Remote Sensing</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Sat, 26 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://localhost:1313/media/icon_hu_2544d50e451968a5.png</url>
+      <title>Remote Sensing</title>
+      <link>http://localhost:1313/tags/remote-sensing/</link>
+    </image>
+    
+    <item>
+      <title>🚁 Field Visit to BAU with IUB Research Team – UAV Data Collection in Action</title>
+      <link>http://localhost:1313/post/field-visit-to-bau-with-iub-research-team/</link>
+      <pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/field-visit-to-bau-with-iub-research-team/</guid>
+      <description>&lt;p&gt;Recently, I had the opportunity to be part of a research team from the RIoT Center, Independent University, Bangladesh (IUB), on a visit to Bangladesh Agricultural University (BAU), Mymensingh.&lt;/p&gt;
+&lt;p&gt;Our mission was to conduct a research coordination meeting and perform UAV-based image data collection for an ongoing agricultural project. The experience was both technically enriching and inspiring, as we explored multidisciplinary remote sensing research opportunities with the Agriculture University, while also continuing our previous work.&lt;/p&gt;
+&lt;p&gt;Looking forward to contributing to meaningful research outcomes that can support the future of agricultural innovation in Bangladesh!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
