@@ -1,7 +1,7 @@
 ---
 title: 🤝 Volunteered at NCIM 2025 – A Memorable Day at DUET
 summary: Joined the organizing team of NCIM 2025 and helped host the Machine Learning sessions — a fulfilling experience as a DUET graduate.
-date: 2025-07-26
+date: 2024-07-26 # 2025
 authors:
   - admin
 tags:

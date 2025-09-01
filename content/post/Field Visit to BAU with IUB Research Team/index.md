@@ -1,5 +1,5 @@
 ---
-title: 🚁 Field Visit to BAU with IUB Research Team – UAV Data Collection in Action
+title: 🚁 Field Visit to BAU with IUB Research Team – UAV Data Collection
 summary: Joined a research team from IUB for a field visit to BAU, Mymensingh, to collect UAV-based image data for an agricultural research
 date: 2025-07-26
 authors:

@@ -1,5 +1,5 @@
 ---
-title: Jamuna Tv Interview - Voice [Television]
+title: TV Interview - Jamuna TV, Voice
 
 event: Jamuna TV Talk Show Voice
 event_url: https://www.facebook.com/JamunaTelevision/videos/647397280440237/

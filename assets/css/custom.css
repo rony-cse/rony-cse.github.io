@@ -6,3 +6,18 @@
     margin-bottom: 20px; /* Add some margin at the bottom */
   }
   
+
+  .new-blink {
+  background: #E67E22;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 0.7em;
+  font-weight: bold;
+  animation: blink 1.2s infinite;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}

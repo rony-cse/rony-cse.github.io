@@ -5,7 +5,7 @@
     <link>http://localhost:1313/tags/conference/</link>
       <atom:link href="http://localhost:1313/tags/conference/index.xml" rel="self" type="application/rss+xml" />
     <description>Conference</description>
-    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Sat, 26 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Fri, 26 Jul 2024 00:00:00 +0000</lastBuildDate>
     <image>
       <url>http://localhost:1313/media/icon_hu_2544d50e451968a5.png</url>
       <title>Conference</title>
@@ -15,7 +15,7 @@
     <item>
       <title>🤝 Volunteered at NCIM 2025 – A Memorable Day at DUET</title>
       <link>http://localhost:1313/post/volunteered-at-ncim-2025/</link>
-      <pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 26 Jul 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/post/volunteered-at-ncim-2025/</guid>
       <description>&lt;p&gt;I had the pleasure of volunteering as part of the organizing committee for the INTERNATIONAL CONFERENCE ON NEXT-GENERATION COMPUTING, IoT AND MACHINE LEARNING (NCIM) 2025, hosted by the Department of CSE, DUET.&lt;/p&gt;
 &lt;p&gt;Assigned to one of the main venues, I assisted in coordinating the Machine Learning track, which featured six sessions spread over two days. It was a deeply fulfilling experience to work alongside dedicated faculty members and enthusiastic students — especially meaningful as a proud graduate of DUET myself.&lt;/p&gt;
