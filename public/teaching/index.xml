@@ -5,7 +5,7 @@
     <link>http://localhost:1313/teaching/</link>
       <atom:link href="http://localhost:1313/teaching/index.xml" rel="self" type="application/rss+xml" />
     <description>Teaching</description>
-    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Tue, 24 Oct 2023 00:00:00 +0000</lastBuildDate>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Fri, 01 Nov 2024 00:00:00 +0000</lastBuildDate>
     <image>
       <url>http://localhost:1313/media/icon_hu_2544d50e451968a5.png</url>
       <title>Teaching</title>
@@ -15,7 +15,7 @@
     <item>
       <title>CIS-101 Fundamentals of Computer System</title>
       <link>http://localhost:1313/teaching/python/</link>
-      <pubDate>Tue, 24 Oct 2023 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 01 Nov 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/teaching/python/</guid>
       <description>&lt;p&gt;CIS-101: &lt;strong&gt;Fundamentals of Computer System&lt;/strong&gt;&lt;/p&gt;
 &lt;h3 id=&#34;course-details&#34;&gt;Course Details:&lt;/h3&gt;

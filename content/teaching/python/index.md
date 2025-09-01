@@ -1,7 +1,7 @@
 ---
 title: CIS-101 Fundamentals of Computer System
 summary: A foundational course to understand the core concepts of computer systems and their components.
-date: 2023-10-24
+date: 2024-11-01
 type: docs
 math: false
 tags:
