@@ -1,5 +1,5 @@
 ---
-title: 🚀 Paper Accepted at 44th IEEE IPCCC 2025, Austin Texas
+title: 🚀 Paper Accepted at 44th IEEE IPCCC 2025, Austin Texas ✨
 summary: One of our drone-based imaging research outcome has been accepted at the 44th IEEE International Performance, Computing, and Communications Conference (IPCCC).
 date: 2025-08-31
 authors:

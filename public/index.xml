@@ -7,7 +7,7 @@
     <description>JH Rony</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Tue, 25 Mar 2025 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://localhost:1313/media/icon_hu_2544d50e451968a5.png</url>
+      <url>http://localhost:1313/media/icon_hu_231230591841aa8c.png</url>
       <title>JH Rony</title>
       <link>http://localhost:1313/</link>
     </image>
@@ -54,7 +54,7 @@ Add the publication&#39;s **full text** or **supplementary notes** here. You can
     </item>
     
     <item>
-      <title>🚀 Paper Accepted at IEEE IPCCC 2025, Austin Texas</title>
+      <title>🚀 Paper Accepted at 44th IEEE IPCCC 2025, Austin Texas ✨</title>
       <link>http://localhost:1313/post/ipccc-paper-accepted/</link>
       <pubDate>Sun, 31 Aug 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/post/ipccc-paper-accepted/</guid>
@@ -155,6 +155,35 @@ Add the publication&#39;s **full text** or **supplementary notes** here. You can
     </item>
     
     <item>
+      <title>CIS-101 Fundamentals of Computer System</title>
+      <link>http://localhost:1313/teaching/python/</link>
+      <pubDate>Fri, 01 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/teaching/python/</guid>
+      <description>&lt;p&gt;CIS-101: &lt;strong&gt;Fundamentals of Computer System&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;course-details&#34;&gt;Course Details:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Department of CSE&lt;/em&gt;, &lt;strong&gt;&lt;strong&gt;Independent University, Bangladesh&lt;/strong&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Class Size&lt;/strong&gt;: 30-35 students per section&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sections Available&lt;/strong&gt;: 2 per semester&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Semester Availability&lt;/strong&gt;: Offered every semester&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;watch-a-class-record-of-the-course&#34;&gt;Watch a class record of the Course:&lt;/h3&gt;
+&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/qBema5E8RuY?si=8A-oZJlChrikKpLJ&#34; title=&#34;YouTube video player&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;CIS-101 is an introductory course that aims to provide students with a comprehensive understanding of computer systems. The course covers the fundamental components of a computer system, including hardware, software, operating systems, and basic networking concepts. It is designed to introduce students to the essentials of how computer systems function, as well as their role in modern computing environments.&lt;/p&gt;
+&lt;p&gt;Throughout the course, students will explore the relationships between the computer’s hardware and the software that drives it. They will gain knowledge in areas such as memory management, file systems, and the role of the operating system in managing computer resources. This course also includes hands-on experience with basic system commands and programming.&lt;/p&gt;
+&lt;h3 id=&#34;key-course-highlights&#34;&gt;Key Course Highlights:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Core Concepts&lt;/strong&gt;: Computer architecture, operating systems, memory management, file systems, basic networking&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Languages Used&lt;/strong&gt;: Basic prompting for system interaction (Prompt Engineering, MS Power App)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Skills Developed&lt;/strong&gt;: Understanding computer hardware/software integration, basic system programming, problem-solving in computing systems&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Intended For&lt;/strong&gt;: Students seeking to understand the inner workings of computers&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pre-requisite Knowledge&lt;/strong&gt;: No prior programming or system knowledge required&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This course lays the groundwork for students aiming to pursue more advanced topics in computer systems, networking, and computer engineering, providing essential knowledge for careers in IT, system administration, and software development.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>🤝 Volunteered at NCIM 2025 – A Memorable Day at DUET</title>
       <link>http://localhost:1313/post/volunteered-at-ncim-2025/</link>
       <pubDate>Fri, 26 Jul 2024 00:00:00 +0000</pubDate>
@@ -236,35 +265,6 @@ Add the publication&#39;s **full text** or **supplementary notes** here. You can
       <pubDate>Thu, 26 Oct 2023 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/project/scikit/</guid>
       <description>&lt;p&gt;scikit-learn is a Python module for machine learning built on top of SciPy and is distributed under the 3-Clause BSD license.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>CIS-101 Fundamentals of Computer System</title>
-      <link>http://localhost:1313/teaching/python/</link>
-      <pubDate>Tue, 24 Oct 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/teaching/python/</guid>
-      <description>&lt;p&gt;CIS-101: &lt;strong&gt;Fundamentals of Computer System&lt;/strong&gt;&lt;/p&gt;
-&lt;h3 id=&#34;course-details&#34;&gt;Course Details:&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;Department of CSE&lt;/em&gt;, &lt;strong&gt;&lt;strong&gt;Independent University, Bangladesh&lt;/strong&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Class Size&lt;/strong&gt;: 30-35 students per section&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Sections Available&lt;/strong&gt;: 2 per semester&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Semester Availability&lt;/strong&gt;: Offered every semester&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;watch-a-class-record-of-the-course&#34;&gt;Watch a class record of the Course:&lt;/h3&gt;
-&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/qBema5E8RuY?si=8A-oZJlChrikKpLJ&#34; title=&#34;YouTube video player&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share&#34; referrerpolicy=&#34;strict-origin-when-cross-origin&#34; allowfullscreen&gt;&lt;/iframe&gt;
-&lt;p&gt;CIS-101 is an introductory course that aims to provide students with a comprehensive understanding of computer systems. The course covers the fundamental components of a computer system, including hardware, software, operating systems, and basic networking concepts. It is designed to introduce students to the essentials of how computer systems function, as well as their role in modern computing environments.&lt;/p&gt;
-&lt;p&gt;Throughout the course, students will explore the relationships between the computer’s hardware and the software that drives it. They will gain knowledge in areas such as memory management, file systems, and the role of the operating system in managing computer resources. This course also includes hands-on experience with basic system commands and programming.&lt;/p&gt;
-&lt;h3 id=&#34;key-course-highlights&#34;&gt;Key Course Highlights:&lt;/h3&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Core Concepts&lt;/strong&gt;: Computer architecture, operating systems, memory management, file systems, basic networking&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Languages Used&lt;/strong&gt;: Basic prompting for system interaction (Prompt Engineering, MS Power App)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Skills Developed&lt;/strong&gt;: Understanding computer hardware/software integration, basic system programming, problem-solving in computing systems&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Intended For&lt;/strong&gt;: Students seeking to understand the inner workings of computers&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Pre-requisite Knowledge&lt;/strong&gt;: No prior programming or system knowledge required&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;This course lays the groundwork for students aiming to pursue more advanced topics in computer systems, networking, and computer engineering, providing essential knowledge for careers in IT, system administration, and software development.&lt;/p&gt;
-</description>
     </item>
     
     <item>
