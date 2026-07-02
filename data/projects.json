@@ -7,9 +7,15 @@
     "startDate": "2023",
     "endDate": "2024",
     "collaborators": [
-      { "name": "Md Abrar Istiak", "url": "" },
-      { "name": "Razib Hayat Khan", "url": "" },
-      { "name": "Abdullah Al Shafi", "url": "" }
+      {
+        "name": "Md Abrar Istiak"
+      },
+      {
+        "name": "Razib Hayat Khan"
+      },
+      {
+        "name": "Abdullah Al Shafi"
+      }
     ],
     "funding": "",
     "links": {
@@ -20,7 +26,16 @@
       "video": ""
     },
     "thumbnail": "",
-    "tags": ["UAV", "Dataset", "Semantic Segmentation", "Aquatic Plants"],
+    "tags": [
+      "UAV",
+      "Dataset",
+      "Semantic Segmentation",
+      "Aquatic Plants"
+    ],
+    "publicationIds": [
+      "pub001",
+      "pub002"
+    ],
     "featured": true,
     "visible": true
   },
@@ -32,8 +47,14 @@
     "startDate": "2023",
     "endDate": "2024",
     "collaborators": [
-      { "name": "Shakila Rahman", "url": "" },
-      { "name": "Jia Uddin", "url": "" }
+      {
+        "name": "Shakila Rahman",
+        "url": ""
+      },
+      {
+        "name": "Jia Uddin",
+        "url": ""
+      }
     ],
     "funding": "",
     "links": {
@@ -44,7 +65,12 @@
       "video": ""
     },
     "thumbnail": "",
-    "tags": ["YOLOv8", "Robotics", "Object Detection", "Real-time"],
+    "tags": [
+      "YOLOv8",
+      "Robotics",
+      "Object Detection",
+      "Real-time"
+    ],
     "featured": true,
     "visible": true
   },
@@ -65,7 +91,12 @@
       "video": ""
     },
     "thumbnail": "",
-    "tags": ["XAI", "Mental Health", "Machine Learning", "Healthcare AI"],
+    "tags": [
+      "XAI",
+      "Mental Health",
+      "Machine Learning",
+      "Healthcare AI"
+    ],
     "featured": false,
     "visible": true
   }
