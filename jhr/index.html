@@ -1,0 +1,1110 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin â€” JH Rony</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root{--bg:#ffffff;--surf:#f8fafc;--border:#e2e8f0;--text:#0f172a;--muted:#64748b;--accent:#2563eb;--accent-fg:#fff;--danger:#dc2626;--success:#16a34a;--font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;--r:6px;--sb:220px}
+[data-theme="dark"]{--bg:#0d1117;--surf:#161b22;--border:#30363d;--text:#e6edf3;--muted:#8b949e;--accent:#58a6ff;--accent-fg:#0d1117;--danger:#f85149;--success:#3fb950}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:var(--font);font-size:14px;color:var(--text);background:var(--bg)}
+a{color:var(--accent);text-decoration:none}
+input,textarea,select{font-family:var(--font);font-size:13px;background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:0.4rem 0.65rem;color:var(--text);outline:none;transition:border-color 0.15s;width:100%}
+input:focus,textarea:focus,select:focus{border-color:var(--accent)}
+textarea{resize:vertical;min-height:80px}
+label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.04em}
+.field{margin-bottom:0.9rem}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.75rem}
+button{font-family:var(--font);font-size:13px;cursor:pointer;border:none;border-radius:var(--r);padding:0.4rem 0.85rem;transition:all 0.15s;line-height:1.4}
+.btn-p{background:var(--accent);color:var(--accent-fg);font-weight:500}
+.btn-p:hover{opacity:0.88}
+.btn-o{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn-o:hover{border-color:var(--accent);color:var(--accent)}
+.btn-d{background:transparent;border:1px solid var(--border);color:var(--danger)}
+.btn-d:hover{background:var(--danger);color:#fff;border-color:var(--danger)}
+.btn-s{background:transparent;border:1px solid var(--border);color:var(--success)}
+.btn-s:hover{background:var(--success);color:#fff;border-color:var(--success)}
+.btn-sm{padding:0.25rem 0.55rem;font-size:12px}
+
+/* Layout */
+#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:1rem;background:var(--bg)}
+.login-box{width:100%;max-width:420px;background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:2rem}
+.login-box h1{font-size:1.25rem;margin-bottom:0.25rem}
+.login-box p{font-size:12px;color:var(--muted);margin-bottom:1.5rem}
+.login-help{font-size:11px;color:var(--muted);margin-top:0.35rem}
+.login-help a{color:var(--accent)}
+
+#app{display:none;height:100vh;overflow:hidden}
+#app.visible{display:flex}
+#sidebar{width:var(--sb);flex-shrink:0;border-right:1px solid var(--border);background:var(--surf);display:flex;flex-direction:column;overflow:hidden}
+.sb-header{padding:0.85rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.5rem}
+.sb-header strong{flex:1;font-size:0.875rem}
+.sb-header button{padding:0.25rem 0.5rem;font-size:11px}
+#sidebar nav{flex:1;overflow-y:auto;padding:0.5rem}
+.nav-item{display:block;width:100%;text-align:left;padding:0.45rem 0.75rem;border-radius:var(--r);font-size:13px;color:var(--muted);background:none;border:none;cursor:pointer;transition:all 0.12s;font-family:var(--font)}
+.nav-item:hover{background:var(--bg);color:var(--text)}
+.nav-item.active{background:var(--accent);color:var(--accent-fg)}
+.nav-sep{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--muted);padding:0.6rem 0.75rem 0.25rem}
+.sb-status{padding:0.65rem 1rem;border-top:1px solid var(--border);font-size:11px;color:var(--muted);display:flex;align-items:center;gap:0.4rem}
+.status-dot{width:7px;height:7px;border-radius:50%;background:var(--muted)}
+.status-dot.ok{background:var(--success)}
+
+#content-area{flex:1;overflow-y:auto;padding:1.5rem 2rem;background:var(--bg)}
+
+/* Section header */
+.sec-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:1px solid var(--border)}
+.sec-header h2{font-size:1rem;font-weight:600;flex:1}
+
+/* Cards / tables */
+.item-table{width:100%;border-collapse:collapse;font-size:12.5px}
+.item-table th{text-align:left;padding:0.45rem 0.65rem;border-bottom:2px solid var(--border);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;color:var(--muted);white-space:nowrap}
+.item-table td{padding:0.5rem 0.65rem;border-bottom:1px solid var(--border);vertical-align:middle}
+.item-table tr:last-child td{border-bottom:none}
+.item-table tr:hover td{background:var(--surf)}
+.td-actions{display:flex;gap:0.35rem;flex-wrap:wrap}
+.badge-vis{display:inline-block;font-size:10px;padding:1px 5px;border-radius:3px;font-weight:700;text-transform:uppercase}
+.vis-on{background:#f0fdf4;color:#15803d}[data-theme="dark"] .vis-on{background:#0d2818;color:#3fb950}
+.vis-off{background:#fff1f2;color:#be123c}[data-theme="dark"] .vis-off{background:#2d0a0a;color:#f87171}
+
+/* Form panel */
+.form-panel{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1.25rem;margin-bottom:1.25rem}
+.form-panel h3{font-size:0.875rem;font-weight:600;margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)}
+.form-actions{display:flex;gap:0.5rem;margin-top:1rem;padding-top:0.75rem;border-top:1px solid var(--border)}
+
+/* Image upload */
+.img-upload-area{border:2px dashed var(--border);border-radius:var(--r);padding:1.25rem;text-align:center;cursor:pointer;transition:border-color 0.15s;position:relative}
+.img-upload-area:hover,.img-upload-area.drag{border-color:var(--accent);background:rgba(37,99,235,0.04)}
+.img-upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.img-upload-area p{font-size:12px;color:var(--muted);pointer-events:none}
+.img-upload-area strong{color:var(--accent)}
+.img-preview{margin-top:0.5rem;display:flex;flex-wrap:wrap;gap:0.5rem}
+.img-preview-item{position:relative;border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.img-preview-item img{width:80px;height:56px;object-fit:cover;display:block}
+.img-preview-item button{position:absolute;top:2px;right:2px;background:rgba(0,0,0,0.6);color:#fff;border:none;border-radius:2px;font-size:10px;padding:1px 4px;cursor:pointer}
+.upload-note{font-size:11px;color:var(--muted);margin-top:0.3rem}
+
+/* Toast */
+#toast-area{position:fixed;bottom:1.25rem;right:1.25rem;z-index:999;display:flex;flex-direction:column;gap:0.5rem}
+.toast{padding:0.6rem 1rem;border-radius:var(--r);font-size:13px;font-weight:500;animation:slideIn 0.2s ease;max-width:340px;box-shadow:0 4px 12px rgba(0,0,0,0.15)}
+.toast-ok{background:var(--success);color:#fff}
+.toast-err{background:var(--danger);color:#fff}
+.toast-info{background:var(--accent);color:var(--accent-fg)}
+@keyframes slideIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* Dashboard stats */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:0.75rem;margin-bottom:1.5rem}
+.stat-card{background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1rem;text-align:center}
+.stat-num{font-size:1.75rem;font-weight:700;color:var(--accent)}
+.stat-label{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* Switch */
+.switch-row{display:flex;align-items:center;gap:0.6rem;margin-bottom:0.6rem}
+.switch-row label{margin:0;font-weight:400;font-size:13px;text-transform:none;letter-spacing:0;cursor:pointer;flex:1;color:var(--text)}
+.toggle{position:relative;width:34px;height:18px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0;position:absolute}
+.toggle-slider{position:absolute;inset:0;background:var(--border);border-radius:18px;cursor:pointer;transition:0.2s}
+.toggle input:checked+.toggle-slider{background:var(--accent)}
+.toggle-slider::before{content:'';position:absolute;height:12px;width:12px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:0.2s}
+.toggle input:checked+.toggle-slider::before{transform:translateX(16px)}
+
+/* Color picker row */
+.color-row{display:flex;gap:0.5rem;flex-wrap:wrap}
+.color-opt{width:28px;height:28px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:border-color 0.15s}
+.color-opt.sel{border-color:var(--text)}
+
+/* Nav order list */
+.nav-sort-list{display:flex;flex-direction:column;gap:0.35rem}
+.nav-sort-item{display:flex;align-items:center;gap:0.5rem;padding:0.45rem 0.65rem;background:var(--surf);border:1px solid var(--border);border-radius:var(--r);font-size:13px;cursor:grab}
+.nav-sort-item span{flex:1}
+</style>
+</head>
+<body>
+
+<!-- Login -->
+<div id="login-screen">
+  <div class="login-box">
+    <h1>Admin Panel</h1>
+    <p>Enter your GitHub credentials to manage site content.</p>
+    <div class="field"><label>GitHub Personal Access Token</label><input id="l-token" type="password" placeholder="ghp_xxxxxxxxxxxx"><p class="login-help">Needs <code>repo</code> scope. <a href="https://github.com/settings/tokens/new?scopes=repo" target="_blank" rel="noopener">Create token â†’</a></p></div>
+    <div class="row">
+      <div class="field"><label>GitHub Username</label><input id="l-owner" type="text" placeholder="rony-cse" value="rony-cse"></div>
+      <div class="field"><label>Repository Name</label><input id="l-repo" type="text" placeholder="rony-cse.github.io" value="rony-cse.github.io"></div>
+    </div>
+    <div class="field"><label>Base Path (if not root)</label><input id="l-base" type="text" placeholder="Leave blank for root" value="PersonalWebsite"></div>
+    <button class="btn-p" style="width:100%;padding:0.6rem" onclick="doLogin()">Connect â†’</button>
+    <p style="font-size:11px;color:var(--muted);margin-top:0.75rem;text-align:center">Token stored in browser only. Never sent anywhere except GitHub API.</p>
+  </div>
+</div>
+
+<!-- App -->
+<div id="app">
+  <aside id="sidebar">
+    <div class="sb-header">
+      <strong>JH Rony Admin</strong>
+      <button class="btn-o btn-sm" onclick="logout()">Logout</button>
+    </div>
+    <nav>
+      <div class="nav-sep">Content</div>
+      <button class="nav-item active" data-sec="dashboard">Dashboard</button>
+      <button class="nav-item" data-sec="profile">Profile</button>
+      <button class="nav-item" data-sec="publications">Publications</button>
+      <button class="nav-item" data-sec="projects">Projects</button>
+      <button class="nav-item" data-sec="news">News</button>
+      <button class="nav-item" data-sec="teaching">Teaching</button>
+      <button class="nav-item" data-sec="talks">Talks</button>
+      <div class="nav-sep">Records</div>
+      <button class="nav-item" data-sec="awards">Awards</button>
+      <button class="nav-item" data-sec="service">Service</button>
+      <button class="nav-item" data-sec="education">Education</button>
+      <button class="nav-item" data-sec="experience">Experience</button>
+      <div class="nav-sep">Media</div>
+      <button class="nav-item" data-sec="gallery">Gallery</button>
+      <button class="nav-item" data-sec="cv">CV / Resume</button>
+      <div class="nav-sep">Settings</div>
+      <button class="nav-item" data-sec="site">Site Settings</button>
+      <button class="nav-item" data-sec="seo">Analytics &amp; SEO</button>
+    </nav>
+    <div class="sb-status"><div class="status-dot" id="status-dot"></div><span id="status-text">Checkingâ€¦</span></div>
+  </aside>
+  <div id="content-area"></div>
+</div>
+
+<div id="toast-area"></div>
+
+<script>
+// â”€â”€ Config â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+const STORE = {
+  get token() { return localStorage.getItem('adm_token'); },
+  get owner() { return localStorage.getItem('adm_owner'); },
+  get repo()  { return localStorage.getItem('adm_repo'); },
+  get base()  { return localStorage.getItem('adm_base') || ''; },
+  save(t,o,r,b){ localStorage.setItem('adm_token',t); localStorage.setItem('adm_owner',o); localStorage.setItem('adm_repo',r); localStorage.setItem('adm_base',b); },
+  clear(){ ['adm_token','adm_owner','adm_repo','adm_base'].forEach(k=>localStorage.removeItem(k)); }
+};
+
+const API = 'https://api.github.com';
+let currentSection = 'dashboard';
+const sectionCache = {};
+
+// â”€â”€ GitHub API â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+function ghPath(p) { const b = STORE.base; return b ? `${b}/${p}` : p; }
+
+async function ghGet(path) {
+  const r = await fetch(`${API}/repos/${STORE.owner}/${STORE.repo}/contents/${ghPath(path)}`, {
+    headers: { 'Authorization': `Bearer ${STORE.token}`, 'Accept': 'application/vnd.github.v3+json' }
+  });
+  if (!r.ok) { const e = await r.json().catch(()=>({})); throw new Error(e.message || `HTTP ${r.status}`); }
+  return r.json();
+}
+
+async function readJSON(path) {
+  const d = await ghGet(path);
+  return { data: JSON.parse(atob(d.content.replace(/\s/g,''))), sha: d.sha };
+}
+
+async function writeJSON(path, data, sha, msg) {
+  const enc = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+  const body = { message: msg || `Update ${path}`, content: enc };
+  if (sha) body.sha = sha;
+  const r = await fetch(`${API}/repos/${STORE.owner}/${STORE.repo}/contents/${ghPath(path)}`, {
+    method: 'PUT',
+    headers: { 'Authorization': `Bearer ${STORE.token}`, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json' },
+    body: JSON.stringify(body)
+  });
+  if (!r.ok) { const e = await r.json().catch(()=>({})); throw new Error(e.message || `HTTP ${r.status}`); }
+  return r.json();
+}
+
+async function uploadFile(path, b64, msg) {
+  const content = b64.replace(/^data:[^;]+;base64,/, '');
+  let sha = null;
+  try { const ex = await ghGet(path); sha = ex.sha; } catch(_) {}
+  const body = { message: msg || `Upload ${path}`, content };
+  if (sha) body.sha = sha;
+  const r = await fetch(`${API}/repos/${STORE.owner}/${STORE.repo}/contents/${ghPath(path)}`, {
+    method: 'PUT',
+    headers: { 'Authorization': `Bearer ${STORE.token}`, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json' },
+    body: JSON.stringify(body)
+  });
+  if (!r.ok) { const e = await r.json().catch(()=>({})); throw new Error(e.message || 'Upload failed'); }
+  const res = await r.json();
+  return res.content.download_url;
+}
+
+// â”€â”€ Toast â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+function toast(msg, type = 'info') {
+  const t = document.createElement('div');
+  t.className = `toast toast-${type}`;
+  t.textContent = msg;
+  document.getElementById('toast-area').appendChild(t);
+  setTimeout(() => t.remove(), 3500);
+}
+
+// â”€â”€ Login / Logout â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+async function doLogin() {
+  const token = document.getElementById('l-token').value.trim();
+  const owner = document.getElementById('l-owner').value.trim();
+  const repo  = document.getElementById('l-repo').value.trim();
+  const base  = document.getElementById('l-base').value.trim();
+  if (!token || !owner || !repo) { toast('Fill in all required fields', 'err'); return; }
+  STORE.save(token, owner, repo, base);
+  await startApp();
+}
+
+async function startApp() {
+  if (!STORE.token) return;
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').classList.add('visible');
+  await checkStatus();
+  setupNav();
+  renderSection('dashboard');
+}
+
+async function checkStatus() {
+  try {
+    await fetch(`${API}/repos/${STORE.owner}/${STORE.repo}`, { headers: { 'Authorization': `Bearer ${STORE.token}` } }).then(r => { if (!r.ok) throw new Error(); });
+    document.getElementById('status-dot').className = 'status-dot ok';
+    document.getElementById('status-text').textContent = `${STORE.owner}/${STORE.repo}`;
+  } catch {
+    document.getElementById('status-text').textContent = 'Connection failed';
+    toast('Cannot connect to GitHub repo. Check credentials.', 'err');
+  }
+}
+
+function logout() {
+  STORE.clear();
+  document.getElementById('app').classList.remove('visible');
+  document.getElementById('login-screen').style.display = 'flex';
+}
+
+function setupNav() {
+  document.querySelectorAll('.nav-item[data-sec]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderSection(btn.dataset.sec);
+    });
+  });
+}
+
+// â”€â”€ Section Router â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+async function renderSection(sec) {
+  currentSection = sec;
+  const ca = document.getElementById('content-area');
+  ca.innerHTML = '<div style="padding:2rem;color:var(--muted);font-size:13px">Loadingâ€¦</div>';
+  try {
+    const fn = sections[sec];
+    if (fn) await fn(ca);
+  } catch(e) {
+    ca.innerHTML = `<div style="color:var(--danger);padding:1rem">Error: ${e.message}</div>`;
+  }
+}
+
+// â”€â”€ Helper Builders â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+
+function visBadge(v) { return v===false ? '<span class="badge-vis vis-off">Hidden</span>' : '<span class="badge-vis vis-on">Visible</span>'; }
+
+function imgUploadField(id, label, current, accept = 'image/*', note = 'JPG, PNG, GIF Â· Max 5 MB') {
+  return `
+    <div class="field">
+      <label>${label}</label>
+      ${current ? `<div class="img-preview"><div class="img-preview-item"><img src="${current}"><button onclick="document.getElementById('${id}-cur').value='';this.closest('.img-preview-item').remove()">âœ•</button></div></div>` : ''}
+      <input type="hidden" id="${id}-cur" value="${current || ''}">
+      <div class="img-upload-area" id="${id}-drop">
+        <input type="file" id="${id}-file" accept="${accept}" onchange="handleImgSelect('${id}')">
+        <p><strong>Choose or drag</strong> image here</p>
+      </div>
+      <p class="upload-note">${note}</p>
+      <input type="hidden" id="${id}-b64" value="">
+    </div>`;
+}
+
+async function handleImgSelect(id) {
+  const file = document.getElementById(`${id}-file`).files[0];
+  if (!file) return;
+  if (file.size > 5 * 1024 * 1024) { toast('File too large (max 5 MB)', 'err'); return; }
+  const b64 = await toB64(file);
+  document.getElementById(`${id}-b64`).value = b64;
+  const prev = document.getElementById(`${id}-drop`).previousElementSibling;
+  if (prev && prev.classList.contains('img-preview')) prev.remove();
+  document.getElementById(`${id}-drop`).insertAdjacentHTML('beforebegin', `<div class="img-preview"><div class="img-preview-item"><img src="${b64}"><button onclick="document.getElementById('${id}-b64').value='';this.closest('.img-preview-item').remove()">âœ•</button></div></div>`);
+}
+window.handleImgSelect = handleImgSelect;
+
+function toB64(file) {
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onload = () => res(r.result);
+    r.onerror = rej;
+    r.readAsDataURL(file);
+  });
+}
+
+async function resolveImg(id, prefix) {
+  const b64 = document.getElementById(`${id}-b64`)?.value;
+  const cur = document.getElementById(`${id}-cur`)?.value || '';
+  if (b64) {
+    toast('Uploading imageâ€¦', 'info');
+    const ext = b64.match(/data:image\/(\w+)/)?.[1] || 'jpg';
+    return uploadFile(`uploads/${prefix}/${uid()}.${ext}`, b64, 'Upload image');
+  }
+  return cur;
+}
+
+function g(id) { return document.getElementById(id)?.value?.trim() || ''; }
+function gBool(id) { return document.getElementById(id)?.checked ?? false; }
+function s(id, v) { const el = document.getElementById(id); if (el) el.value = v ?? ''; }
+function sBool(id, v) { const el = document.getElementById(id); if (el) el.checked = !!v; }
+
+// â”€â”€ Sections â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+const sections = {};
+
+// Dashboard
+sections.dashboard = async (ca) => {
+  const files = ['publications','projects','news','teaching','talks','awards','service','education','experience','gallery'];
+  const counts = await Promise.all(files.map(f => readJSON(`data/${f}.json`).then(r => Array.isArray(r.data) ? r.data.length : 0).catch(() => 0)));
+  const labels = ['Papers','Projects','News','Teaching','Talks','Awards','Service','Education','Experience','Gallery'];
+  ca.innerHTML = `
+    <div class="sec-header"><h2>Dashboard</h2></div>
+    <div class="stats-grid">
+      ${labels.map((l,i) => `<div class="stat-card"><div class="stat-num">${counts[i]}</div><div class="stat-label">${l}</div></div>`).join('')}
+    </div>
+    <div style="background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1rem;font-size:13px;color:var(--muted)">
+      <strong style="color:var(--text)">Connected:</strong> ${STORE.owner}/${STORE.repo} ${STORE.base ? `Â· Path: ${STORE.base}` : ''}<br>
+      <strong style="color:var(--text)">Tip:</strong> Changes commit directly to GitHub. Pages update within ~30 seconds.
+    </div>`;
+};
+
+// Profile
+sections.profile = async (ca) => {
+  const { data: p, sha } = await readJSON('data/profile.json');
+  ca.innerHTML = `
+    <div class="sec-header"><h2>Profile</h2></div>
+    <div class="form-panel">
+      <h3>Identity</h3>
+      <div class="row"><div class="field"><label>Full Name</label><input id="p-name" value="${p.name||''}"></div><div class="field"><label>Nickname / Display</label><input id="p-nick" value="${p.nickname||''}"></div></div>
+      <div class="row"><div class="field"><label>Title</label><input id="p-title" value="${p.title||''}"></div><div class="field"><label>Subtitle</label><input id="p-sub" value="${p.subtitle||''}"></div></div>
+      <div class="field">
+        <label>Bio (supports bold, links, colors)</label>
+        <div style="border:1px solid var(--border);border-radius:var(--r);overflow:hidden">
+          <div style="display:flex;gap:4px;padding:6px 8px;background:var(--bg);border-bottom:1px solid var(--border);flex-wrap:wrap">
+            <button type="button" class="btn-o btn-sm" onclick="bioCmd('bold')" title="Bold"><b>B</b></button>
+            <button type="button" class="btn-o btn-sm" onclick="bioCmd('italic')" title="Italic"><i>I</i></button>
+            <button type="button" class="btn-o btn-sm" onclick="bioCmd('underline')" title="Underline"><u>U</u></button>
+            <button type="button" class="btn-o btn-sm" onclick="bioLink()" title="Insert link">🔗</button>
+            <span style="border-left:1px solid var(--border);margin:0 2px"></span>
+            <button type="button" class="btn-o btn-sm" onclick="bioColor('#2563eb')" style="color:#2563eb;border-color:#2563eb" title="Blue">A</button>
+            <button type="button" class="btn-o btn-sm" onclick="bioColor('#dc2626')" style="color:#dc2626;border-color:#dc2626" title="Red">A</button>
+            <button type="button" class="btn-o btn-sm" onclick="bioColor('#16a34a')" style="color:#16a34a;border-color:#16a34a" title="Green">A</button>
+            <button type="button" class="btn-o btn-sm" onclick="bioColor('#d97706')" style="color:#d97706;border-color:#d97706" title="Amber">A</button>
+            <button type="button" class="btn-o btn-sm" onclick="bioColor('#7c3aed')" style="color:#7c3aed;border-color:#7c3aed" title="Purple">A</button>
+            <span style="border-left:1px solid var(--border);margin:0 2px"></span>
+            <button type="button" class="btn-o btn-sm" onclick="bioCmd('removeFormat')" title="Clear formatting">✕ fmt</button>
+          </div>
+          <div id="p-bio" contenteditable="true" style="padding:0.6rem 0.75rem;min-height:100px;font-size:13px;line-height:1.65;outline:none;background:var(--surf);color:var(--text)">${p.bio||''}</div>
+        </div>
+        <p style="font-size:11px;color:var(--muted);margin-top:0.25rem">Select text then click formatting button. HTML links like &lt;a href="..."&gt; are preserved.</p>
+      </div>
+    </div>
+    <div class="form-panel">
+      <h3>Affiliation</h3>
+      <div class="field"><label>Current Position</label><input id="p-pos" value="${p.position||''}"></div>
+      <div class="row"><div class="field"><label>Institution</label><input id="p-inst" value="${p.institution||''}"></div><div class="field"><label>Institution URL</label><input id="p-insturl" value="${p.institutionUrl||''}"></div></div>
+      <div class="field"><label>Department / Lab</label><input id="p-dept" value="${p.department||''}"></div>
+      ${imgUploadField('p-logo','Institution Logo (PNG/JPG/GIF, transparent works best)',p.institutionLogo||'')}
+    </div>
+    <div class="form-panel">
+      <h3>Contact</h3>
+      <div class="row"><div class="field"><label>Email</label><input id="p-email" value="${p.email||''}"></div><div class="field"><label>Location</label><input id="p-loc" value="${p.location||''}"></div></div>
+    </div>
+    <div class="form-panel">
+      <h3>Profile Photo</h3>
+      ${imgUploadField('p-photo','Profile Photo (JPG/PNG/GIF)',p.profilePhoto||'')}
+    </div>
+    <div class="form-panel">
+      <h3>Academic Links</h3>
+      <div class="row"><div class="field"><label>Google Scholar</label><input id="p-scholar" value="${p.links?.googleScholar||''}"></div><div class="field"><label>ORCID</label><input id="p-orcid" value="${p.links?.orcid||''}"></div></div>
+      <div class="row"><div class="field"><label>GitHub</label><input id="p-github" value="${p.links?.github||''}"></div><div class="field"><label>LinkedIn</label><input id="p-linkedin" value="${p.links?.linkedin||''}"></div></div>
+      <div class="row"><div class="field"><label>ResearchGate</label><input id="p-rg" value="${p.links?.researchgate||''}"></div><div class="field"><label>Semantic Scholar</label><input id="p-s2" value="${p.links?.semanticScholar||''}"></div></div>
+      <div class="row"><div class="field"><label>Twitter / X</label><input id="p-tw" value="${p.links?.twitter||''}"></div><div class="field"><label>Facebook</label><input id="p-fb" value="${p.links?.facebook||''}"></div></div>
+      <div class="field"><label>Other Website</label><input id="p-web" value="${p.links?.website||''}"></div>
+    </div>
+    <div class="form-panel">
+      <h3>CV</h3>
+      <div class="field"><label>CV / Resume URL (Google Drive, Dropbox, etc.)</label><input id="p-cvurl" value="${p.cvUrl||''}"></div>
+      <div class="switch-row"><label class="toggle"><input type="checkbox" id="p-cvvis" ${p.cvVisible!==false?'checked':''}><span class="toggle-slider"></span></label><label for="p-cvvis">Show CV download button</label></div>
+    </div>
+    <div class="form-panel">
+      <h3>Research Interests</h3>
+      <div class="field"><label>One per line</label><textarea id="p-ri" rows="5">${(p.researchInterests||[]).join('\n')}</textarea></div>
+    </div>
+    <div class="form-panel">
+      <h3>Skills</h3>
+      <div class="field"><label>Programming (comma separated)</label><input id="p-sk-prog" value="${(p.skills?.programming||[]).join(', ')}"></div>
+      <div class="field"><label>Frameworks / Libraries (comma separated)</label><input id="p-sk-fw" value="${(p.skills?.frameworks||[]).join(', ')}"></div>
+      <div class="field"><label>Embedded / Hardware (comma separated)</label><input id="p-sk-hw" value="${(p.skills?.embedded||[]).join(', ')}"></div>
+      <div class="field"><label>Design Tools (comma separated)</label><input id="p-sk-ds" value="${(p.skills?.design||[]).join(', ')}"></div>
+    </div>
+    <button class="btn-p" onclick="saveProfile('${sha}')">ðŸ’¾ Save Profile</button>`;
+};
+
+async function saveProfile(sha) {
+  try {
+    const logo = await resolveImg('p-logo', 'logos');
+    const photo = await resolveImg('p-photo', 'profile');
+    const { data: cur } = await readJSON('data/profile.json');
+    const data = { ...cur,
+      name: g('p-name'), nickname: g('p-nick'), title: g('p-title'), subtitle: g('p-sub'),
+      bio: document.getElementById('p-bio')?.innerHTML || '', position: g('p-pos'), institution: g('p-inst'), institutionUrl: g('p-insturl'),
+      department: g('p-dept'), institutionLogo: logo, email: g('p-email'), location: g('p-loc'),
+      profilePhoto: photo, cvUrl: g('p-cvurl'), cvVisible: gBool('p-cvvis'),
+      links: { googleScholar: g('p-scholar'), orcid: g('p-orcid'), github: g('p-github'), linkedin: g('p-linkedin'), researchgate: g('p-rg'), semanticScholar: g('p-s2'), twitter: g('p-tw'), facebook: g('p-fb'), website: g('p-web') },
+      researchInterests: g('p-ri').split('\n').map(s=>s.trim()).filter(Boolean),
+      skills: { programming: g('p-sk-prog').split(',').map(s=>s.trim()).filter(Boolean), frameworks: g('p-sk-fw').split(',').map(s=>s.trim()).filter(Boolean), embedded: g('p-sk-hw').split(',').map(s=>s.trim()).filter(Boolean), design: g('p-sk-ds').split(',').map(s=>s.trim()).filter(Boolean) }
+    };
+    const fresh = await readJSON('data/profile.json');
+    await writeJSON('data/profile.json', data, fresh.sha, 'Update profile');
+    toast('Profile saved!', 'ok');
+  } catch(e) { toast('Error: ' + e.message, 'err'); }
+}
+window.saveProfile = saveProfile;
+
+// Generic list section builder
+function buildListSection(ca, title, items, columns, renderRow, addBtn, editFn, delFn, visFn) {
+  ca.innerHTML = `
+    <div class="sec-header"><h2>${title}</h2><button class="btn-p btn-sm" onclick="${addBtn}()">+ Add</button></div>
+    <div id="edit-form"></div>
+    <table class="item-table">
+      <thead><tr>${columns.map(c=>`<th>${c}</th>`).join('')}<th>Vis.</th><th>Actions</th></tr></thead>
+      <tbody id="list-body">${items.map((item,i) => `<tr>${renderRow(item,i)}<td>${visBadge(item.visible)}</td><td><div class="td-actions">
+        <button class="btn-o btn-sm" onclick="${editFn}(${i})">Edit</button>
+        <button class="btn-s btn-sm" onclick="${visFn}(${i})">${item.visible===false?'Show':'Hide'}</button>
+        <button class="btn-d btn-sm" onclick="${delFn}(${i})">Del</button>
+      </div></td></tr>`).join('')}</tbody>
+    </table>`;
+}
+
+// Publications
+sections.publications = async (ca) => {
+  const { data, sha } = await readJSON('data/publications.json');
+  window._pubs = data; window._pubSha = sha;
+  buildListSection(ca, 'Publications', data,
+    ['Title','Venue','Year','Cat.','Featured'],
+    (p) => `<td style="max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.title}</td><td>${p.venueShort||p.venue||''}</td><td>${p.year||''}</td><td>${p.category||''}</td><td>${p.featured?'â˜…':''}</td>`,
+    'addPub','editPub','delPub','visPub');
+};
+window.addPub = () => { editPub(-1); };
+window.editPub = (i) => {
+  const p = i >= 0 ? window._pubs[i] : { id: uid(), visible: true, links: {}, authors: [], keywords: [], featured: false };
+  document.getElementById('edit-form').innerHTML = pubForm(p, i);
+};
+window.delPub = async (i) => {
+  if (!confirm('Delete this publication?')) return;
+  window._pubs.splice(i, 1);
+  await savePubs(); renderSection('publications');
+};
+window.visPub = async (i) => {
+  window._pubs[i].visible = window._pubs[i].visible === false ? true : false;
+  await savePubs(); renderSection('publications');
+};
+window.savePubForm = async (i) => {
+  try {
+    const thumb = await resolveImg('pub-thumb', 'papers');
+    const p = {
+      id: g('pub-id') || uid(), title: g('pub-title'), authors: g('pub-authors').split('\n').map(s=>s.trim()).filter(Boolean),
+      highlightAuthor: g('pub-me'), venue: g('pub-venue'), venueShort: g('pub-vshort'), year: parseInt(g('pub-year')) || '',
+      volume: g('pub-vol'), issue: g('pub-issue'), pages: g('pub-pages'), category: g('pub-cat'), status: g('pub-status'), rank: g('pub-rank'),
+      abstract: g('pub-abs'), keywords: g('pub-kw').split(',').map(s=>s.trim()).filter(Boolean), bibtex: g('pub-bib'),
+      links: { pdf:g('pub-pdf'), arxiv:g('pub-arxiv'), code:g('pub-code'), project:g('pub-proj'), slides:g('pub-slides'), video:g('pub-video'), poster:g('pub-poster'), doi:g('pub-doi') },
+      thumbnail: thumb, award: g('pub-award'), featured: gBool('pub-feat'), visible: gBool('pub-vis')
+    };
+    if (i >= 0) window._pubs[i] = p; else window._pubs.unshift(p);
+    await savePubs(); toast('Publication saved!', 'ok'); renderSection('publications');
+  } catch(e) { toast('Error: ' + e.message, 'err'); }
+};
+window.cancelForm = () => { document.getElementById('edit-form').innerHTML = ''; };
+async function savePubs() {
+  const fresh = await readJSON('data/publications.json');
+  await writeJSON('data/publications.json', window._pubs, fresh.sha, 'Update publications');
+}
+
+function pubForm(p, i) {
+  return `<div class="form-panel"><h3>${i<0?'Add':'Edit'} Publication</h3>
+    <input type="hidden" id="pub-id" value="${p.id||''}">
+    <div class="field"><label>Title *</label><input id="pub-title" value="${escA(p.title||'')}"></div>
+    <div class="field"><label>Authors (one per line)</label><textarea id="pub-authors" rows="3">${(p.authors||[]).join('\n')}</textarea></div>
+    <div class="field"><label>Your Name (to highlight)</label><input id="pub-me" value="${escA(p.highlightAuthor||'')}"></div>
+    <div class="row"><div class="field"><label>Venue Full Name</label><input id="pub-venue" value="${escA(p.venue||'')}"></div><div class="field"><label>Short (e.g. CVPR 2024)</label><input id="pub-vshort" value="${escA(p.venueShort||'')}"></div></div>
+    <div class="row3"><div class="field"><label>Year</label><input id="pub-year" type="number" value="${p.year||''}"></div><div class="field"><label>Volume</label><input id="pub-vol" value="${escA(p.volume||'')}"></div><div class="field"><label>Pages</label><input id="pub-pages" value="${escA(p.pages||'')}"></div></div>
+    <div class="row3">
+      <div class="field"><label>Category</label><select id="pub-cat"><option value="conference"${p.category==='conference'?' selected':''}>Conference</option><option value="journal"${p.category==='journal'?' selected':''}>Journal</option><option value="workshop"${p.category==='workshop'?' selected':''}>Workshop</option><option value="preprint"${p.category==='preprint'?' selected':''}>Preprint</option><option value="thesis"${p.category==='thesis'?' selected':''}>Thesis</option><option value="book chapter"${p.category==='book chapter'?' selected':''}>Book Chapter</option></select></div>
+      <div class="field"><label>Status</label><select id="pub-status"><option value="published"${p.status==='published'?' selected':''}>Published</option><option value="accepted"${p.status==='accepted'?' selected':''}>Accepted</option><option value="under review"${p.status==='under review'?' selected':''}>Under Review</option><option value="in preparation"${p.status==='in preparation'?' selected':''}>In Preparation</option></select></div>
+      <div class="field"><label>Ranking / Quartile</label><select id="pub-rank"><option value="">— None —</option><optgroup label="Journal (Scimago/JCR)"><option value="Q1"${p.rank==='Q1'?' selected':''}>Q1</option><option value="Q2"${p.rank==='Q2'?' selected':''}>Q2</option><option value="Q3"${p.rank==='Q3'?' selected':''}>Q3</option><option value="Q4"${p.rank==='Q4'?' selected':''}>Q4</option></optgroup><optgroup label="Conference (CORE)"><option value="A*"${p.rank==='A*'?' selected':''}>A*</option><option value="A"${p.rank==='A'?' selected':''}>A</option><option value="B"${p.rank==='B'?' selected':''}>B</option><option value="C"${p.rank==='C'?' selected':''}>C</option></optgroup></select></div>
+    </div>
+    <div class="field"><label>Abstract</label><textarea id="pub-abs" rows="4">${escA(p.abstract||'')}</textarea></div>
+    <div class="field"><label>Keywords (comma separated)</label><input id="pub-kw" value="${(p.keywords||[]).join(', ')}"></div>
+    <div class="form-panel" style="margin:0"><h3>Links</h3>
+      <div class="row"><div class="field"><label>PDF / Full Text URL</label><input id="pub-pdf" value="${escA(p.links?.pdf||'')}"></div><div class="field"><label>arXiv URL</label><input id="pub-arxiv" value="${escA(p.links?.arxiv||'')}"></div></div>
+      <div class="row"><div class="field"><label>Code / GitHub</label><input id="pub-code" value="${escA(p.links?.code||'')}"></div><div class="field"><label>Project Page</label><input id="pub-proj" value="${escA(p.links?.project||'')}"></div></div>
+      <div class="row"><div class="field"><label>Slides</label><input id="pub-slides" value="${escA(p.links?.slides||'')}"></div><div class="field"><label>Video</label><input id="pub-video" value="${escA(p.links?.video||'')}"></div></div>
+      <div class="row"><div class="field"><label>Poster</label><input id="pub-poster" value="${escA(p.links?.poster||'')}"></div><div class="field"><label>DOI</label><input id="pub-doi" value="${escA(p.links?.doi||'')}"></div></div>
+    </div>
+    ${imgUploadField('pub-thumb','Paper Thumbnail (JPG/PNG/GIF â€” figures, teaser image)',p.thumbnail||'')}
+    <div class="field"><label>Award / Recognition</label><input id="pub-award" placeholder="Best Paper, Oral, Spotlight, Honorable Mentionâ€¦" value="${escA(p.award||'')}"></div>
+    <div class="field"><label>BibTeX</label><textarea id="pub-bib" rows="5" style="font-family:monospace;font-size:12px">${escA(p.bibtex||'')}</textarea></div>
+    <div class="row"><div class="switch-row"><label class="toggle"><input type="checkbox" id="pub-feat" ${p.featured?'checked':''}><span class="toggle-slider"></span></label><label for="pub-feat">Featured on homepage</label></div><div class="switch-row"><label class="toggle"><input type="checkbox" id="pub-vis" ${p.visible!==false?'checked':''}><span class="toggle-slider"></span></label><label for="pub-vis">Visible</label></div></div>
+    <div class="form-actions"><button class="btn-p" onclick="savePubForm(${i})">ðŸ’¾ Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
+  </div>`;
+}
+
+// Projects
+sections.projects = async (ca) => {
+  const { data, sha } = await readJSON('data/projects.json');
+  window._projs = data; window._projSha = sha;
+  buildListSection(ca, 'Projects', data,
+    ['Title','Status','Featured'],
+    (p) => `<td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.title||''}</td><td>${p.status||''}</td><td>${p.featured?'â˜…':''}</td>`,
+    'addProj','editProj','delProj','visProj');
+};
+window.addProj = () => editProj(-1);
+window.editProj = async (i) => {
+  const p = i>=0 ? window._projs[i] : { id:uid(), visible:true, links:{}, tags:[], collaborators:[], featured:false, status:'ongoing', publicationIds:[] };
+  document.getElementById('edit-form').innerHTML = projForm(p,i);
+  // Load publications for the selector
+  try {
+    const { data: allPubs } = await readJSON('data/publications.json');
+    const sel = document.getElementById('proj-pub-selector');
+    if (sel) {
+      const chosen = p.publicationIds || [];
+      sel.innerHTML = allPubs.filter(pub => pub.visible !== false).map(pub => `
+        <label style="display:flex;align-items:flex-start;gap:0.5rem;padding:0.3rem 0.4rem;cursor:pointer;border-radius:3px;font-size:12px;line-height:1.4">
+          <input type="checkbox" value="${pub.id}" ${chosen.includes(pub.id)?'checked':''} style="margin-top:2px;width:auto;flex-shrink:0">
+          <span><strong>${pub.year||'?'}${pub.venueShort?' · '+pub.venueShort:''}</strong> — ${pub.title}</span>
+        </label>`).join('') || '<p style="color:var(--muted);font-size:12px;padding:0.5rem">No publications yet — add some first.</p>';
+    }
+  } catch(e) { /* silently ignore */ }
+};
+window.delProj = async (i) => { if (!confirm('Delete?')) return; window._projs.splice(i,1); await saveProjs(); renderSection('projects'); };
+window.visProj = async (i) => { window._projs[i].visible = window._projs[i].visible===false; await saveProjs(); renderSection('projects'); };
+window.saveProjForm = async (i) => {
+  try {
+    const thumb = await resolveImg('proj-thumb','papers');
+    const publicationIds = [...document.querySelectorAll('#proj-pub-selector input[type=checkbox]:checked')].map(cb => cb.value);
+    const p = { id:g('proj-id')||uid(), title:g('proj-title'), description:g('proj-desc'), status:g('proj-status'), startDate:g('proj-start'), endDate:g('proj-end'),
+      collaborators:g('proj-collab').split('\n').filter(Boolean).map(c=>({name:c.trim()})),
+      funding:g('proj-fund'), links:{paper:g('proj-paper'),code:g('proj-code'),demo:g('proj-demo'),website:g('proj-site'),video:g('proj-vid')},
+      thumbnail:thumb, tags:g('proj-tags').split(',').map(s=>s.trim()).filter(Boolean),
+      publicationIds, featured:gBool('proj-feat'), visible:gBool('proj-vis') };
+    if (i>=0) window._projs[i]=p; else window._projs.unshift(p);
+    await saveProjs(); toast('Project saved!','ok'); renderSection('projects');
+  } catch(e) { toast('Error: '+e.message,'err'); }
+};
+async function saveProjs() { const f = await readJSON('data/projects.json'); await writeJSON('data/projects.json', window._projs, f.sha, 'Update projects'); }
+window.saveProjForm = window.saveProjForm;
+
+function projForm(p,i) {
+  return `<div class="form-panel"><h3>${i<0?'Add':'Edit'} Project</h3>
+    <input type="hidden" id="proj-id" value="${p.id||''}">
+    <div class="field"><label>Title *</label><input id="proj-title" value="${escA(p.title||'')}"></div>
+    <div class="field"><label>Description</label><textarea id="proj-desc" rows="3">${escA(p.description||'')}</textarea></div>
+    <div class="row"><div class="field"><label>Status</label><select id="proj-status"><option value="ongoing"${p.status==='ongoing'?' selected':''}>Ongoing</option><option value="completed"${p.status==='completed'?' selected':''}>Completed</option><option value="paused"${p.status==='paused'?' selected':''}>Paused</option></select></div><div class="field"><label>Funding Source</label><input id="proj-fund" value="${escA(p.funding||'')}"></div></div>
+    <div class="row"><div class="field"><label>Start Year</label><input id="proj-start" value="${escA(p.startDate||'')}"></div><div class="field"><label>End Year</label><input id="proj-end" value="${escA(p.endDate||'')}"></div></div>
+    <div class="field"><label>Collaborators (one per line)</label><textarea id="proj-collab" rows="3">${(p.collaborators||[]).map(c=>c.name||c).join('\n')}</textarea></div>
+    <div class="field"><label>Tags (comma separated)</label><input id="proj-tags" value="${(p.tags||[]).join(', ')}"></div>
+    <div class="form-panel" style="margin:0"><h3>Links</h3>
+      <div class="row"><div class="field"><label>Paper</label><input id="proj-paper" value="${escA(p.links?.paper||'')}"></div><div class="field"><label>Code</label><input id="proj-code" value="${escA(p.links?.code||'')}"></div></div>
+      <div class="row"><div class="field"><label>Demo</label><input id="proj-demo" value="${escA(p.links?.demo||'')}"></div><div class="field"><label>Website</label><input id="proj-site" value="${escA(p.links?.website||'')}"></div></div>
+    </div>
+    ${imgUploadField(‘proj-thumb’,’Project Thumbnail (JPG/PNG/GIF)’,p.thumbnail||’’)}
+    <div class="field">
+      <label>Linked Publications</label>
+      <div id="proj-pub-selector" style="max-height:200px;overflow-y:auto;border:1px solid var(--border);border-radius:var(--r);padding:0.4rem;background:var(--bg)">
+        <p style="color:var(--muted);font-size:12px;padding:0.3rem">Loading publications…</p>
+      </div>
+      <p style="font-size:11px;color:var(--muted);margin-top:0.25rem">Check publications that belong to this project. They’ll appear on the project card.</p>
+    </div>
+    <div class="row"><div class="switch-row"><label class="toggle"><input type="checkbox" id="proj-feat" ${p.featured?’checked’:’’}><span class="toggle-slider"></span></label><label for="proj-feat">Featured on homepage</label></div><div class="switch-row"><label class="toggle"><input type="checkbox" id="proj-vis" ${p.visible!==false?’checked’:’’}><span class="toggle-slider"></span></label><label for="proj-vis">Visible</label></div></div>
+    <div class="form-actions"><button class="btn-p" onclick="saveProjForm(${i})">💾 Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
+  </div>`;
+}
+
+// News
+sections.news = async (ca) => {
+  const { data, sha } = await readJSON('data/news.json');
+  window._news = data; window._newsSha = sha;
+  buildListSection(ca,'News',data,['Date','Content','Category'],
+    (n) => `<td style="white-space:nowrap">${n.date||''}</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${(n.content||'').replace(/<[^>]+>/g,'')}</td><td>${n.category||''}</td>`,
+    'addNews','editNews','delNews','visNews');
+};
+window.addNews = () => editNews(-1);
+window.editNews = (i) => {
+  const n = i>=0 ? window._news[i] : { id:uid(), visible:true, category:'misc' };
+  document.getElementById('edit-form').innerHTML = `<div class="form-panel"><h3>${i<0?'Add':'Edit'} News Item</h3>
+    <input type="hidden" id="n-id" value="${n.id||uid()}">
+    <div class="row"><div class="field"><label>Date (YYYY-MM-DD)</label><input id="n-date" value="${n.date||''}"></div><div class="field"><label>Category</label><select id="n-cat"><option value="publication"${n.category==='publication'?' selected':''}>Publication</option><option value="research"${n.category==='research'?' selected':''}>Research</option><option value="award"${n.category==='award'?' selected':''}>Award</option><option value="talk"${n.category==='talk'?' selected':''}>Talk</option><option value="service"${n.category==='service'?' selected':''}>Service</option><option value="media"${n.category==='media'?' selected':''}>Media</option><option value="misc"${n.category==='misc'?' selected':''}>Misc</option></select></div></div>
+    <div class="field"><label>Content (HTML allowed: &lt;strong&gt;, &lt;a&gt;)</label><textarea id="n-content" rows="3">${escA(n.content||'')}</textarea></div>
+    <div class="row"><div class="field"><label>Link URL</label><input id="n-link" value="${escA(n.link||'')}"></div><div class="field"><label>Link Text</label><input id="n-lt" value="${escA(n.linkText||'')}"></div></div>
+    <div class="switch-row"><label class="toggle"><input type="checkbox" id="n-vis" ${n.visible!==false?'checked':''}><span class="toggle-slider"></span></label><label for="n-vis">Visible</label></div>
+    <div class="form-actions"><button class="btn-p" onclick="saveNewsForm(${i})">ðŸ’¾ Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
+  </div>`;
+};
+window.saveNewsForm = async (i) => {
+  try {
+    const n = { id:g('n-id')||uid(), date:g('n-date'), category:g('n-cat'), content:g('n-content'), link:g('n-link'), linkText:g('n-lt'), visible:gBool('n-vis') };
+    if (i>=0) window._news[i]=n; else window._news.unshift(n);
+    const f = await readJSON('data/news.json'); await writeJSON('data/news.json',window._news,f.sha,'Update news');
+    toast('Saved!','ok'); renderSection('news');
+  } catch(e) { toast('Error: '+e.message,'err'); }
+};
+window.delNews = async (i) => { if (!confirm('Delete?')) return; window._news.splice(i,1); const f=await readJSON('data/news.json'); await writeJSON('data/news.json',window._news,f.sha,'Delete news item'); renderSection('news'); };
+window.visNews = async (i) => { window._news[i].visible=window._news[i].visible===false; const f=await readJSON('data/news.json'); await writeJSON('data/news.json',window._news,f.sha,'Toggle news visibility'); renderSection('news'); };
+
+// Generic simple CRUD builder
+function simpleCRUD(key, title, columns, renderRow, formFn, parseFn) {
+  sections[key] = async (ca) => {
+    const { data } = await readJSON(`data/${key}.json`);
+    window[`_${key}`] = data;
+    buildListSection(ca, title, data, columns,
+      renderRow,
+      `add_${key}`, `edit_${key}`, `del_${key}`, `vis_${key}`);
+  };
+  window[`add_${key}`] = () => window[`edit_${key}`](-1);
+  window[`edit_${key}`] = (i) => {
+    const item = i>=0 ? window[`_${key}`][i] : { id:uid(), visible:true };
+    document.getElementById('edit-form').innerHTML = formFn(item, i);
+  };
+  window[`del_${key}`] = async (i) => {
+    if (!confirm('Delete?')) return;
+    window[`_${key}`].splice(i,1);
+    const f = await readJSON(`data/${key}.json`); await writeJSON(`data/${key}.json`, window[`_${key}`], f.sha, `Delete ${key} item`);
+    renderSection(key);
+  };
+  window[`vis_${key}`] = async (i) => {
+    window[`_${key}`][i].visible = window[`_${key}`][i].visible===false;
+    const f = await readJSON(`data/${key}.json`); await writeJSON(`data/${key}.json`, window[`_${key}`], f.sha, `Toggle ${key} visibility`);
+    renderSection(key);
+  };
+  window[`save_${key}`] = async (i) => {
+    try {
+      const item = parseFn(i);
+      if (i>=0) window[`_${key}`][i]=item; else window[`_${key}`].unshift(item);
+      const f = await readJSON(`data/${key}.json`); await writeJSON(`data/${key}.json`, window[`_${key}`], f.sha, `Update ${key}`);
+      toast('Saved!','ok'); renderSection(key);
+    } catch(e) { toast('Error: '+e.message,'err'); }
+  };
+}
+
+// Teaching
+simpleCRUD('teaching','Teaching',['Course','Role','Institution','Semester'],
+  (t) => `<td>${t.course||t.title||''}</td><td>${t.role||''}</td><td>${t.institution||''}</td><td>${[t.semester,t.year].filter(Boolean).join(' ')}</td>`,
+  (t,i) => `<div class="form-panel"><h3>${i<0?'Add':'Edit'} Teaching</h3>
+    <input type="hidden" id="t-id" value="${t.id||uid()}">
+    <div class="field"><label>Course Name *</label><input id="t-course" value="${escA(t.course||'')}"></div>
+    <div class="field"><label>Course Code</label><input id="t-code" value="${escA(t.courseCode||'')}"></div>
+    <div class="row"><div class="field"><label>Role</label><select id="t-role"><option${t.role==='Instructor'?' selected':''}>Instructor</option><option${t.role==='Teaching Assistant'?' selected':''}>Teaching Assistant</option><option${t.role==='Guest Lecturer'?' selected':''}>Guest Lecturer</option><option${t.role==='Grader'?' selected':''}>Grader</option></select></div><div class="field"><label>Institution</label><input id="t-inst" value="${escA(t.institution||'')}"></div></div>
+    <div class="row"><div class="field"><label>Semester</label><input id="t-sem" placeholder="Fall, Springâ€¦" value="${escA(t.semester||'')}"></div><div class="field"><label>Year</label><input id="t-yr" type="number" value="${t.year||''}"></div></div>
+    <div class="row"><div class="field"><label>Course URL</label><input id="t-url" value="${escA(t.courseUrl||'')}"></div><div class="field"><label>Enrollment</label><input id="t-enroll" value="${escA(t.enrollment||'')}"></div></div>
+    <div class="field"><label>Description</label><textarea id="t-desc" rows="2">${escA(t.description||'')}</textarea></div>
+    <div class="switch-row"><label class="toggle"><input type="checkbox" id="t-vis" ${t.visible!==false?'checked':''}><span class="toggle-slider"></span></label><label for="t-vis">Visible</label></div>
+    <div class="form-actions"><button class="btn-p" onclick="save_teaching(${i})">ðŸ’¾ Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
+  </div>`,
+  (i) => ({ id:g('t-id')||uid(), course:g('t-course'), courseCode:g('t-code'), role:g('t-role'), institution:g('t-inst'), semester:g('t-sem'), year:g('t-yr'), courseUrl:g('t-url'), enrollment:g('t-enroll'), description:g('t-desc'), visible:gBool('t-vis') })
+);
+
+// Talks
+simpleCRUD('talks','Talks & Presentations',['Title','Event','Date','Type'],
+  (t) => `<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${t.title||''}</td><td>${t.event||''}</td><td>${t.date||''}</td><td>${t.type||''}</td>`,
+  (t,i) => `<div class="form-panel"><h3>${i<0?'Add':'Edit'} Talk</h3>
+    <input type="hidden" id="tk-id" value="${t.id||uid()}">
+    <div class="field"><label>Title *</label><input id="tk-title" value="${escA(t.title||'')}"></div>
+    <div class="row"><div class="field"><label>Event Name</label><input id="tk-event" value="${escA(t.event||'')}"></div><div class="field"><label>Event URL</label><input id="tk-eurl" value="${escA(t.eventUrl||'')}"></div></div>
+    <div class="row"><div class="field"><label>Date (YYYY-MM-DD)</label><input id="tk-date" value="${t.date||''}"></div><div class="field"><label>Location</label><input id="tk-loc" value="${escA(t.location||'')}"></div></div>
+    <div class="field"><label>Type</label><select id="tk-type"><option value="invited talk"${t.type==='invited talk'?' selected':''}>Invited Talk</option><option value="conference talk"${t.type==='conference talk'?' selected':''}>Conference Talk</option><option value="seminar"${t.type==='seminar'?' selected':''}>Seminar</option><option value="workshop"${t.type==='workshop'?' selected':''}>Workshop</option><option value="poster session"${t.type==='poster session'?' selected':''}>Poster Session</option></select></div>
+    <div class="field"><label>Abstract</label><textarea id="tk-abs" rows="3">${escA(t.abstract||'')}</textarea></div>
+    <div class="row"><div class="field"><label>Slides URL</label><input id="tk-slides" value="${escA(t.links?.slides||'')}"></div><div class="field"><label>Video URL</label><input id="tk-video" value="${escA(t.links?.video||'')}"></div></div>
+    <div class="switch-row"><label class="toggle"><input type="checkbox" id="tk-vis" ${t.visible!==false?'checked':''}><span class="toggle-slider"></span></label><label for="tk-vis">Visible</label></div>
+    <div class="form-actions"><button class="btn-p" onclick="save_talks(${i})">ðŸ’¾ Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
+  </div>`,
+  (i) => ({ id:g('tk-id')||uid(), title:g('tk-title'), event:g('tk-event'), eventUrl:g('tk-eurl'), date:g('tk-date'), location:g('tk-loc'), type:g('tk-type'), abstract:g('tk-abs'), links:{slides:g('tk-slides'),video:g('tk-video')}, visible:gBool('tk-vis') })
+);
+
+// Awards
+simpleCRUD('awards','Awards & Honors',['Title','Organization','Year'],
+  (a) => `<td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${a.title||''}</td><td>${a.organization||''}</td><td>${a.year||''}</td>`,
+  (a,i) => `<div class="form-panel"><h3>${i<0?'Add':'Edit'} Award</h3>
+    <input type="hidden" id="aw-id" value="${a.id||uid()}">
+    <div class="field"><label>Award Title *</label><input id="aw-title" value="${escA(a.title||'')}"></div>
+    <div class="row"><div class="field"><label>Organization</label><input id="aw-org" value="${escA(a.organization||'')}"></div><div class="field"><label>Year</label><input id="aw-yr" value="${escA(a.year||'')}"></div></div>
+    <div class="field"><label>Description</label><textarea id="aw-desc" rows="2">${escA(a.description||'')}</textarea></div>
+    <div class="row"><div class="field"><label>Amount (optional)</label><input id="aw-amt" value="${escA(a.amount||'')}"></div><div class="field"><label>Link</label><input id="aw-link" value="${escA(a.link||'')}"></div></div>
+    <div class="switch-row"><label class="toggle"><input type="checkbox" id="aw-showamt" ${a.showAmount?'checked':''}><span class="toggle-slider"></span></label><label for="aw-showamt">Show amount</label></div>
+    <div class="switch-row"><label class="toggle"><input type="checkbox" id="aw-vis" ${a.visible!==false?'checked':''}><span class="toggle-slider"></span></label><label for="aw-vis">Visible</label></div>
+    <div class="form-actions"><button class="btn-p" onclick="save_awards(${i})">ðŸ’¾ Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
+  </div>`,
+  (i) => ({ id:g('aw-id')||uid(), title:g('aw-title'), organization:g('aw-org'), year:g('aw-yr'), description:g('aw-desc'), amount:g('aw-amt'), showAmount:gBool('aw-showamt'), link:g('aw-link'), visible:gBool('aw-vis') })
+);
+
+// Service
+simpleCRUD('service','Academic Service',['Role','Venue / Organization','Year','Category'],
+  (s) => `<td>${s.role||''}</td><td>${s.venue||s.organization||''}</td><td>${s.year||''}</td><td>${s.category||''}</td>`,
+  (s,i) => `<div class="form-panel"><h3>${i<0?'Add':'Edit'} Service</h3>
+    <input type="hidden" id="sv-id" value="${s.id||uid()}">
+    <div class="field"><label>Role *</label><input id="sv-role" value="${escA(s.role||'')}"></div>
+    <div class="row"><div class="field"><label>Venue / Journal / Organization</label><input id="sv-venue" value="${escA(s.venue||s.organization||'')}"></div><div class="field"><label>Year(s)</label><input id="sv-yr" value="${escA(s.year||'')}"></div></div>
+    <div class="row"><div class="field"><label>Category</label><select id="sv-cat"><option value="conference reviewer"${s.category==='conference reviewer'?' selected':''}>Conference Reviewer</option><option value="journal reviewer"${s.category==='journal reviewer'?' selected':''}>Journal Reviewer</option><option value="program committee"${s.category==='program committee'?' selected':''}>Program Committee</option><option value="organizing committee"${s.category==='organizing committee'?' selected':''}>Organizing Committee</option><option value="student volunteer"${s.category==='student volunteer'?' selected':''}>Student Volunteer</option></select></div><div class="field"><label>Link</label><input id="sv-link" value="${escA(s.link||'')}"></div></div>
+    <div class="switch-row"><label class="toggle"><input type="checkbox" id="sv-vis" ${s.visible!==false?'checked':''}><span class="toggle-slider"></span></label><label for="sv-vis">Visible</label></div>
+    <div class="form-actions"><button class="btn-p" onclick="save_service(${i})">ðŸ’¾ Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
+  </div>`,
+  (i) => ({ id:g('sv-id')||uid(), role:g('sv-role'), venue:g('sv-venue'), organization:g('sv-venue'), year:g('sv-yr'), category:g('sv-cat'), link:g('sv-link'), visible:gBool('sv-vis') })
+);
+
+// Education
+sections.education = async (ca) => {
+  const { data } = await readJSON('data/education.json');
+  window._edu = data;
+  buildListSection(ca,'Education',data,['Degree','Field','Institution','Years'],
+    (e) => `<td>${e.degree||''}</td><td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${e.field||''}</td><td>${e.institution||''}</td><td>${e.yearRange||''}</td>`,
+    'addEdu','editEdu','delEdu','visEdu');
+};
+window.addEdu = () => editEdu(-1);
+window.editEdu = (i) => {
+  const e = i>=0 ? window._edu[i] : { id:uid(), visible:true };
+  document.getElementById('edit-form').innerHTML = `<div class="form-panel"><h3>${i<0?'Add':'Edit'} Education</h3>
+    <input type="hidden" id="ed-id" value="${e.id||uid()}">
+    <div class="row"><div class="field"><label>Degree</label><input id="ed-deg" value="${escA(e.degree||'')}"></div><div class="field"><label>Field of Study</label><input id="ed-field" value="${escA(e.field||'')}"></div></div>
+    <div class="row"><div class="field"><label>Institution</label><input id="ed-inst" value="${escA(e.institution||'')}"></div><div class="field"><label>Institution URL</label><input id="ed-iurl" value="${escA(e.institutionUrl||'')}"></div></div>
+    ${imgUploadField('ed-logo','Institution Logo (PNG/JPG/GIF, transparent preferred)',e.institutionLogo||'')}
+    <div class="field"><label>Year Range (e.g. 2019â€“2023 or 2023â€“Present)</label><input id="ed-yrange" value="${escA(e.yearRange||'')}"></div>
+    <div class="row"><div class="field"><label>Advisor Name</label><input id="ed-adv" value="${escA(e.advisor||'')}"></div><div class="field"><label>Advisor URL</label><input id="ed-aurl" value="${escA(e.advisorUrl||'')}"></div></div>
+    <div class="row"><div class="field"><label>Thesis Title</label><input id="ed-thesis" value="${escA(e.thesisTitle||'')}"></div><div class="field"><label>Thesis URL</label><input id="ed-turl" value="${escA(e.thesisUrl||'')}"></div></div>
+    <div class="row"><div class="field"><label>GPA</label><input id="ed-gpa" value="${escA(e.gpa||'')}"></div><div class="switch-row" style="margin-top:1.4rem"><label class="toggle"><input type="checkbox" id="ed-showgpa" ${e.showGpa?'checked':''}><span class="toggle-slider"></span></label><label for="ed-showgpa">Show GPA</label></div></div>
+    <div class="switch-row"><label class="toggle"><input type="checkbox" id="ed-vis" ${e.visible!==false?'checked':''}><span class="toggle-slider"></span></label><label for="ed-vis">Visible</label></div>
+    <div class="form-actions"><button class="btn-p" onclick="saveEduForm(${i})">ðŸ’¾ Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
+  </div>`;
+};
+window.saveEduForm = async (i) => {
+  try {
+    const logo = await resolveImg('ed-logo','logos');
+    const e = { id:g('ed-id')||uid(), degree:g('ed-deg'), field:g('ed-field'), institution:g('ed-inst'), institutionUrl:g('ed-iurl'), institutionLogo:logo, yearRange:g('ed-yrange'), advisor:g('ed-adv'), advisorUrl:g('ed-aurl'), thesisTitle:g('ed-thesis'), thesisUrl:g('ed-turl'), gpa:g('ed-gpa'), showGpa:gBool('ed-showgpa'), visible:gBool('ed-vis') };
+    if (i>=0) window._edu[i]=e; else window._edu.push(e);
+    const f=await readJSON('data/education.json'); await writeJSON('data/education.json',window._edu,f.sha,'Update education');
+    toast('Saved!','ok'); renderSection('education');
+  } catch(e) { toast('Error: '+e.message,'err'); }
+};
+window.delEdu = async (i) => { if (!confirm('Delete?')) return; window._edu.splice(i,1); const f=await readJSON('data/education.json'); await writeJSON('data/education.json',window._edu,f.sha,'Delete education'); renderSection('education'); };
+window.visEdu = async (i) => { window._edu[i].visible=window._edu[i].visible===false; const f=await readJSON('data/education.json'); await writeJSON('data/education.json',window._edu,f.sha,'Toggle'); renderSection('education'); };
+
+// Experience
+sections.experience = async (ca) => {
+  const { data } = await readJSON('data/experience.json');
+  window._exp = data;
+  buildListSection(ca,'Experience',data,['Title','Organization','Duration','Type'],
+    (e) => `<td>${e.title||''}</td><td>${e.organization||''}</td><td>${e.duration||''}</td><td>${e.type||''}</td>`,
+    'addExp','editExp','delExp','visExp');
+};
+window.addExp = () => editExp(-1);
+window.editExp = (i) => {
+  const e = i>=0 ? window._exp[i] : { id:uid(), visible:true };
+  document.getElementById('edit-form').innerHTML = `<div class="form-panel"><h3>${i<0?'Add':'Edit'} Experience</h3>
+    <input type="hidden" id="ex-id" value="${e.id||uid()}">
+    <div class="field"><label>Title / Position *</label><input id="ex-title" value="${escA(e.title||'')}"></div>
+    <div class="row"><div class="field"><label>Organization</label><input id="ex-org" value="${escA(e.organization||'')}"></div><div class="field"><label>Organization URL</label><input id="ex-ourl" value="${escA(e.organizationUrl||'')}"></div></div>
+    ${imgUploadField('ex-logo','Organization Logo (PNG/JPG/GIF)',e.organizationLogo||'')}
+    <div class="row"><div class="field"><label>Duration (e.g. 2022â€“Present)</label><input id="ex-dur" value="${escA(e.duration||'')}"></div><div class="field"><label>Location</label><input id="ex-loc" value="${escA(e.location||'')}"></div></div>
+    <div class="field"><label>Type</label><select id="ex-type"><option value="research"${e.type==='research'?' selected':''}>Research</option><option value="industry"${e.type==='industry'?' selected':''}>Industry</option><option value="internship"${e.type==='internship'?' selected':''}>Internship</option></select></div>
+    <div class="field"><label>Description</label><textarea id="ex-desc" rows="3">${escA(e.description||'')}</textarea></div>
+    <div class="switch-row"><label class="toggle"><input type="checkbox" id="ex-vis" ${e.visible!==false?'checked':''}><span class="toggle-slider"></span></label><label for="ex-vis">Visible</label></div>
+    <div class="form-actions"><button class="btn-p" onclick="saveExpForm(${i})">ðŸ’¾ Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
+  </div>`;
+};
+window.saveExpForm = async (i) => {
+  try {
+    const logo = await resolveImg('ex-logo','logos');
+    const e = { id:g('ex-id')||uid(), title:g('ex-title'), organization:g('ex-org'), organizationUrl:g('ex-ourl'), organizationLogo:logo, duration:g('ex-dur'), location:g('ex-loc'), type:g('ex-type'), description:g('ex-desc'), visible:gBool('ex-vis') };
+    if (i>=0) window._exp[i]=e; else window._exp.unshift(e);
+    const f=await readJSON('data/experience.json'); await writeJSON('data/experience.json',window._exp,f.sha,'Update experience');
+    toast('Saved!','ok'); renderSection('experience');
+  } catch(e) { toast('Error: '+e.message,'err'); }
+};
+window.delExp = async (i) => { if (!confirm('Delete?')) return; window._exp.splice(i,1); const f=await readJSON('data/experience.json'); await writeJSON('data/experience.json',window._exp,f.sha,'Delete'); renderSection('experience'); };
+window.visExp = async (i) => { window._exp[i].visible=window._exp[i].visible===false; const f=await readJSON('data/experience.json'); await writeJSON('data/experience.json',window._exp,f.sha,'Toggle'); renderSection('experience'); };
+
+// Gallery
+sections.gallery = async (ca) => {
+  const { data } = await readJSON('data/gallery.json');
+  window._gallery = data;
+  ca.innerHTML = `
+    <div class="sec-header"><h2>Gallery</h2></div>
+    <div class="form-panel">
+      <h3>Upload Photos</h3>
+      <div class="img-upload-area" id="gal-drop" style="padding:2rem">
+        <input type="file" id="gal-files" accept="image/jpeg,image/png,image/gif" multiple onchange="previewGalFiles()">
+        <p><strong>Choose or drag</strong> photos here (JPG, PNG, GIF)</p>
+        <p style="font-size:11px;margin-top:0.25rem">Multiple files supported</p>
+      </div>
+      <div id="gal-preview" class="img-preview" style="margin-top:0.5rem"></div>
+      <div id="gal-upload-form" style="display:none;margin-top:0.75rem">
+        <div class="row"><div class="field"><label>Caption</label><input id="gal-cap" placeholder="Add a captionâ€¦"></div><div class="field"><label>Category</label><select id="gal-cat"><option value="conference">Conference</option><option value="fieldwork">Fieldwork</option><option value="lab">Lab</option><option value="workshop">Workshop</option><option value="misc">Misc</option></select></div></div>
+        <div class="field"><label>Date (YYYY-MM-DD)</label><input id="gal-date" type="date"></div>
+        <button class="btn-p" onclick="uploadGallery()">â¬† Upload to GitHub</button>
+      </div>
+    </div>
+    <h3 style="margin-bottom:0.75rem;font-size:0.875rem">Existing Photos (${data.length})</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:0.5rem" id="gal-grid">
+      ${data.map((g,i) => `
+        <div style="border:1px solid var(--border);border-radius:4px;overflow:hidden;position:relative">
+          <img src="${g.url||g.src}" style="width:100%;height:80px;object-fit:cover" loading="lazy">
+          <div style="padding:0.3rem;font-size:11px;color:var(--muted)">${g.caption||'No caption'}</div>
+          <div style="padding:0 0.3rem 0.3rem;display:flex;gap:0.25rem">
+            <button class="btn-d btn-sm" style="font-size:10px" onclick="delGal(${i})">Del</button>
+            <button class="btn-s btn-sm" style="font-size:10px" onclick="visGal(${i})">${g.visible===false?'Show':'Hide'}</button>
+          </div>
+        </div>`).join('')}
+    </div>`;
+};
+
+let _pendingGalFiles = [];
+window.previewGalFiles = () => {
+  const files = Array.from(document.getElementById('gal-files').files);
+  _pendingGalFiles = files;
+  const prev = document.getElementById('gal-preview');
+  prev.innerHTML = '';
+  files.forEach(f => {
+    const r = new FileReader();
+    r.onload = () => { prev.insertAdjacentHTML('beforeend',`<div class="img-preview-item"><img src="${r.result}" style="width:80px;height:56px;object-fit:cover"></div>`); };
+    r.readAsDataURL(f);
+  });
+  document.getElementById('gal-upload-form').style.display = _pendingGalFiles.length ? 'block' : 'none';
+};
+
+window.uploadGallery = async () => {
+  if (!_pendingGalFiles.length) return;
+  toast(`Uploading ${_pendingGalFiles.length} image(s)â€¦`, 'info');
+  try {
+    const cap = g('gal-cap'); const cat = g('gal-cat'); const date = g('gal-date');
+    for (const file of _pendingGalFiles) {
+      const b64 = await toB64(file);
+      const ext = file.name.split('.').pop().toLowerCase();
+      const url = await uploadFile(`uploads/gallery/${uid()}.${ext}`, b64, 'Upload gallery image');
+      window._gallery.unshift({ id: uid(), url, caption: cap, category: cat, date, visible: true });
+    }
+    const f = await readJSON('data/gallery.json'); await writeJSON('data/gallery.json', window._gallery, f.sha, 'Update gallery');
+    toast('Gallery updated!', 'ok'); renderSection('gallery');
+  } catch(e) { toast('Error: '+e.message,'err'); }
+};
+
+window.delGal = async (i) => {
+  if (!confirm('Delete from gallery? (Image file stays in repo)')) return;
+  window._gallery.splice(i,1);
+  const f = await readJSON('data/gallery.json'); await writeJSON('data/gallery.json', window._gallery, f.sha, 'Delete gallery item');
+  renderSection('gallery');
+};
+window.visGal = async (i) => {
+  window._gallery[i].visible = window._gallery[i].visible===false;
+  const f = await readJSON('data/gallery.json'); await writeJSON('data/gallery.json', window._gallery, f.sha, 'Toggle gallery visibility');
+  renderSection('gallery');
+};
+
+// CV
+sections.cv = async (ca) => {
+  const { data: p } = await readJSON('data/profile.json');
+  ca.innerHTML = `<div class="sec-header"><h2>CV / Resume</h2></div>
+    <div class="form-panel">
+      <h3>PDF Download Link</h3>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:0.75rem">Host your PDF on Google Drive, Dropbox, or any direct URL. Make sure sharing is set to "Anyone with link".</p>
+      <div class="field"><label>CV PDF URL</label><input id="cv-url" value="${escA(p.cvUrl||'')}"></div>
+      <div class="switch-row"><label class="toggle"><input type="checkbox" id="cv-vis" ${p.cvVisible!==false?'checked':''}><span class="toggle-slider"></span></label><label for="cv-vis">Show "Download CV" button on site</label></div>
+      <div class="form-actions"><button class="btn-p" onclick="saveCV()">ðŸ’¾ Save</button></div>
+    </div>`;
+};
+window.saveCV = async () => {
+  try {
+    const { data: p, sha } = await readJSON('data/profile.json');
+    p.cvUrl = g('cv-url'); p.cvVisible = gBool('cv-vis');
+    const f = await readJSON('data/profile.json'); await writeJSON('data/profile.json', p, f.sha, 'Update CV settings');
+    toast('Saved!','ok');
+  } catch(e) { toast('Error: '+e.message,'err'); }
+};
+
+// Site Settings
+sections.site = async (ca) => {
+  const { data: s } = await readJSON(‘data/site.json’);
+
+  const DEFAULT_SECTIONS = [
+    { id:’about’, label:’About’ }, { id:’interests’, label:’Research Interests’ },
+    { id:’pubs’, label:’Selected Publications’ }, { id:’projects’, label:’Projects’ },
+    { id:’awards’, label:’Awards & Honors’ }, { id:’teaching’, label:’Teaching’ },
+    { id:’news’, label:’News’ }
+  ];
+  // Merge saved order with defaults (add any missing, keep existing order)
+  const saved = s.homepageSections || [];
+  const merged = [...saved];
+  DEFAULT_SECTIONS.forEach(d => { if (!merged.find(m => m.id === d.id)) merged.push({ ...d, visible: [‘about’,’interests’,’pubs’,’projects’,’news’].includes(d.id) }); });
+  window._hpSections = merged.map(m => ({ ...m, label: DEFAULT_SECTIONS.find(d => d.id === m.id)?.label || m.label }));
+
+  const renderHpList = () => {
+    document.getElementById(‘hp-section-list’).innerHTML = window._hpSections.map((sec, i) => `
+      <div class="nav-sort-item" data-i="${i}" style="cursor:default">
+        <span style="flex:1;font-size:13px">${sec.label}</span>
+        <button class="btn-o btn-sm" onclick="hpMove(${i},-1)" ${i===0?’disabled’:’’} title="Move up" style="padding:2px 7px">↑</button>
+        <button class="btn-o btn-sm" onclick="hpMove(${i},1)" ${i===window._hpSections.length-1?’disabled’:’’} title="Move down" style="padding:2px 7px">↓</button>
+        <label class="toggle" style="margin-left:0.4rem"><input type="checkbox" id="hps-vis-${i}" ${sec.visible!==false?’checked’:’’} onchange="window._hpSections[${i}].visible=this.checked"><span class="toggle-slider"></span></label>
+      </div>`).join(‘’);
+  };
+
+  const navItems = (s.navigation||[]).map((n,i) => `
+    <div class="nav-sort-item" style="cursor:default">
+      <span style="flex:1;font-size:13px">${n.label}</span>
+      <label class="toggle"><input type="checkbox" id="nav-vis-${i}" ${n.visible?’checked’:’’}><span class="toggle-slider"></span></label>
+    </div>`).join(‘’);
+
+  const accents = [‘#2563eb’,’#7c3aed’,’#059669’,’#dc2626’,’#d97706’,’#0891b2’];
+  const colorDots = accents.map(c => `<div class="color-opt${(s.theme?.accent||’#2563eb’)===c?’ sel’:’’}" style="background:${c};border-color:${(s.theme?.accent||’#2563eb’)===c?’var(--text)’:’transparent’}" data-color="${c}" onclick="selColor(this)"></div>`).join(‘’);
+
+  ca.innerHTML = `<div class="sec-header"><h2>Site Settings</h2></div>
+    <div class="form-panel">
+      <h3>Identity</h3>
+      <div class="row"><div class="field"><label>Site Title</label><input id="ss-title" value="${escA(s.title||’’)}"></div><div class="field"><label>Tagline</label><input id="ss-tag" value="${escA(s.tagline||’’)}"></div></div>
+      <div class="field"><label>Site Description (meta)</label><input id="ss-desc" value="${escA(s.description||’’)}"></div>
+    </div>
+    <div class="form-panel">
+      <h3>Homepage Section Order</h3>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:0.75rem">Use ↑↓ to reorder. Toggle to show/hide each section. Changes take effect on save.</p>
+      <div class="nav-sort-list" id="hp-section-list"></div>
+      <div class="row" style="margin-top:0.75rem">
+        <div class="field"><label>Max news items</label><input id="hp-newsn" type="number" value="${s.homepage?.newsCount||8}" style="width:80px"></div>
+        <div class="field"><label>Max featured pubs</label><input id="hp-pubsn" type="number" value="${s.homepage?.featuredPubsCount||4}" style="width:80px"></div>
+        <div class="field"><label>Max featured projects</label><input id="hp-projn" type="number" value="${s.homepage?.featuredProjectsCount||2}" style="width:80px"></div>
+      </div>
+    </div>
+    <div class="form-panel">
+      <h3>Navigation Pages</h3>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:0.75rem">Toggle which pages appear in the top nav.</p>
+      <div class="nav-sort-list">${navItems}</div>
+    </div>
+    <div class="form-panel">
+      <h3>Theme</h3>
+      <div class="field"><label>Accent Color</label><div class="color-row">${colorDots}<input type="color" value="${s.theme?.accent||’#2563eb’}" id="ss-accent-val" style="width:28px;height:28px;padding:0;border:none;cursor:pointer;border-radius:50%;overflow:hidden" title="Custom color" onchange="document.querySelectorAll(‘.color-opt’).forEach(o=>{o.classList.remove(‘sel’);o.style.borderColor=’transparent’})"></div></div>
+      <div class="field"><label>Default Color Mode</label><select id="ss-mode"><option value="auto"${s.theme?.defaultMode===’auto’?’ selected’:’’}>Auto (system)</option><option value="light"${s.theme?.defaultMode===’light’?’ selected’:’’}>Light</option><option value="dark"${s.theme?.defaultMode===’dark’?’ selected’:’’}>Dark</option></select></div>
+    </div>
+    <div class="form-panel">
+      <h3>Announcement Banner</h3>
+      <div class="switch-row"><label class="toggle"><input type="checkbox" id="ann-vis" ${s.announcement?.visible?’checked’:’’}><span class="toggle-slider"></span></label><label for="ann-vis">Show banner</label></div>
+      <div class="field"><label>Banner Text</label><input id="ann-text" value="${escA(s.announcement?.text||’’)}"></div>
+      <div class="row"><div class="field"><label>Link URL</label><input id="ann-link" value="${escA(s.announcement?.link||’’)}"></div><div class="field"><label>Link Text</label><input id="ann-lt" value="${escA(s.announcement?.linkText||’’)}"></div></div>
+    </div>
+    <div class="form-panel">
+      <h3>Footer</h3>
+      <div class="field"><label>Footer Text (© line)</label><input id="ft-text" value="${escA(s.footer?.text||’’)}"></div>
+      <div class="switch-row"><label class="toggle"><input type="checkbox" id="ft-updated" ${s.footer?.showLastUpdated!==false?’checked’:’’}><span class="toggle-slider"></span></label><label for="ft-updated">Show "Last Updated: Month Year" (auto)</label></div>
+    </div>
+    <button class="btn-p" onclick="saveSiteSettings()">💾 Save Site Settings</button>`;
+
+  renderHpList();
+};
+
+window.hpMove = (i, dir) => {
+  const arr = window._hpSections;
+  const j = i + dir;
+  if (j < 0 || j >= arr.length) return;
+  [arr[i], arr[j]] = [arr[j], arr[i]];
+  document.getElementById(‘hp-section-list’).innerHTML = ‘’;
+  // re-render
+  document.getElementById(‘hp-section-list’).innerHTML = window._hpSections.map((sec, idx) => `
+    <div class="nav-sort-item" data-i="${idx}" style="cursor:default">
+      <span style="flex:1;font-size:13px">${sec.label}</span>
+      <button class="btn-o btn-sm" onclick="hpMove(${idx},-1)" ${idx===0?’disabled’:’’} title="Move up" style="padding:2px 7px">↑</button>
+      <button class="btn-o btn-sm" onclick="hpMove(${idx},1)" ${idx===window._hpSections.length-1?’disabled’:’’} title="Move down" style="padding:2px 7px">↓</button>
+      <label class="toggle" style="margin-left:0.4rem"><input type="checkbox" id="hps-vis-${idx}" ${sec.visible!==false?’checked’:’’} onchange="window._hpSections[${idx}].visible=this.checked"><span class="toggle-slider"></span></label>
+    </div>`).join(‘’);
+};
+
+window.selColor = (el) => {
+  document.querySelectorAll(‘.color-opt’).forEach(o => { o.classList.remove(‘sel’); o.style.borderColor = ‘transparent’; });
+  el.classList.add(‘sel’); el.style.borderColor = ‘var(--text)’;
+  document.getElementById(‘ss-accent-val’).value = el.dataset.color;
+};
+
+window.saveSiteSettings = async () => {
+  try {
+    const fresh = await readJSON(‘data/site.json’);
+    const s = fresh.data;
+    const selColor = document.querySelector(‘.color-opt.sel’);
+    const accent = selColor ? selColor.dataset.color : document.getElementById(‘ss-accent-val’).value;
+    const navVis = (s.navigation||[]).map((n,i) => ({ ...n, visible: document.getElementById(`nav-vis-${i}`)?.checked ?? n.visible }));
+    const hpSections = window._hpSections.map((sec, i) => ({ ...sec, visible: document.getElementById(`hps-vis-${i}`)?.checked ?? sec.visible }));
+    const updated = { ...s,
+      title: g(‘ss-title’), tagline: g(‘ss-tag’), description: g(‘ss-desc’),
+      navigation: navVis,
+      homepageSections: hpSections,
+      theme: { ...s.theme, accent, defaultMode: g(‘ss-mode’) },
+      homepage: { newsCount: parseInt(g(‘hp-newsn’))||8, featuredPubsCount: parseInt(g(‘hp-pubsn’))||4, featuredProjectsCount: parseInt(g(‘hp-projn’))||2 },
+      announcement: { visible: gBool(‘ann-vis’), text: g(‘ann-text’), link: g(‘ann-link’), linkText: g(‘ann-lt’) },
+      footer: { text: g(‘ft-text’), showLastUpdated: gBool(‘ft-updated’) }
+    };
+    await writeJSON(‘data/site.json’, updated, fresh.sha, ‘Update site settings’);
+    toast(‘Site settings saved!’, ‘ok’);
+  } catch(e) { toast(‘Error: ‘+e.message,’err’); }
+};
+
+// Analytics & SEO
+sections.seo = async (ca) => {
+  const { data: s } = await readJSON('data/site.json');
+  ca.innerHTML = `<div class="sec-header"><h2>Analytics &amp; SEO</h2></div>
+    <div class="form-panel">
+      <h3>Google Analytics</h3>
+      <div class="switch-row"><label class="toggle"><input type="checkbox" id="ga-en" ${s.analytics?.enabled?'checked':''}><span class="toggle-slider"></span></label><label for="ga-en">Enable Google Analytics</label></div>
+      <div class="field" style="margin-top:0.5rem"><label>Measurement ID (G-XXXXXXXXXX)</label><input id="ga-id" value="${escA(s.analytics?.googleAnalyticsId||'')}"></div>
+      <p style="font-size:11px;color:var(--muted);margin-top:0.25rem">Get your ID from <a href="https://analytics.google.com" target="_blank">Google Analytics â†’ Admin â†’ Data Streams</a></p>
+    </div>
+    <div class="form-panel">
+      <h3>SEO</h3>
+      <div class="field"><label>Meta Keywords</label><input id="seo-kw" value="${escA(s.seo?.keywords||'')}"></div>
+      <div class="field"><label>OG Image URL (1200Ã—630 recommended)</label><input id="seo-ogimg" value="${escA(s.seo?.ogImage||'')}"></div>
+    </div>
+    <div class="form-panel">
+      <h3>Sitemap</h3>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:0.75rem">Your sitemap is at <code>${STORE.owner}.github.io/sitemap.xml</code>. After major content updates, notify Google:</p>
+      <button class="btn-o btn-sm" onclick="pingSitemap()">ðŸ“¡ Ping Google Search Console</button>
+    </div>
+    <button class="btn-p" onclick="saveSEO()">ðŸ’¾ Save</button>`;
+};
+
+window.saveSEO = async () => {
+  try {
+    const { data: s, sha } = await readJSON('data/site.json');
+    s.analytics = { enabled: gBool('ga-en'), googleAnalyticsId: g('ga-id') };
+    s.seo = { ...s.seo, keywords: g('seo-kw'), ogImage: g('seo-ogimg') };
+    const fresh = await readJSON('data/site.json');
+    await writeJSON('data/site.json', s, fresh.sha, 'Update analytics & SEO settings');
+    toast('Saved!','ok');
+  } catch(e) { toast('Error: '+e.message,'err'); }
+};
+
+window.pingSitemap = () => {
+  const url = encodeURIComponent(`https://${STORE.owner}.github.io/sitemap.xml`);
+  window.open(`https://www.google.com/ping?sitemap=${url}`, '_blank');
+};
+
+// â”€â”€ Utilities â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+function escA(s) { return String(s||'').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+window.cancelForm = () => { const f=document.getElementById('edit-form'); if(f) f.innerHTML=''; };
+
+// â”€â”€ Init â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ── Rich-text bio helpers ────────────────────────────────────────────────────
+window.bioCmd = (cmd) => { document.getElementById('p-bio')?.focus(); document.execCommand(cmd, false, null); };
+window.bioLink = () => {
+  const url = prompt('Enter URL (e.g. https://example.com):');
+  if (url) { document.getElementById('p-bio')?.focus(); document.execCommand('createLink', false, url); }
+};
+window.bioColor = (color) => { document.getElementById('p-bio')?.focus(); document.execCommand('foreColor', false, color); };
+
+if (STORE.token) startApp();
+</script>
+</body>
+</html>
+

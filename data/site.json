@@ -1,0 +1,57 @@
+{
+  "title": "JH Rony",
+  "tagline": "Researcher · Computer Vision · AI",
+  "description": "Academic portfolio of Jahid Hasan Rony — researcher in Computer Vision, Machine Learning, and AI at Independent University Bangladesh.",
+  "baseUrl": "https://rony-cse.github.io",
+  "author": "Jahid Hasan Rony",
+  "analytics": {
+    "googleAnalyticsId": "",
+    "enabled": false
+  },
+  "navigation": [
+    { "label": "Home", "href": "/", "visible": true },
+    { "label": "Publications", "href": "/publications.html", "visible": true },
+    { "label": "Projects", "href": "/projects.html", "visible": true },
+    { "label": "Teaching", "href": "/teaching.html", "visible": true },
+    { "label": "Talks", "href": "/talks.html", "visible": true },
+    { "label": "Awards", "href": "/awards.html", "visible": true },
+    { "label": "Gallery", "href": "/gallery.html", "visible": true },
+    { "label": "CV", "href": "/cv.html", "visible": false }
+  ],
+  "theme": {
+    "accent": "#2563eb",
+    "defaultMode": "auto"
+  },
+  "homepage": {
+    "newsCount": 8,
+    "featuredPubsCount": 4,
+    "featuredProjectsCount": 2
+  },
+  "homepageSections": [
+    { "id": "about",     "label": "About",                 "visible": true  },
+    { "id": "interests", "label": "Research Interests",    "visible": true  },
+    { "id": "pubs",      "label": "Selected Publications", "visible": true  },
+    { "id": "projects",  "label": "Projects",              "visible": true  },
+    { "id": "awards",    "label": "Awards & Honors",       "visible": false },
+    { "id": "teaching",  "label": "Teaching",              "visible": false },
+    { "id": "news",      "label": "News",                  "visible": true  }
+  ],
+  "footer": {
+    "text": "© 2025 Jahid Hasan Rony",
+    "showLastUpdated": true
+  },
+  "announcement": {
+    "visible": false,
+    "text": "",
+    "link": "",
+    "linkText": ""
+  },
+  "contact": {
+    "formMethod": "mailto",
+    "formspreeId": ""
+  },
+  "seo": {
+    "keywords": "computer vision, machine learning, AI, deep learning, semantic segmentation, robotics, researcher, Jahid Hasan Rony",
+    "ogImage": ""
+  }
+}

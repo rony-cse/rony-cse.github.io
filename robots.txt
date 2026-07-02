@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /jhr/
+
+Sitemap: https://rony-cse.github.io/sitemap.xml

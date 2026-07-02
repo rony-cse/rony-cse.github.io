@@ -1,0 +1,17 @@
+[
+  {
+    "id": "exp001",
+    "title": "Researcher",
+    "organization": "Independent University Bangladesh",
+    "organizationUrl": "https://iub.edu.bd/",
+    "organizationLogo": "",
+    "startDate": "",
+    "endDate": "",
+    "duration": "Present",
+    "location": "Dhaka, Bangladesh",
+    "type": "research",
+    "description": "Conducting research in computer vision, machine learning, and AI under the Center for Industrial Automation Robotics & Internet of Things. Focus areas include semantic segmentation for aquatic species and dental images.",
+    "link": "",
+    "visible": true
+  }
+]

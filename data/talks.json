@@ -1,0 +1,18 @@
+[
+  {
+    "id": "talk001",
+    "title": "Robotics Workshop: Embedded Systems and Autonomous Robots",
+    "event": "Cadet College Robotics Workshop",
+    "eventUrl": "",
+    "date": "2025-05-15",
+    "location": "Bangladesh",
+    "type": "workshop",
+    "abstract": "Hands-on workshop introducing students to embedded systems, Arduino, and basic autonomous robot design.",
+    "links": {
+      "slides": "",
+      "video": "",
+      "abstract": ""
+    },
+    "visible": true
+  }
+]

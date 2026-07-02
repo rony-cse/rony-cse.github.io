@@ -1,0 +1,72 @@
+[
+  {
+    "id": "proj001",
+    "title": "AqUavplant: UAV-based Aquatic Plant Dataset",
+    "description": "High-resolution UAV dataset for aquatic plant classification and semantic segmentation, collected from diverse water bodies in Bangladesh. Enables research in precision agriculture and environmental monitoring.",
+    "status": "completed",
+    "startDate": "2023",
+    "endDate": "2024",
+    "collaborators": [
+      { "name": "Md Abrar Istiak", "url": "" },
+      { "name": "Razib Hayat Khan", "url": "" },
+      { "name": "Abdullah Al Shafi", "url": "" }
+    ],
+    "funding": "",
+    "links": {
+      "paper": "",
+      "code": "",
+      "demo": "",
+      "website": "",
+      "video": ""
+    },
+    "thumbnail": "",
+    "tags": ["UAV", "Dataset", "Semantic Segmentation", "Aquatic Plants"],
+    "featured": true,
+    "visible": true
+  },
+  {
+    "id": "proj002",
+    "title": "Real-time Obstacle Detection for Unmanned Ground Vehicles",
+    "description": "YOLOv8-based real-time obstacle detection system for autonomous ground vehicles. Achieves high accuracy at low latency suitable for deployment on edge devices in dynamic outdoor environments.",
+    "status": "completed",
+    "startDate": "2023",
+    "endDate": "2024",
+    "collaborators": [
+      { "name": "Shakila Rahman", "url": "" },
+      { "name": "Jia Uddin", "url": "" }
+    ],
+    "funding": "",
+    "links": {
+      "paper": "",
+      "code": "",
+      "demo": "",
+      "website": "",
+      "video": ""
+    },
+    "thumbnail": "",
+    "tags": ["YOLOv8", "Robotics", "Object Detection", "Real-time"],
+    "featured": true,
+    "visible": true
+  },
+  {
+    "id": "proj003",
+    "title": "Depression Prediction with Explainable AI",
+    "description": "Comparative study of ML and DL models for predicting depression among university students, with XAI integration for clinical interpretability and responsible deployment.",
+    "status": "completed",
+    "startDate": "2023",
+    "endDate": "2024",
+    "collaborators": [],
+    "funding": "",
+    "links": {
+      "paper": "",
+      "code": "",
+      "demo": "",
+      "website": "",
+      "video": ""
+    },
+    "thumbnail": "",
+    "tags": ["XAI", "Mental Health", "Machine Learning", "Healthcare AI"],
+    "featured": false,
+    "visible": true
+  }
+]

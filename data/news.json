@@ -1,0 +1,56 @@
+[
+  {
+    "id": "news001",
+    "date": "2025-08-01",
+    "content": "Paper on Semantic Segmentation in Natural Environments accepted at <strong>44th IEEE IPCCC 2025</strong>, Texas, USA.",
+    "link": "",
+    "linkText": "",
+    "category": "publication",
+    "visible": true
+  },
+  {
+    "id": "news002",
+    "date": "2025-07-10",
+    "content": "Completed field visit to Bangladesh Agricultural University (BAU) for UAV-based aquatic plant data collection.",
+    "link": "",
+    "linkText": "",
+    "category": "research",
+    "visible": true
+  },
+  {
+    "id": "news003",
+    "date": "2025-05-15",
+    "content": "Conducted a robotics workshop at a local cadet college, introducing students to embedded systems and autonomous robots.",
+    "link": "",
+    "linkText": "",
+    "category": "service",
+    "visible": true
+  },
+  {
+    "id": "news004",
+    "date": "2025-03-01",
+    "content": "Research on aquatic plant segmentation featured in <strong>The Business Standard</strong>.",
+    "link": "",
+    "linkText": "Read Article",
+    "category": "media",
+    "visible": true
+  },
+  {
+    "id": "news005",
+    "date": "2024-11-20",
+    "content": "Paper accepted in <strong>Nature Scientific Data</strong> (Q1): AqUavplant dataset for aquatic plant classification using UAV imagery.",
+    "link": "",
+    "linkText": "",
+    "category": "publication",
+    "visible": true
+  },
+  {
+    "id": "news006",
+    "date": "2024-09-01",
+    "content": "Paper accepted at <strong>ISCIT 2024</strong> (Rank-B conference) on predicting depression using ML/DL with Explainable AI.",
+    "link": "",
+    "linkText": "",
+    "category": "publication",
+    "visible": true
+  }
+]

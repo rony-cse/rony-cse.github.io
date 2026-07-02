@@ -1,0 +1,21 @@
+[
+  {
+    "id": "edu001",
+    "degree": "B.Sc.",
+    "field": "Computer Science and Engineering",
+    "institution": "Dhaka University of Engineering & Technology (DUET)",
+    "institutionUrl": "https://duet.ac.bd/",
+    "institutionLogo": "",
+    "startYear": "",
+    "endYear": "",
+    "yearRange": "Completed",
+    "advisor": "",
+    "advisorUrl": "",
+    "thesisTitle": "",
+    "thesisUrl": "",
+    "gpa": "",
+    "showGpa": false,
+    "description": "",
+    "visible": true
+  }
+]

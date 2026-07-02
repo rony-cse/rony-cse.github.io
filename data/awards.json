@@ -1,0 +1,26 @@
+[
+  {
+    "id": "award001",
+    "title": "Research Featured in National Media",
+    "organization": "The Business Standard",
+    "organizationUrl": "",
+    "year": "2025",
+    "description": "Research on aquatic plant segmentation using UAV imagery featured in The Business Standard.",
+    "amount": "",
+    "showAmount": false,
+    "link": "",
+    "visible": true
+  },
+  {
+    "id": "award002",
+    "title": "Television Interview – AI & Robotics Research",
+    "organization": "Jamuna TV",
+    "organizationUrl": "",
+    "year": "2022–2023",
+    "description": "Featured in multiple television interviews on Jamuna TV discussing AI research and robotics innovations.",
+    "amount": "",
+    "showAmount": false,
+    "link": "",
+    "visible": true
+  }
+]
