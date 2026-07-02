@@ -1,7 +1,7 @@
 {
   "title": "JH Rony",
-  "tagline": "Researcher · Computer Vision · AI",
-  "description": "Academic portfolio of Jahid Hasan Rony — researcher in Computer Vision, Machine Learning, and AI at Independent University Bangladesh.",
+  "tagline": "Researcher Â· Computer Vision Â· AI",
+  "description": "Academic portfolio of Jahid Hasan Rony â researcher in Computer Vision, Machine Learning, and AI at Independent University Bangladesh.",
   "baseUrl": "https://rony-cse.github.io",
   "author": "Jahid Hasan Rony",
   "analytics": {
@@ -9,14 +9,46 @@
     "enabled": false
   },
   "navigation": [
-    { "label": "Home", "href": "/", "visible": true },
-    { "label": "Publications", "href": "/publications.html", "visible": true },
-    { "label": "Projects", "href": "/projects.html", "visible": true },
-    { "label": "Teaching", "href": "/teaching.html", "visible": true },
-    { "label": "Talks", "href": "/talks.html", "visible": true },
-    { "label": "Awards", "href": "/awards.html", "visible": true },
-    { "label": "Gallery", "href": "/gallery.html", "visible": true },
-    { "label": "CV", "href": "/cv.html", "visible": false }
+    {
+      "label": "Home",
+      "href": "/",
+      "visible": true
+    },
+    {
+      "label": "Publications",
+      "href": "/publications.html",
+      "visible": true
+    },
+    {
+      "label": "Projects",
+      "href": "/projects.html",
+      "visible": false
+    },
+    {
+      "label": "Teaching",
+      "href": "/teaching.html",
+      "visible": true
+    },
+    {
+      "label": "Talks",
+      "href": "/talks.html",
+      "visible": false
+    },
+    {
+      "label": "Awards",
+      "href": "/awards.html",
+      "visible": false
+    },
+    {
+      "label": "Gallery",
+      "href": "/gallery.html",
+      "visible": true
+    },
+    {
+      "label": "CV",
+      "href": "/cv.html",
+      "visible": false
+    }
   ],
   "theme": {
     "accent": "#2563eb",
@@ -28,16 +60,44 @@
     "featuredProjectsCount": 2
   },
   "homepageSections": [
-    { "id": "about",     "label": "About",                 "visible": true  },
-    { "id": "interests", "label": "Research Interests",    "visible": true  },
-    { "id": "pubs",      "label": "Selected Publications", "visible": true  },
-    { "id": "projects",  "label": "Projects",              "visible": true  },
-    { "id": "awards",    "label": "Awards & Honors",       "visible": false },
-    { "id": "teaching",  "label": "Teaching",              "visible": false },
-    { "id": "news",      "label": "News",                  "visible": true  }
+    {
+      "id": "about",
+      "label": "About",
+      "visible": true
+    },
+    {
+      "id": "interests",
+      "label": "Research Interests",
+      "visible": true
+    },
+    {
+      "id": "pubs",
+      "label": "Selected Publications",
+      "visible": true
+    },
+    {
+      "id": "projects",
+      "label": "Projects",
+      "visible": true
+    },
+    {
+      "id": "awards",
+      "label": "Awards & Honors",
+      "visible": false
+    },
+    {
+      "id": "teaching",
+      "label": "Teaching",
+      "visible": false
+    },
+    {
+      "id": "news",
+      "label": "News",
+      "visible": true
+    }
   ],
   "footer": {
-    "text": "© 2025 Jahid Hasan Rony",
+    "text": "Â© 2025 Jahid Hasan Rony",
     "showLastUpdated": true
   },
   "announcement": {
