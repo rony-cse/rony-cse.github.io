@@ -1,7 +1,7 @@
 [
   {
     "id": "mr3895k45vxzd",
-    "title": "SwiftMSeg: Lightweight Multi-Scale Local-Global Context Modeling with Transformer for Medical Image Segmentation",
+    "title": "SwiftMSeg: Lightweight Multi-Scale LocalÃÂ¢ÃÂÃÂGlobal Context Modeling with Transformer for Medical Image Segmentation",
     "authors": [
       "Jahid Hasan Rony",
       "Md Shakhawat Hossain",
@@ -17,13 +17,13 @@
     "category": "journal",
     "status": "published",
     "rank": "Q1",
-    "abstract": "Accurate medical image segmentation requires both fine boundary localization and robust contextual understanding, which is often difficult to achieve simultaneously, particularly in lightweight architectures. In this paper, we propose SwiftMSeg, a lightweight encoderÃÂ¢ÃÂÃÂdecoder framework that integrates a convolutional encoder, a transformer-based LocalÃÂ¢ÃÂÃÂGlobalÃÂ¢ÃÂÃÂLocal (LGL) module, and a hierarchical multi-scale decoder.",
+    "abstract": "Accurate medical image segmentation requires both fine boundary localization and robust contextual understanding, which is often difficult to achieve simultaneously, particularly in lightweight architectures. In this paper, we propose SwiftMSeg, a lightweight encoderÃÂÃÂ¢ÃÂÃÂÃÂÃÂdecoder framework that integrates a convolutional encoder, a transformer-based LocalÃÂÃÂ¢ÃÂÃÂÃÂÃÂGlobalÃÂÃÂ¢ÃÂÃÂÃÂÃÂLocal (LGL) module, and a hierarchical multi-scale decoder.",
     "keywords": [
       "semantic segmentation",
       "computer vision",
       "deep learning"
     ],
-    "bibtex": "@article{rony2026swiftmseg,\n  title={SwiftMSeg: lightweight multi-scale local--global context modeling with transformer for medical image segmentation},\n  author={Rony, Jahid Hasan and Hossain, Md Shakhawat and Siddiqui, Fazlul Hasan},\n  journal={Scientific Reports},\n  year={2026},\n  publisher={Nature Publishing Group}\n}",
+    "bibtex": "",
     "links": {
       "pdf": "https://www.nature.com/articles/s41598-026-56845-3",
       "arxiv": "",
@@ -32,16 +32,16 @@
       "slides": "",
       "video": "",
       "poster": "",
-      "doi": "https://doi.org/10.1038/s41598-026-56845-3"
+      "doi": ""
     },
-    "thumbnail": "https://raw.githubusercontent.com/rony-cse/rony-cse.github.io/newsite/uploads/papers/mr39xtnp1uo8m.png",
+    "thumbnail": "https://raw.githubusercontent.com/rony-cse/rony-cse.github.io/newsite/uploads/papers/mr3a3fjfeyt0a.gif",
     "award": "",
     "featured": true,
     "visible": true
   },
   {
     "id": "pub001",
-    "title": "Semantic Segmentation in Natural Environments",
+    "title": "Semantic Segmentation in Natural Environments: An Analysis of Deep Learning Techniques",
     "authors": [
       "Jahid Hasan Rony",
       "Abdullah Al Shafi",
@@ -57,7 +57,8 @@
     "issue": "",
     "pages": "",
     "category": "conference",
-    "status": "accepted",
+    "status": "published",
+    "rank": "B",
     "abstract": "This paper presents a semantic segmentation approach for natural environment understanding using advanced deep learning methods, enabling accurate scene parsing for outdoor robotics and environmental monitoring applications.",
     "keywords": [
       "semantic segmentation",
@@ -65,8 +66,9 @@
       "deep learning",
       "natural environments"
     ],
+    "bibtex": "@inproceedings{rony2025semantic,\n  title={Semantic Segmentation in Natural Environments},\n  author={Jahid Hasan Rony and Abdullah Al Shafi and Razib Hayat Khan and MM Mahbubul Syeed and Mohammad Faisal Uddin},\n  booktitle={44th IEEE International Performance Computing and Communications Conference (IPCCC)},\n  year={2025}\n}",
     "links": {
-      "pdf": "",
+      "pdf": "https://ieeexplore.ieee.org/abstract/document/11304641/",
       "arxiv": "",
       "code": "",
       "project": "",
@@ -76,7 +78,6 @@
       "doi": ""
     },
     "thumbnail": "",
-    "bibtex": "@inproceedings{rony2025semantic,\n  title={Semantic Segmentation in Natural Environments},\n  author={Jahid Hasan Rony and Abdullah Al Shafi and Razib Hayat Khan and MM Mahbubul Syeed and Mohammad Faisal Uddin},\n  booktitle={44th IEEE International Performance Computing and Communications Conference (IPCCC)},\n  year={2025}\n}",
     "award": "",
     "featured": true,
     "visible": true
