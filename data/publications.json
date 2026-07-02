@@ -1,8 +1,50 @@
 [
   {
+    "id": "mr37pfaihm8ls",
+    "title": "SwiftMSeg: lightweight multi-scale local–global context modeling with transformer for medical image segmentation",
+    "authors": [
+      "Jahid Hasan Rony",
+      "Md Shakhawat Hossain",
+      "Fazlul Hasan Siddiqui"
+    ],
+    "highlightAuthor": "Jahid Hasan Rony",
+    "venue": "Scientific Reports",
+    "venueShort": "Sci.Rep 2026",
+    "year": 2026,
+    "volume": "",
+    "issue": "",
+    "pages": "",
+    "category": "journal",
+    "status": "published",
+    "rank": "Q1",
+    "abstract": "",
+    "keywords": [],
+    "bibtex": "",
+    "links": {
+      "pdf": "https://www.nature.com/articles/s41598-026-56845-3",
+      "arxiv": "",
+      "code": "",
+      "project": "",
+      "slides": "",
+      "video": "",
+      "poster": "",
+      "doi": "https://doi.org/10.1038/s41598-026-56845-3"
+    },
+    "thumbnail": "https://raw.githubusercontent.com/rony-cse/rony-cse.github.io/newsite/uploads/papers/mr37x8m2po5wj.png",
+    "award": "",
+    "featured": true,
+    "visible": true
+  },
+  {
     "id": "pub001",
     "title": "Semantic Segmentation in Natural Environments",
-    "authors": ["Jahid Hasan Rony", "Abdullah Al Shafi", "Razib Hayat Khan", "MM Mahbubul Syeed", "Mohammad Faisal Uddin"],
+    "authors": [
+      "Jahid Hasan Rony",
+      "Abdullah Al Shafi",
+      "Razib Hayat Khan",
+      "MM Mahbubul Syeed",
+      "Mohammad Faisal Uddin"
+    ],
     "highlightAuthor": "Jahid Hasan Rony",
     "venue": "44th IEEE International Performance Computing and Communications Conference",
     "venueShort": "IEEE IPCCC 2025",
@@ -13,7 +55,12 @@
     "category": "conference",
     "status": "accepted",
     "abstract": "This paper presents a semantic segmentation approach for natural environment understanding using advanced deep learning methods, enabling accurate scene parsing for outdoor robotics and environmental monitoring applications.",
-    "keywords": ["semantic segmentation", "computer vision", "deep learning", "natural environments"],
+    "keywords": [
+      "semantic segmentation",
+      "computer vision",
+      "deep learning",
+      "natural environments"
+    ],
     "links": {
       "pdf": "",
       "arxiv": "",
@@ -33,7 +80,13 @@
   {
     "id": "pub002",
     "title": "AqUavplant: A High-Resolution Dataset for Aquatic Plant Classification and Segmentation Using Unmanned Aerial Vehicle",
-    "authors": ["Md Abrar Istiak", "Razib Hayat Khan", "Jahid Hasan Rony", "Abdullah Al Shafi", "MM Mahbubul Syeed"],
+    "authors": [
+      "Md Abrar Istiak",
+      "Razib Hayat Khan",
+      "Jahid Hasan Rony",
+      "Abdullah Al Shafi",
+      "MM Mahbubul Syeed"
+    ],
     "highlightAuthor": "Jahid Hasan Rony",
     "venue": "Scientific Data",
     "venueShort": "Sci. Data 2024",
@@ -44,7 +97,14 @@
     "category": "journal",
     "status": "published",
     "abstract": "We present AqUavplant, a high-resolution UAV-based dataset for aquatic plant classification and semantic segmentation. The dataset enables advances in environmental monitoring and precision agriculture through comprehensive annotations and diverse environmental conditions.",
-    "keywords": ["UAV", "aquatic plants", "dataset", "semantic segmentation", "remote sensing", "environmental monitoring"],
+    "keywords": [
+      "UAV",
+      "aquatic plants",
+      "dataset",
+      "semantic segmentation",
+      "remote sensing",
+      "environmental monitoring"
+    ],
     "links": {
       "pdf": "",
       "arxiv": "",
@@ -64,7 +124,12 @@
   {
     "id": "pub003",
     "title": "Real-time Obstacle Detection for Unmanned Ground Vehicles Using YOLOv8",
-    "authors": ["Shakila Rahman", "Jahid Hasan Rony", "Jia Uddin", "Md Abdus Samad"],
+    "authors": [
+      "Shakila Rahman",
+      "Jahid Hasan Rony",
+      "Jia Uddin",
+      "Md Abdus Samad"
+    ],
     "highlightAuthor": "Jahid Hasan Rony",
     "venue": "Journal of Imaging",
     "venueShort": "J. Imaging 2024",
@@ -75,7 +140,14 @@
     "category": "journal",
     "status": "published",
     "abstract": "Real-time obstacle detection system for unmanned ground vehicles leveraging the YOLOv8 architecture for robust and fast inference in dynamic environments, achieving high accuracy at low latency.",
-    "keywords": ["YOLOv8", "obstacle detection", "unmanned ground vehicles", "real-time", "object detection", "robotics"],
+    "keywords": [
+      "YOLOv8",
+      "obstacle detection",
+      "unmanned ground vehicles",
+      "real-time",
+      "object detection",
+      "robotics"
+    ],
     "links": {
       "pdf": "",
       "arxiv": "",
@@ -95,7 +167,9 @@
   {
     "id": "pub004",
     "title": "Predicting Depression Among University Students Using Machine Learning and Deep Learning with Explainable AI",
-    "authors": ["Jahid Hasan Rony"],
+    "authors": [
+      "Jahid Hasan Rony"
+    ],
     "highlightAuthor": "Jahid Hasan Rony",
     "venue": "International Symposium on Communication and Information Technology",
     "venueShort": "ISCIT 2024",
@@ -106,7 +180,14 @@
     "category": "conference",
     "status": "published",
     "abstract": "Comparative analysis of machine learning and deep learning models for predicting depression among university students, incorporating XAI techniques for interpretable clinical decision support and responsible AI deployment.",
-    "keywords": ["depression prediction", "machine learning", "deep learning", "XAI", "mental health", "university students"],
+    "keywords": [
+      "depression prediction",
+      "machine learning",
+      "deep learning",
+      "XAI",
+      "mental health",
+      "university students"
+    ],
     "links": {
       "pdf": "",
       "arxiv": "",
@@ -126,7 +207,9 @@
   {
     "id": "pub005",
     "title": "Mosquito Species Classification via Wingbeat Analysis Using Hybrid Machine Learning Approach",
-    "authors": ["Jahid Hasan Rony"],
+    "authors": [
+      "Jahid Hasan Rony"
+    ],
     "highlightAuthor": "Jahid Hasan Rony",
     "venue": "National Conference on Innovations & Multidisciplinary Research",
     "venueShort": "NCIM 2023",
@@ -137,7 +220,13 @@
     "category": "conference",
     "status": "published",
     "abstract": "A hybrid machine learning approach for classifying mosquito species based on wingbeat frequency analysis, with applications in disease vector monitoring and public health surveillance.",
-    "keywords": ["mosquito classification", "wingbeat analysis", "machine learning", "bioacoustics", "public health"],
+    "keywords": [
+      "mosquito classification",
+      "wingbeat analysis",
+      "machine learning",
+      "bioacoustics",
+      "public health"
+    ],
     "links": {
       "pdf": "",
       "arxiv": "",
