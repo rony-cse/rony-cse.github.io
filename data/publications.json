@@ -1,7 +1,7 @@
 [
   {
     "id": "mr3895k45vxzd",
-    "title": "SwiftMSeg: Lightweight Multi-Scale LocalÃ¢ÂÂGlobal Context Modeling with Transformer for Medical Image Segmentation",
+    "title": "SwiftMSeg: Lightweight Multi-Scale Local-Global Context Modeling with Transformer for Medical Image Segmentation",
     "authors": [
       "Jahid Hasan Rony",
       "Md Shakhawat Hossain",
@@ -23,7 +23,7 @@
       "computer vision",
       "deep learning"
     ],
-    "bibtex": "",
+    "bibtex": "@article{rony2026swiftmseg,\n  title={SwiftMSeg: lightweight multi-scale local--global context modeling with transformer for medical image segmentation},\n  author={Rony, Jahid Hasan and Hossain, Md Shakhawat and Siddiqui, Fazlul Hasan},\n  journal={Scientific Reports},\n  year={2026},\n  publisher={Nature Publishing Group}\n}",
     "links": {
       "pdf": "https://www.nature.com/articles/s41598-026-56845-3",
       "arxiv": "",
@@ -32,9 +32,9 @@
       "slides": "",
       "video": "",
       "poster": "",
-      "doi": ""
+      "doi": "https://doi.org/10.1038/s41598-026-56845-3"
     },
-    "thumbnail": "https://raw.githubusercontent.com/rony-cse/rony-cse.github.io/newsite/uploads/papers/mr3a3fjfeyt0a.gif",
+    "thumbnail": "https://raw.githubusercontent.com/rony-cse/rony-cse.github.io/newsite/uploads/papers/mr39xtnp1uo8m.png",
     "award": "",
     "featured": true,
     "visible": true
