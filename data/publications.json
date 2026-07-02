@@ -1,5 +1,41 @@
 [
   {
+    "id": "mr3874eebrgow",
+    "title": "SwiftMSeg: Lightweight Multi-Scale Local–Global Context Modeling with Transformer for Medical Image Segmentation",
+    "authors": [
+      "Jahid Hasan Rony",
+      "Md Shakhawat Hossain",
+      "Fazlul Hasan Siddiqui"
+    ],
+    "highlightAuthor": "Jahid Hasan Rony",
+    "venue": "",
+    "venueShort": "",
+    "year": "",
+    "volume": "",
+    "issue": "",
+    "pages": "",
+    "category": "conference",
+    "status": "published",
+    "rank": "",
+    "abstract": "",
+    "keywords": [],
+    "bibtex": "",
+    "links": {
+      "pdf": "",
+      "arxiv": "",
+      "code": "",
+      "project": "",
+      "slides": "",
+      "video": "",
+      "poster": "",
+      "doi": ""
+    },
+    "thumbnail": "",
+    "award": "",
+    "featured": true,
+    "visible": true
+  },
+  {
     "id": "pub001",
     "title": "Semantic Segmentation in Natural Environments",
     "authors": [
