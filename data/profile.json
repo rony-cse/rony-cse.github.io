@@ -8,7 +8,7 @@
   "department": "",
   "institutionUrl": "",
   "institutionLogo": "",
-  "bio": "I am an academician specializing in deep learning, computer vision, machine learning, and AI. My current work focuses on semantic segmentation for aquatic species and dental images, with broader interests spanning AI, robotics, and industrial automation.&nbsp;<div><b><font color=\"#2563eb\">Looking for a PhD position </font></b>in Deep Learning or a related topic.</div>",
+  "bio": "<div><p>I am a postgraduate researcher in Computer Science and Engineering, interested in understanding how AI can understand visual information more efficiently.</p><p>My research focuses on deep learning and image processing; more into semantic segmentation, with a particular interest in lightweight model design. I completed my <b>B.Sc. </b>(2023)<b>&nbsp;</b>and <b>M.Sc. </b>(2026)<b>&nbsp;</b>from <a href=\"https://en.wikipedia.org/wiki/Dhaka_University_of_Engineering_%26_Technology,_Gazipur\">DUET</a>, Bangladesh, where my <i>master’s thesis</i> explored <i>efficient segmentation models for image analysis </i>(<a href=\"https://www.nature.com/articles/s41598-026-56845-3\">Link to my Paper Published in Nature</a>).</p><p>From 2023 to 2026, I worked as a <i>Research Assistant</i> at Independent University, Bangladesh, contributing to projects in <i>medical imaging, UAV-based image analysis, </i>and<i> deep learning-based segmentation.</i> These experiences helped me develop as a researcher and led to journal and conference publications, including <i>Q1 </i>journals and A-ranked venues.</p><p>I also enjoy teaching and explaining technical ideas in a simple way. At present, I am actively<font color=\"#dc2626\"> <b>looking for PhD opportunities</b></font> where I can continue learning, contribute to meaningful research, and grow as an independent researcher.</p></div>",
   "email": "research.rony@gmail.com",
   "phone": "+8801753296896",
   "location": "Bangladesh",
@@ -23,7 +23,7 @@
     "researchgate": "",
     "semanticScholar": "",
     "twitter": "",
-    "facebook": "https://www.facebook.com/zhrony.bd/",
+    "facebook": "",
     "website": ""
   },
   "customLinks": [],
