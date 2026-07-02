@@ -1,41 +1,5 @@
 [
   {
-    "id": "mr37pfaihm8ls",
-    "title": "SwiftMSeg: lightweight multi-scale local–global context modeling with transformer for medical image segmentation",
-    "authors": [
-      "Jahid Hasan Rony",
-      "Md Shakhawat Hossain",
-      "Fazlul Hasan Siddiqui"
-    ],
-    "highlightAuthor": "Jahid Hasan Rony",
-    "venue": "Scientific Reports",
-    "venueShort": "Sci.Rep 2026",
-    "year": 2026,
-    "volume": "",
-    "issue": "",
-    "pages": "",
-    "category": "journal",
-    "status": "published",
-    "rank": "Q1",
-    "abstract": "",
-    "keywords": [],
-    "bibtex": "",
-    "links": {
-      "pdf": "https://www.nature.com/articles/s41598-026-56845-3",
-      "arxiv": "",
-      "code": "",
-      "project": "",
-      "slides": "",
-      "video": "",
-      "poster": "",
-      "doi": "https://doi.org/10.1038/s41598-026-56845-3"
-    },
-    "thumbnail": "https://raw.githubusercontent.com/rony-cse/rony-cse.github.io/newsite/uploads/papers/mr37x8m2po5wj.png",
-    "award": "",
-    "featured": true,
-    "visible": true
-  },
-  {
     "id": "pub001",
     "title": "Semantic Segmentation in Natural Environments",
     "authors": [
@@ -96,6 +60,7 @@
     "pages": "",
     "category": "journal",
     "status": "published",
+    "rank": "Q1",
     "abstract": "We present AqUavplant, a high-resolution UAV-based dataset for aquatic plant classification and semantic segmentation. The dataset enables advances in environmental monitoring and precision agriculture through comprehensive annotations and diverse environmental conditions.",
     "keywords": [
       "UAV",
@@ -105,6 +70,7 @@
       "remote sensing",
       "environmental monitoring"
     ],
+    "bibtex": "@article{istiak2024aquavplant,\n  title={AqUavplant: A High-Resolution Dataset for Aquatic Plant Classification and Segmentation Using Unmanned Aerial Vehicle},\n  author={Md Abrar Istiak and Razib Hayat Khan and Jahid Hasan Rony and Abdullah Al Shafi and MM Mahbubul Syeed},\n  journal={Scientific Data},\n  year={2024}\n}",
     "links": {
       "pdf": "",
       "arxiv": "",
@@ -116,7 +82,6 @@
       "doi": ""
     },
     "thumbnail": "",
-    "bibtex": "@article{istiak2024aquavplant,\n  title={AqUavplant: A High-Resolution Dataset for Aquatic Plant Classification and Segmentation Using Unmanned Aerial Vehicle},\n  author={Md Abrar Istiak and Razib Hayat Khan and Jahid Hasan Rony and Abdullah Al Shafi and MM Mahbubul Syeed},\n  journal={Scientific Data},\n  year={2024}\n}",
     "award": "",
     "featured": true,
     "visible": true
