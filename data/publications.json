@@ -1,7 +1,7 @@
 [
   {
     "id": "mr3895k45vxzd",
-    "title": "SwiftMSeg: Lightweight Multi-Scale LocalâGlobal Context Modeling with Transformer for Medical Image Segmentation",
+    "title": "SwiftMSeg: Lightweight Multi-Scale LocalÃ¢ÂÂGlobal Context Modeling with Transformer for Medical Image Segmentation",
     "authors": [
       "Jahid Hasan Rony",
       "Md Shakhawat Hossain",
@@ -17,7 +17,7 @@
     "category": "journal",
     "status": "published",
     "rank": "Q1",
-    "abstract": "Accurate medical image segmentation requires both fine boundary localization and robust contextual understanding, which is often difficult to achieve simultaneously, particularly in lightweight architectures. In this paper, we propose SwiftMSeg, a lightweight encoderÃ¢ÂÂdecoder framework that integrates a convolutional encoder, a transformer-based LocalÃ¢ÂÂGlobalÃ¢ÂÂLocal (LGL) module, and a hierarchical multi-scale decoder.",
+    "abstract": "Accurate medical image segmentation requires both fine boundary localization and robust contextual understanding, which is often difficult to achieve simultaneously, particularly in lightweight architectures. In this paper, we propose SwiftMSeg, a lightweight encoderÃÂ¢ÃÂÃÂdecoder framework that integrates a convolutional encoder, a transformer-based LocalÃÂ¢ÃÂÃÂGlobalÃÂ¢ÃÂÃÂLocal (LGL) module, and a hierarchical multi-scale decoder.",
     "keywords": [
       "semantic segmentation",
       "computer vision",
@@ -34,7 +34,7 @@
       "poster": "",
       "doi": ""
     },
-    "thumbnail": "https://raw.githubusercontent.com/rony-cse/rony-cse.github.io/newsite/uploads/papers/mr39xtnp1uo8m.png",
+    "thumbnail": "https://raw.githubusercontent.com/rony-cse/rony-cse.github.io/newsite/uploads/papers/mr3a3fjfeyt0a.gif",
     "award": "",
     "featured": true,
     "visible": true
