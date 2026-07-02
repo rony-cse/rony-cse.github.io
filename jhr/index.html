@@ -249,29 +249,48 @@ async function doLogin() {
   const owner = document.getElementById('l-owner').value.trim();
   const repo  = document.getElementById('l-repo').value.trim();
   const base  = document.getElementById('l-base').value.trim();
-  if (!token || !owner || !repo) { toast('Fill in all required fields', 'err'); return; }
-  STORE.save(token, owner, repo, base);
-  await startApp();
+  if (!token || !owner || !repo) { showLoginError('Fill in Token, Username, and Repository name.'); return; }
+
+  const btn = document.querySelector('#login-screen .btn-p');
+  btn.disabled = true; btn.textContent = 'Connecting…';
+  clearLoginError();
+
+  try {
+    const r = await fetch(`${API}/repos/${owner}/${repo}`, {
+      headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github.v3+json' }
+    });
+    if (r.status === 401) throw new Error('Token invalid or expired — create a new PAT with Contents read+write permission.');
+    if (r.status === 404) throw new Error('Repo not found — check the username and repository name.');
+    if (r.status === 403) throw new Error('Access forbidden — PAT may lack required repo permissions.');
+    if (!r.ok) throw new Error(`GitHub returned HTTP ${r.status}. Check your credentials.`);
+    STORE.save(token, owner, repo, base);
+    await startApp();
+  } catch(e) {
+    btn.disabled = false; btn.textContent = 'Connect →';
+    showLoginError(e.message);
+  }
 }
+
+function showLoginError(msg) {
+  let el = document.getElementById('login-error');
+  if (!el) {
+    el = document.createElement('p');
+    el.id = 'login-error';
+    el.style.cssText = 'color:var(--danger);font-size:12px;margin-top:0.65rem;padding:0.55rem 0.75rem;background:rgba(220,38,38,0.08);border:1px solid rgba(220,38,38,0.25);border-radius:5px;line-height:1.5';
+    document.querySelector('.login-box').appendChild(el);
+  }
+  el.textContent = '✗ ' + msg;
+}
+function clearLoginError() { const el = document.getElementById('login-error'); if (el) el.remove(); }
 
 async function startApp() {
   if (!STORE.token) return;
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').classList.add('visible');
-  await checkStatus();
+  document.getElementById('status-dot').className = 'status-dot ok';
+  document.getElementById('status-text').textContent = `${STORE.owner}/${STORE.repo}`;
   setupNav();
   renderSection('dashboard');
-}
-
-async function checkStatus() {
-  try {
-    await fetch(`${API}/repos/${STORE.owner}/${STORE.repo}`, { headers: { 'Authorization': `Bearer ${STORE.token}` } }).then(r => { if (!r.ok) throw new Error(); });
-    document.getElementById('status-dot').className = 'status-dot ok';
-    document.getElementById('status-text').textContent = `${STORE.owner}/${STORE.repo}`;
-  } catch {
-    document.getElementById('status-text').textContent = 'Connection failed';
-    toast('Cannot connect to GitHub repo. Check credentials.', 'err');
-  }
 }
 
 function logout() {
