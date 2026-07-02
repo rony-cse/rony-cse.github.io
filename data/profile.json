@@ -3,44 +3,64 @@
   "nickname": "JH Rony",
   "title": "Researcher",
   "subtitle": "AI Research Aficionado",
-  "position": "Researcher",
-  "institution": "Independent University Bangladesh",
-  "department": "Center for Industrial Automation Robotics & Internet of Things",
-  "institutionUrl": "https://iub.edu.bd/",
+  "position": "Lecturer, Research Assistant",
+  "institution": "",
+  "department": "",
+  "institutionUrl": "",
   "institutionLogo": "",
   "bio": "I am a researcher specializing in computer vision, machine learning, and AI. My work focuses on semantic segmentation for aquatic species and dental images, with broader interests spanning AI, robotics, and industrial automation. I have contributed to national and international research competitions and have been featured in national media.",
   "email": "research.rony@gmail.com",
   "phone": "+8801753296896",
   "location": "Bangladesh",
-  "profilePhoto": "",
+  "profilePhoto": "https://raw.githubusercontent.com/rony-cse/rony-cse.github.io/newsite/uploads/profile/mr37hjfuuvi8l.png",
   "cvUrl": "",
   "cvVisible": true,
   "links": {
     "googleScholar": "https://scholar.google.com/citations?user=3ScF50oAAAAJ",
+    "orcid": "https://orcid.org/0000-0002-6492-745X",
     "github": "https://github.com/rony-cse",
     "linkedin": "https://www.linkedin.com/in/j-h-r/",
-    "twitter": "",
     "researchgate": "",
-    "orcid": "https://orcid.org/0000-0002-6492-745X",
     "semanticScholar": "",
+    "twitter": "",
     "facebook": "https://www.facebook.com/zhrony.bd/",
     "website": ""
   },
   "customLinks": [],
   "researchInterests": [
+    "Deep Learning",
     "Computer Vision",
     "Artificial Intelligence",
-    "Deep Learning",
-    "Machine Learning",
     "Semantic Segmentation",
-    "Explainable AI (XAI)",
     "Robotics"
   ],
   "skills": {
-    "programming": ["Python", "C++", "MATLAB", "Git"],
-    "frameworks": ["TensorFlow", "Keras", "Scikit-learn", "PyTorch", "Seaborn", "EEGLAB"],
-    "embedded": ["Arduino", "Raspberry Pi", "ESP32", "Firebase", "ThingSpeak"],
-    "design": ["Proteus", "Adobe Photoshop", "Adobe Illustrator"]
+    "programming": [
+      "Python",
+      "C++",
+      "MATLAB",
+      "Git"
+    ],
+    "frameworks": [
+      "TensorFlow",
+      "Keras",
+      "Scikit-learn",
+      "PyTorch",
+      "Seaborn",
+      "EEGLAB"
+    ],
+    "embedded": [
+      "Arduino",
+      "Raspberry Pi",
+      "ESP32",
+      "Firebase",
+      "ThingSpeak"
+    ],
+    "design": [
+      "Proteus",
+      "Adobe Photoshop",
+      "Adobe Illustrator"
+    ]
   },
   "visible": true
 }
