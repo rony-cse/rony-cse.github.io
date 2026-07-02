@@ -22,7 +22,7 @@
     {
       "label": "Projects",
       "href": "/projects.html",
-      "visible": false
+      "visible": true
     },
     {
       "label": "Teaching",
@@ -32,7 +32,7 @@
     {
       "label": "Talks",
       "href": "/talks.html",
-      "visible": false
+      "visible": true
     },
     {
       "label": "Awards",
@@ -42,7 +42,7 @@
     {
       "label": "Gallery",
       "href": "/gallery.html",
-      "visible": true
+      "visible": false
     },
     {
       "label": "CV",
@@ -52,7 +52,7 @@
   ],
   "theme": {
     "accent": "#2563eb",
-    "defaultMode": "auto"
+    "defaultMode": "dark"
   },
   "homepage": {
     "newsCount": 8,
@@ -78,7 +78,7 @@
     {
       "id": "projects",
       "label": "Projects",
-      "visible": true
+      "visible": false
     },
     {
       "id": "awards",
