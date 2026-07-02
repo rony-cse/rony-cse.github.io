@@ -1,7 +1,7 @@
 [
   {
     "id": "mr3895k45vxzd",
-    "title": "SwiftMSeg: Lightweight Multi-Scale LocalÃÂ¢ÃÂÃÂGlobal Context Modeling with Transformer for Medical Image Segmentation",
+    "title": "SwiftMSeg: Lightweight Multi-Scale Local Global Context Modeling with Transformer for Medical Image Segmentation",
     "authors": [
       "Jahid Hasan Rony",
       "Md Shakhawat Hossain",
@@ -17,13 +17,13 @@
     "category": "journal",
     "status": "published",
     "rank": "Q1",
-    "abstract": "Accurate medical image segmentation requires both fine boundary localization and robust contextual understanding, which is often difficult to achieve simultaneously, particularly in lightweight architectures. In this paper, we propose SwiftMSeg, a lightweight encoderÃÂÃÂ¢ÃÂÃÂÃÂÃÂdecoder framework that integrates a convolutional encoder, a transformer-based LocalÃÂÃÂ¢ÃÂÃÂÃÂÃÂGlobalÃÂÃÂ¢ÃÂÃÂÃÂÃÂLocal (LGL) module, and a hierarchical multi-scale decoder.",
+    "abstract": "Accurate medical image segmentation requires both fine boundary localization and robust contextual understanding, which is often difficult to achieve simultaneously, particularly in lightweight architectures. In this paper, we propose SwiftMSeg, a lightweight encoder decoder framework that integrates a convolutional encoder, a transformer-based Local Global Local (LGL) module, and a hierarchical multi-scale decoder.",
     "keywords": [
       "semantic segmentation",
       "computer vision",
       "deep learning"
     ],
-    "bibtex": "",
+    "bibtex": "@article{rony2026swiftmseg,\n  title={SwiftMSeg: lightweight multi-scale local--global context modeling with transformer for medical image segmentation},\n  author={Rony, Jahid Hasan and Hossain, Md Shakhawat and Siddiqui, Fazlul Hasan},\n  journal={Scientific Reports},\n  year={2026},\n  publisher={Nature Publishing Group}\n}",
     "links": {
       "pdf": "https://www.nature.com/articles/s41598-026-56845-3",
       "arxiv": "",
