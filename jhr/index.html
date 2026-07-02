@@ -128,13 +128,13 @@ button{font-family:var(--font);font-size:13px;cursor:pointer;border:none;border-
   <div class="login-box">
     <h1>Admin Panel</h1>
     <p>Enter your GitHub credentials to manage site content.</p>
-    <div class="field"><label>GitHub Personal Access Token</label><input id="l-token" type="password" placeholder="ghp_xxxxxxxxxxxx"><p class="login-help">Needs <code>repo</code> scope. <a href="https://github.com/settings/tokens/new?scopes=repo" target="_blank" rel="noopener">Create token â†’</a></p></div>
+    <div class="field"><label>GitHub Personal Access Token</label><input id="l-token" type="password" placeholder="ghp_xxxxxxxxxxxx" onkeydown="if(event.key===’Enter’)doLogin()"><p class="login-help">Needs <code>repo</code> scope. <a href="https://github.com/settings/tokens/new?scopes=repo" target="_blank" rel="noopener">Create token →</a></p></div>
     <div class="row">
-      <div class="field"><label>GitHub Username</label><input id="l-owner" type="text" placeholder="rony-cse" value="rony-cse"></div>
-      <div class="field"><label>Repository Name</label><input id="l-repo" type="text" placeholder="rony-cse.github.io" value="rony-cse.github.io"></div>
+      <div class="field"><label>GitHub Username</label><input id="l-owner" type="text" placeholder="rony-cse" value="rony-cse" onkeydown="if(event.key===’Enter’)doLogin()"></div>
+      <div class="field"><label>Repository Name</label><input id="l-repo" type="text" placeholder="rony-cse.github.io" value="rony-cse.github.io" onkeydown="if(event.key===’Enter’)doLogin()"></div>
     </div>
-    <div class="field"><label>Base Path (if not root)</label><input id="l-base" type="text" placeholder="Leave blank for root" value="PersonalWebsite"></div>
-    <button class="btn-p" style="width:100%;padding:0.6rem" onclick="doLogin()">Connect â†’</button>
+    <div class="field"><label>Base Path (if not root)</label><input id="l-base" type="text" placeholder="Leave blank for root" value="" onkeydown="if(event.key===’Enter’)doLogin()"></div>
+    <button class="btn-p" style="width:100%;padding:0.6rem" onclick="doLogin()">Connect →</button>
     <p style="font-size:11px;color:var(--muted);margin-top:0.75rem;text-align:center">Token stored in browser only. Never sent anywhere except GitHub API.</p>
   </div>
 </div>
