@@ -145,6 +145,7 @@
     "pages": "",
     "category": "journal",
     "status": "published",
+    "rank": "Q2",
     "abstract": "Real-time obstacle detection system for unmanned ground vehicles leveraging the YOLOv8 architecture for robust and fast inference in dynamic environments, achieving high accuracy at low latency.",
     "keywords": [
       "YOLOv8",
@@ -154,6 +155,7 @@
       "object detection",
       "robotics"
     ],
+    "bibtex": "@article{rahman2024realtime,\n  title={Real-time Obstacle Detection for Unmanned Ground Vehicles Using YOLOv8},\n  author={Shakila Rahman and Jahid Hasan Rony and Jia Uddin and Md Abdus Samad},\n  journal={Journal of Imaging},\n  year={2024}\n}",
     "links": {
       "pdf": "",
       "arxiv": "",
@@ -165,7 +167,6 @@
       "doi": ""
     },
     "thumbnail": "",
-    "bibtex": "@article{rahman2024realtime,\n  title={Real-time Obstacle Detection for Unmanned Ground Vehicles Using YOLOv8},\n  author={Shakila Rahman and Jahid Hasan Rony and Jia Uddin and Md Abdus Samad},\n  journal={Journal of Imaging},\n  year={2024}\n}",
     "award": "",
     "featured": true,
     "visible": true
