@@ -133,7 +133,10 @@ button{font-family:var(--font);font-size:13px;cursor:pointer;border:none;border-
       <div class="field"><label>GitHub Username</label><input id="l-owner" type="text" placeholder="rony-cse" value="rony-cse" onkeydown="if(event.key==='Enter')doLogin()"></div>
       <div class="field"><label>Repository Name</label><input id="l-repo" type="text" placeholder="rony-cse.github.io" value="rony-cse.github.io" onkeydown="if(event.key==='Enter')doLogin()"></div>
     </div>
-    <div class="field"><label>Base Path (if not root)</label><input id="l-base" type="text" placeholder="Leave blank for root" value="" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <div class="row">
+      <div class="field"><label>Branch</label><input id="l-branch" type="text" placeholder="main" value="newsite" onkeydown="if(event.key==='Enter')doLogin()"></div>
+      <div class="field"><label>Base Path (leave blank)</label><input id="l-base" type="text" placeholder="Leave blank for root" value="" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    </div>
     <button class="btn-p" style="width:100%;padding:0.6rem" onclick="doLogin()">Connect →</button>
     <p style="font-size:11px;color:var(--muted);margin-top:0.75rem;text-align:center">Token stored in browser only. Never sent anywhere except GitHub API.</p>
   </div>
@@ -177,12 +180,13 @@ button{font-family:var(--font);font-size:13px;cursor:pointer;border:none;border-
 <script>
 // â"€â"€ Config â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
 const STORE = {
-  get token() { return localStorage.getItem('adm_token'); },
-  get owner() { return localStorage.getItem('adm_owner'); },
-  get repo()  { return localStorage.getItem('adm_repo'); },
-  get base()  { return localStorage.getItem('adm_base') || ''; },
-  save(t,o,r,b){ localStorage.setItem('adm_token',t); localStorage.setItem('adm_owner',o); localStorage.setItem('adm_repo',r); localStorage.setItem('adm_base',b); },
-  clear(){ ['adm_token','adm_owner','adm_repo','adm_base'].forEach(k=>localStorage.removeItem(k)); }
+  get token()  { return localStorage.getItem('adm_token'); },
+  get owner()  { return localStorage.getItem('adm_owner'); },
+  get repo()   { return localStorage.getItem('adm_repo'); },
+  get base()   { return localStorage.getItem('adm_base') || ''; },
+  get branch() { return localStorage.getItem('adm_branch') || 'main'; },
+  save(t,o,r,b,br){ localStorage.setItem('adm_token',t); localStorage.setItem('adm_owner',o); localStorage.setItem('adm_repo',r); localStorage.setItem('adm_base',b); localStorage.setItem('adm_branch',br||'main'); },
+  clear(){ ['adm_token','adm_owner','adm_repo','adm_base','adm_branch'].forEach(k=>localStorage.removeItem(k)); }
 };
 
 const API = 'https://api.github.com';
@@ -193,7 +197,7 @@ const sectionCache = {};
 function ghPath(p) { const b = STORE.base; return b ? `${b}/${p}` : p; }
 
 async function ghGet(path) {
-  const r = await fetch(`${API}/repos/${STORE.owner}/${STORE.repo}/contents/${ghPath(path)}`, {
+  const r = await fetch(`${API}/repos/${STORE.owner}/${STORE.repo}/contents/${ghPath(path)}?ref=${STORE.branch}`, {
     headers: { 'Authorization': `Bearer ${STORE.token}`, 'Accept': 'application/vnd.github.v3+json' }
   });
   if (!r.ok) { const e = await r.json().catch(()=>({})); throw new Error(e.message || `HTTP ${r.status}`); }
@@ -207,7 +211,7 @@ async function readJSON(path) {
 
 async function writeJSON(path, data, sha, msg) {
   const enc = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
-  const body = { message: msg || `Update ${path}`, content: enc };
+  const body = { message: msg || `Update ${path}`, content: enc, branch: STORE.branch };
   if (sha) body.sha = sha;
   const r = await fetch(`${API}/repos/${STORE.owner}/${STORE.repo}/contents/${ghPath(path)}`, {
     method: 'PUT',
@@ -222,7 +226,7 @@ async function uploadFile(path, b64, msg) {
   const content = b64.replace(/^data:[^;]+;base64,/, '');
   let sha = null;
   try { const ex = await ghGet(path); sha = ex.sha; } catch(_) {}
-  const body = { message: msg || `Upload ${path}`, content };
+  const body = { message: msg || `Upload ${path}`, content, branch: STORE.branch };
   if (sha) body.sha = sha;
   const r = await fetch(`${API}/repos/${STORE.owner}/${STORE.repo}/contents/${ghPath(path)}`, {
     method: 'PUT',
@@ -245,10 +249,11 @@ function toast(msg, type = 'info') {
 
 // â"€â"€ Login / Logout â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
 async function doLogin() {
-  const token = document.getElementById('l-token').value.trim();
-  const owner = document.getElementById('l-owner').value.trim();
-  const repo  = document.getElementById('l-repo').value.trim();
-  const base  = document.getElementById('l-base').value.trim();
+  const token  = document.getElementById('l-token').value.trim();
+  const owner  = document.getElementById('l-owner').value.trim();
+  const repo   = document.getElementById('l-repo').value.trim();
+  const base   = document.getElementById('l-base').value.trim();
+  const branch = document.getElementById('l-branch').value.trim() || 'main';
   if (!token || !owner || !repo) { showLoginError('Fill in Token, Username, and Repository name.'); return; }
 
   const btn = document.querySelector('#login-screen .btn-p');
@@ -256,14 +261,14 @@ async function doLogin() {
   clearLoginError();
 
   try {
-    const r = await fetch(`${API}/repos/${owner}/${repo}`, {
+    const r = await fetch(`${API}/repos/${owner}/${repo}/branches/${branch}`, {
       headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github.v3+json' }
     });
     if (r.status === 401) throw new Error('Token invalid or expired — create a new PAT with Contents read+write permission.');
-    if (r.status === 404) throw new Error('Repo not found — check the username and repository name.');
+    if (r.status === 404) throw new Error(`Branch "${branch}" not found in ${owner}/${repo}. Push it first or check the branch name.`);
     if (r.status === 403) throw new Error('Access forbidden — PAT may lack required repo permissions.');
     if (!r.ok) throw new Error(`GitHub returned HTTP ${r.status}. Check your credentials.`);
-    STORE.save(token, owner, repo, base);
+    STORE.save(token, owner, repo, base, branch);
     await startApp();
   } catch(e) {
     btn.disabled = false; btn.textContent = 'Connect →';
@@ -288,7 +293,7 @@ async function startApp() {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').classList.add('visible');
   document.getElementById('status-dot').className = 'status-dot ok';
-  document.getElementById('status-text').textContent = `${STORE.owner}/${STORE.repo}`;
+  document.getElementById('status-text').textContent = `${STORE.owner}/${STORE.repo} [${STORE.branch}]`;
   setupNav();
   renderSection('dashboard');
 }
