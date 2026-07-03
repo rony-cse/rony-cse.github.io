@@ -1,7 +1,7 @@
 {
   "title": "JH Rony",
-  "tagline": "Researcher Â· Computer Vision Â· AI",
-  "description": "Academic portfolio of Jahid Hasan Rony â researcher in Computer Vision, Machine Learning, and AI at Independent University Bangladesh.",
+  "tagline": "Researcher ÃÂ· Computer Vision ÃÂ· AI",
+  "description": "Academic portfolio of Jahid Hasan Rony Ã¢ÂÂ researcher in Computer Vision, Machine Learning, and AI at Independent University Bangladesh.",
   "baseUrl": "https://rony-cse.github.io",
   "author": "Jahid Hasan Rony",
   "analytics": {
@@ -97,7 +97,7 @@
     }
   ],
   "footer": {
-    "text": "Â© 2025 Jahid Hasan Rony",
+    "text": "© 2026 JHR || Credit goes to Jekyll and AcademicPages",
     "showLastUpdated": true
   },
   "announcement": {
