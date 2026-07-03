@@ -1,9 +1,9 @@
 [
   {
-    "id": "mr4nncrzfzrgx",
-    "date": "",
-    "category": "misc",
-    "content": "One of the research outcomes from my Masters study has been published in <strong>Nature Scientific Reports (Q1) </strong>.",
+    "id": "mr4nrcn7yltmh",
+    "date": "2026-06-07",
+    "category": "publication",
+    "content": "One of the research outcomes from my Master's study has been published in <strong>Nature Scientific Reports</strong> (Q1).",
     "link": "https://www.nature.com/articles/s41598-026-56845-3",
     "linkText": "Read Article",
     "visible": true
@@ -38,10 +38,10 @@
   {
     "id": "news004",
     "date": "2025-03-01",
-    "content": "Research on aquatic plant segmentation featured in <strong>The Business Standard</strong>.",
-    "link": "",
-    "linkText": "Read Article",
     "category": "media",
+    "content": "Research on aquatic plant segmentation featured in <strong>The Business Standard</strong>, one of the reputable national news media.",
+    "link": "https://www.tbsnews.net/economy/corporates/iubs-riot-research-center-publishes-datasets-nature-scientific-data-1097656",
+    "linkText": "Read Article",
     "visible": true
   },
   {
