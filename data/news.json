@@ -3,7 +3,7 @@
     "id": "mr4nrcn7yltmh",
     "date": "2026-06-07",
     "category": "publication",
-    "content": "One of the research outcomes from my Master's study has been published in <strong>Nature Scientific Reports</strong> (Q1, IF: 4.9).",
+    "content": "One of the research outcomes from my Master's study has been published in <strong>Nature Scientific Reports</strong> (Q1).",
     "link": "https://www.nature.com/articles/s41598-026-56845-3",
     "linkText": "Read Article",
     "visible": true
@@ -11,10 +11,10 @@
   {
     "id": "news001",
     "date": "2025-08-01",
-    "content": "Paper on Semantic Segmentation in Natural Environments accepted at <strong>44th IEEE IPCCC 2025</strong>, Texas, USA.",
-    "link": "",
-    "linkText": "",
     "category": "publication",
+    "content": "Paper on Semantic Segmentation in Natural Environments accepted at <strong>44th IEEE IPCCC 2025</strong>, Texas, USA.",
+    "link": "https://ieeexplore.ieee.org/abstract/document/11304641/",
+    "linkText": "Read Article",
     "visible": true
   },
   {
