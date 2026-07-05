@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin â€" JH Rony</title>
+<title>Admin – JH Rony</title>
 <meta name="robots" content="noindex, nofollow">
 <style>
 :root{--bg:#ffffff;--surf:#f8fafc;--border:#e2e8f0;--text:#0f172a;--muted:#64748b;--accent:#2563eb;--accent-fg:#fff;--danger:#dc2626;--success:#16a34a;--font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;--r:6px;--sb:220px}
@@ -170,7 +170,7 @@ button{font-family:var(--font);font-size:13px;cursor:pointer;border:none;border-
       <button class="nav-item" data-sec="site">Site Settings</button>
       <button class="nav-item" data-sec="seo">Analytics &amp; SEO</button>
     </nav>
-    <div class="sb-status"><div class="status-dot" id="status-dot"></div><span id="status-text">Checkingâ€¦</span></div>
+    <div class="sb-status"><div class="status-dot" id="status-dot"></div><span id="status-text">Checking…</span></div>
   </aside>
   <div id="content-area"></div>
 </div>
@@ -178,22 +178,25 @@ button{font-family:var(--font);font-size:13px;cursor:pointer;border:none;border-
 <div id="toast-area"></div>
 
 <script>
-// â"€â"€ Config â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// ── Config ──────────────────────────────────────────────────────────────────
 const STORE = {
   get token()  { return localStorage.getItem('adm_token'); },
   get owner()  { return localStorage.getItem('adm_owner'); },
   get repo()   { return localStorage.getItem('adm_repo'); },
   get base()   { return localStorage.getItem('adm_base') || ''; },
   get branch() { return localStorage.getItem('adm_branch') || 'main'; },
-  save(t,o,r,b,br){ localStorage.setItem('adm_token',t); localStorage.setItem('adm_owner',o); localStorage.setItem('adm_repo',r); localStorage.setItem('adm_base',b); localStorage.setItem('adm_branch',br||'main'); },
-  clear(){ ['adm_token','adm_owner','adm_repo','adm_base','adm_branch'].forEach(k=>localStorage.removeItem(k)); }
+  get loginTime() { return parseInt(localStorage.getItem('adm_ts') || '0'); },
+  save(t,o,r,b,br){ localStorage.setItem('adm_token',t); localStorage.setItem('adm_owner',o); localStorage.setItem('adm_repo',r); localStorage.setItem('adm_base',b); localStorage.setItem('adm_branch',br||'main'); localStorage.setItem('adm_ts', Date.now().toString()); },
+  clear(){ ['adm_token','adm_owner','adm_repo','adm_base','adm_branch','adm_ts'].forEach(k=>localStorage.removeItem(k)); }
 };
+const SESSION_MAX_MS = 6 * 60 * 60 * 1000; // auto-logout after 6 hours
+function sessionExpired() { return !STORE.loginTime || (Date.now() - STORE.loginTime) > SESSION_MAX_MS; }
 
 const API = 'https://api.github.com';
 let currentSection = 'dashboard';
 const sectionCache = {};
 
-// â"€â"€ GitHub API â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// ── GitHub API ───────────────────────────────────────────────────────────────
 function ghPath(p) { const b = STORE.base; return b ? `${b}/${p}` : p; }
 
 async function ghGet(path) {
@@ -204,9 +207,15 @@ async function ghGet(path) {
   return r.json();
 }
 
+function b64ToUtf8(b64) {
+  const bin = atob(b64.replace(/\s/g, ''));
+  const bytes = Uint8Array.from(bin, c => c.charCodeAt(0));
+  return new TextDecoder('utf-8').decode(bytes);
+}
+
 async function readJSON(path) {
   const d = await ghGet(path);
-  return { data: JSON.parse(atob(d.content.replace(/\s/g,''))), sha: d.sha };
+  return { data: JSON.parse(b64ToUtf8(d.content)), sha: d.sha };
 }
 
 async function writeJSON(path, data, sha, msg) {
@@ -238,7 +247,7 @@ async function uploadFile(path, b64, msg) {
   return res.content.download_url;
 }
 
-// â"€â"€ Toast â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// ── Toast ────────────────────────────────────────────────────────────────────
 function toast(msg, type = 'info') {
   const t = document.createElement('div');
   t.className = `toast toast-${type}`;
@@ -247,7 +256,7 @@ function toast(msg, type = 'info') {
   setTimeout(() => t.remove(), 3500);
 }
 
-// â"€â"€ Login / Logout â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// ── Login / Logout ───────────────────────────────────────────────────────────
 async function doLogin() {
   const token  = document.getElementById('l-token').value.trim();
   const owner  = document.getElementById('l-owner').value.trim();
@@ -290,6 +299,8 @@ function clearLoginError() { const el = document.getElementById('login-error'); 
 
 async function startApp() {
   if (!STORE.token) return;
+  if (sessionExpired()) { logout(); showLoginError('Session expired (6h) — please log in again.'); return; }
+  setInterval(() => { if (sessionExpired()) { logout(); showLoginError('Session expired (6h) — please log in again.'); } }, 60000);
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').classList.add('visible');
   document.getElementById('status-dot').className = 'status-dot ok';
@@ -314,11 +325,11 @@ function setupNav() {
   });
 }
 
-// â"€â"€ Section Router â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// ── Section Router ───────────────────────────────────────────────────────────
 async function renderSection(sec) {
   currentSection = sec;
   const ca = document.getElementById('content-area');
-  ca.innerHTML = '<div style="padding:2rem;color:var(--muted);font-size:13px">Loadingâ€¦</div>';
+  ca.innerHTML = '<div style="padding:2rem;color:var(--muted);font-size:13px">Loading…</div>';
   try {
     const fn = sections[sec];
     if (fn) await fn(ca);
@@ -327,16 +338,16 @@ async function renderSection(sec) {
   }
 }
 
-// â"€â"€ Helper Builders â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// ── Helper Builders ──────────────────────────────────────────────────────────
 function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
 
 function visBadge(v) { return v===false ? '<span class="badge-vis vis-off">Hidden</span>' : '<span class="badge-vis vis-on">Visible</span>'; }
 
-function imgUploadField(id, label, current, accept = 'image/*', note = 'JPG, PNG, GIF Â· Max 5 MB') {
+function imgUploadField(id, label, current, accept = 'image/*', note = 'JPG, PNG, GIF · Max 5 MB') {
   return `
     <div class="field">
       <label>${label}</label>
-      ${current ? `<div class="img-preview"><div class="img-preview-item"><img src="${current}"><button onclick="document.getElementById('${id}-cur').value='';this.closest('.img-preview-item').remove()">âœ•</button></div></div>` : ''}
+      ${current ? `<div class="img-preview"><div class="img-preview-item"><img src="${current}"><button onclick="document.getElementById('${id}-cur').value='';this.closest('.img-preview-item').remove()">✕</button></div></div>` : ''}
       <input type="hidden" id="${id}-cur" value="${current || ''}">
       <div class="img-upload-area" id="${id}-drop">
         <input type="file" id="${id}-file" accept="${accept}" onchange="handleImgSelect('${id}')">
@@ -355,7 +366,7 @@ async function handleImgSelect(id) {
   document.getElementById(`${id}-b64`).value = b64;
   const prev = document.getElementById(`${id}-drop`).previousElementSibling;
   if (prev && prev.classList.contains('img-preview')) prev.remove();
-  document.getElementById(`${id}-drop`).insertAdjacentHTML('beforebegin', `<div class="img-preview"><div class="img-preview-item"><img src="${b64}"><button onclick="document.getElementById('${id}-b64').value='';this.closest('.img-preview-item').remove()">âœ•</button></div></div>`);
+  document.getElementById(`${id}-drop`).insertAdjacentHTML('beforebegin', `<div class="img-preview"><div class="img-preview-item"><img src="${b64}"><button onclick="document.getElementById('${id}-b64').value='';this.closest('.img-preview-item').remove()">✕</button></div></div>`);
 }
 window.handleImgSelect = handleImgSelect;
 
@@ -372,7 +383,7 @@ async function resolveImg(id, prefix) {
   const b64 = document.getElementById(`${id}-b64`)?.value;
   const cur = document.getElementById(`${id}-cur`)?.value || '';
   if (b64) {
-    toast('Uploading imageâ€¦', 'info');
+    toast('Uploading image…', 'info');
     const ext = b64.match(/data:image\/(\w+)/)?.[1] || 'jpg';
     return uploadFile(`uploads/${prefix}/${uid()}.${ext}`, b64, 'Upload image');
   }
@@ -384,7 +395,7 @@ function gBool(id) { return document.getElementById(id)?.checked ?? false; }
 function s(id, v) { const el = document.getElementById(id); if (el) el.value = v ?? ''; }
 function sBool(id, v) { const el = document.getElementById(id); if (el) el.checked = !!v; }
 
-// â"€â"€ Sections â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// ── Sections ─────────────────────────────────────────────────────────────────
 const sections = {};
 
 // Dashboard
@@ -398,7 +409,7 @@ sections.dashboard = async (ca) => {
       ${labels.map((l,i) => `<div class="stat-card"><div class="stat-num">${counts[i]}</div><div class="stat-label">${l}</div></div>`).join('')}
     </div>
     <div style="background:var(--surf);border:1px solid var(--border);border-radius:8px;padding:1rem;font-size:13px;color:var(--muted)">
-      <strong style="color:var(--text)">Connected:</strong> ${STORE.owner}/${STORE.repo} ${STORE.base ? `Â· Path: ${STORE.base}` : ''}<br>
+      <strong style="color:var(--text)">Connected:</strong> ${STORE.owner}/${STORE.repo} ${STORE.base ? `· Path: ${STORE.base}` : ''}<br>
       <strong style="color:var(--text)">Tip:</strong> Changes commit directly to GitHub. Pages update within ~30 seconds.
     </div>`;
 };
@@ -442,6 +453,12 @@ sections.profile = async (ca) => {
       ${imgUploadField('p-logo','Institution Logo (PNG/JPG/GIF, transparent works best)',p.institutionLogo||'')}
     </div>
     <div class="form-panel">
+      <h3>Affiliation History (small logos on homepage sidebar)</h3>
+      <p style="font-size:11px;color:var(--muted);margin-bottom:0.75rem">Add current and previous institutions. Logos appear as a small row under your affiliation. Leave logo empty to show the name as a chip.</p>
+      <div id="affil-list"></div>
+      <button type="button" class="btn-o btn-sm" onclick="addAffil()">+ Add Affiliation</button>
+    </div>
+    <div class="form-panel">
       <h3>Contact</h3>
       <div class="row"><div class="field"><label>Email</label><input id="p-email" value="${p.email||''}"></div><div class="field"><label>Location</label><input id="p-loc" value="${p.location||''}"></div></div>
     </div>
@@ -473,7 +490,36 @@ sections.profile = async (ca) => {
       <div class="field"><label>Embedded / Hardware (comma separated)</label><input id="p-sk-hw" value="${(p.skills?.embedded||[]).join(', ')}"></div>
       <div class="field"><label>Design Tools (comma separated)</label><input id="p-sk-ds" value="${(p.skills?.design||[]).join(', ')}"></div>
     </div>
-    <button class="btn-p" onclick="saveProfile('${sha}')">ðŸ'¾ Save Profile</button>`;
+    <button class="btn-p" onclick="saveProfile('${sha}')">💾 Save Profile</button>`;
+
+  window._affils = (p.affiliations || []).map(a => ({ ...a }));
+  renderAffils();
+};
+
+function renderAffils() {
+  const el = document.getElementById('affil-list');
+  if (!el) return;
+  el.innerHTML = (window._affils || []).map((a, i) => `
+    <div style="display:grid;grid-template-columns:44px 1fr 1fr auto;gap:0.5rem;align-items:center;padding:0.5rem;border:1px solid var(--border);border-radius:var(--r);margin-bottom:0.5rem;background:var(--bg)">
+      <div style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px dashed var(--border);border-radius:4px;overflow:hidden;background:#fff">
+        ${a.newB64 || a.logo ? `<img src="${a.newB64 || a.logo}" style="max-width:100%;max-height:100%;object-fit:contain">` : '<span style="font-size:9px;color:var(--muted)">logo</span>'}
+      </div>
+      <input placeholder="Institution name" value="${escA(a.name||'')}" oninput="window._affils[${i}].name=this.value">
+      <input placeholder="Website URL (optional)" value="${escA(a.url||'')}" oninput="window._affils[${i}].url=this.value">
+      <div style="display:flex;gap:0.3rem;align-items:center">
+        <label class="btn-o btn-sm" style="cursor:pointer;margin:0">📁<input type="file" accept="image/*" style="display:none" onchange="affilFile(${i}, this)"></label>
+        <button type="button" class="btn-d btn-sm" onclick="window._affils.splice(${i},1);renderAffils()">✕</button>
+      </div>
+    </div>`).join('') || '<p style="font-size:12px;color:var(--muted);padding:0.4rem">No affiliations added yet.</p>';
+}
+window.renderAffils = renderAffils;
+window.addAffil = () => { (window._affils = window._affils || []).push({ name:'', url:'', logo:'' }); renderAffils(); };
+window.affilFile = async (i, input) => {
+  const file = input.files[0];
+  if (!file) return;
+  if (file.size > 2 * 1024 * 1024) { toast('Logo too large (max 2 MB)', 'err'); return; }
+  window._affils[i].newB64 = await toB64(file);
+  renderAffils();
 };
 
 async function saveProfile(sha) {
@@ -490,6 +536,18 @@ async function saveProfile(sha) {
       researchInterests: g('p-ri').split('\n').map(s=>s.trim()).filter(Boolean),
       skills: { programming: g('p-sk-prog').split(',').map(s=>s.trim()).filter(Boolean), frameworks: g('p-sk-fw').split(',').map(s=>s.trim()).filter(Boolean), embedded: g('p-sk-hw').split(',').map(s=>s.trim()).filter(Boolean), design: g('p-sk-ds').split(',').map(s=>s.trim()).filter(Boolean) }
     };
+    // Upload any new affiliation logos, then persist the list
+    const affils = [];
+    for (const a of (window._affils || [])) {
+      if (!a.name && !a.logo && !a.newB64) continue;
+      let logoUrl = a.logo || '';
+      if (a.newB64) {
+        const ext = a.newB64.match(/data:image\/(\w+)/)?.[1] || 'png';
+        logoUrl = await uploadFile(`uploads/logos/${uid()}.${ext}`, a.newB64, 'Upload affiliation logo');
+      }
+      affils.push({ name: a.name || '', url: a.url || '', logo: logoUrl });
+    }
+    data.affiliations = affils;
     const fresh = await readJSON('data/profile.json');
     await writeJSON('data/profile.json', data, fresh.sha, 'Update profile');
     toast('Profile saved!', 'ok');
@@ -518,7 +576,7 @@ sections.publications = async (ca) => {
   window._pubs = data; window._pubSha = sha;
   buildListSection(ca, 'Publications', data,
     ['Title','Venue','Year','Cat.','Featured'],
-    (p) => `<td style="max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.title}</td><td>${p.venueShort||p.venue||''}</td><td>${p.year||''}</td><td>${p.category||''}</td><td>${p.featured?'â˜…':''}</td>`,
+    (p) => `<td style="max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.title}</td><td>${p.venueShort||p.venue||''}</td><td>${p.year||''}</td><td>${p.category||''}</td><td>${p.featured?'★':''}</td>`,
     'addPub','editPub','delPub','visPub');
 };
 window.addPub = () => { editPub(-1); };
@@ -577,11 +635,11 @@ function pubForm(p, i) {
       <div class="row"><div class="field"><label>Slides</label><input id="pub-slides" value="${escA(p.links?.slides||'')}"></div><div class="field"><label>Video</label><input id="pub-video" value="${escA(p.links?.video||'')}"></div></div>
       <div class="row"><div class="field"><label>Poster</label><input id="pub-poster" value="${escA(p.links?.poster||'')}"></div><div class="field"><label>DOI</label><input id="pub-doi" value="${escA(p.links?.doi||'')}"></div></div>
     </div>
-    ${imgUploadField('pub-thumb','Paper Thumbnail (JPG/PNG/GIF â€" figures, teaser image)',p.thumbnail||'')}
-    <div class="field"><label>Award / Recognition</label><input id="pub-award" placeholder="Best Paper, Oral, Spotlight, Honorable Mentionâ€¦" value="${escA(p.award||'')}"></div>
+    ${imgUploadField('pub-thumb','Paper Thumbnail (JPG/PNG/GIF – figures, teaser image)',p.thumbnail||'')}
+    <div class="field"><label>Award / Recognition</label><input id="pub-award" placeholder="Best Paper, Oral, Spotlight, Honorable Mention…" value="${escA(p.award||'')}"></div>
     <div class="field"><label>BibTeX</label><textarea id="pub-bib" rows="5" style="font-family:monospace;font-size:12px">${escA(p.bibtex||'')}</textarea></div>
     <div class="row"><div class="switch-row"><label class="toggle"><input type="checkbox" id="pub-feat" ${p.featured?'checked':''}><span class="toggle-slider"></span></label><label for="pub-feat">Featured on homepage</label></div><div class="switch-row"><label class="toggle"><input type="checkbox" id="pub-vis" ${p.visible!==false?'checked':''}><span class="toggle-slider"></span></label><label for="pub-vis">Visible</label></div></div>
-    <div class="form-actions"><button class="btn-p" onclick="savePubForm(${i})">ðŸ'¾ Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
+    <div class="form-actions"><button class="btn-p" onclick="savePubForm(${i})">💾 Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
   </div>`;
 }
 
@@ -591,7 +649,7 @@ sections.projects = async (ca) => {
   window._projs = data; window._projSha = sha;
   buildListSection(ca, 'Projects', data,
     ['Title','Status','Featured'],
-    (p) => `<td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.title||''}</td><td>${p.status||''}</td><td>${p.featured?'â˜…':''}</td>`,
+    (p) => `<td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${p.title||''}</td><td>${p.status||''}</td><td>${p.featured?'★':''}</td>`,
     'addProj','editProj','delProj','visProj');
 };
 window.addProj = () => editProj(-1);
@@ -673,7 +731,7 @@ window.editNews = (i) => {
     <div class="field"><label>Content (HTML allowed: &lt;strong&gt;, &lt;a&gt;)</label><textarea id="n-content" rows="3">${escA(n.content||'')}</textarea></div>
     <div class="row"><div class="field"><label>Link URL</label><input id="n-link" value="${escA(n.link||'')}"></div><div class="field"><label>Link Text</label><input id="n-lt" value="${escA(n.linkText||'')}"></div></div>
     <div class="switch-row"><label class="toggle"><input type="checkbox" id="n-vis" ${n.visible!==false?'checked':''}><span class="toggle-slider"></span></label><label for="n-vis">Visible</label></div>
-    <div class="form-actions"><button class="btn-p" onclick="saveNewsForm(${i})">ðŸ'¾ Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
+    <div class="form-actions"><button class="btn-p" onclick="saveNewsForm(${i})">💾 Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
   </div>`;
 };
 window.saveNewsForm = async (i) => {
@@ -729,12 +787,12 @@ simpleCRUD('teaching','Teaching',['Course','Role','Institution','Semester'],
     <input type="hidden" id="t-id" value="${t.id||uid()}">
     <div class="field"><label>Course Name *</label><input id="t-course" value="${escA(t.course||'')}"></div>
     <div class="field"><label>Course Code</label><input id="t-code" value="${escA(t.courseCode||'')}"></div>
-    <div class="row"><div class="field"><label>Role</label><select id="t-role"><option${t.role==='Instructor'?' selected':''}>Instructor</option><option${t.role==='Teaching Assistant'?' selected':''}>Teaching Assistant</option><option${t.role==='Guest Lecturer'?' selected':''}>Guest Lecturer</option><option${t.role==='Grader'?' selected':''}>Grader</option></select></div><div class="field"><label>Institution</label><input id="t-inst" value="${escA(t.institution||'')}"></div></div>
-    <div class="row"><div class="field"><label>Semester</label><input id="t-sem" placeholder="Fall, Springâ€¦" value="${escA(t.semester||'')}"></div><div class="field"><label>Year</label><input id="t-yr" type="number" value="${t.year||''}"></div></div>
+    <div class="row"><div class="field"><label>Role</label><select id="t-role"><option${t.role==='Faculty'?' selected':''}>Faculty</option><option${t.role==='Lecturer'?' selected':''}>Lecturer</option><option${t.role==='Senior Lecturer'?' selected':''}>Senior Lecturer</option><option${t.role==='Assistant Professor'?' selected':''}>Assistant Professor</option><option${t.role==='Associate Professor'?' selected':''}>Associate Professor</option><option${t.role==='Professor'?' selected':''}>Professor</option><option${t.role==='Instructor'?' selected':''}>Instructor</option><option${t.role==='Teaching Assistant'?' selected':''}>Teaching Assistant</option><option${t.role==='Guest Lecturer'?' selected':''}>Guest Lecturer</option><option${t.role==='Grader'?' selected':''}>Grader</option></select></div><div class="field"><label>Institution</label><input id="t-inst" value="${escA(t.institution||'')}"></div></div>
+    <div class="row"><div class="field"><label>Semester</label><input id="t-sem" placeholder="Fall, Spring…" value="${escA(t.semester||'')}"></div><div class="field"><label>Year</label><input id="t-yr" type="number" value="${t.year||''}"></div></div>
     <div class="row"><div class="field"><label>Course URL</label><input id="t-url" value="${escA(t.courseUrl||'')}"></div><div class="field"><label>Enrollment</label><input id="t-enroll" value="${escA(t.enrollment||'')}"></div></div>
     <div class="field"><label>Description</label><textarea id="t-desc" rows="2">${escA(t.description||'')}</textarea></div>
     <div class="switch-row"><label class="toggle"><input type="checkbox" id="t-vis" ${t.visible!==false?'checked':''}><span class="toggle-slider"></span></label><label for="t-vis">Visible</label></div>
-    <div class="form-actions"><button class="btn-p" onclick="save_teaching(${i})">ðŸ'¾ Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
+    <div class="form-actions"><button class="btn-p" onclick="save_teaching(${i})">💾 Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
   </div>`,
   (i) => ({ id:g('t-id')||uid(), course:g('t-course'), courseCode:g('t-code'), role:g('t-role'), institution:g('t-inst'), semester:g('t-sem'), year:g('t-yr'), courseUrl:g('t-url'), enrollment:g('t-enroll'), description:g('t-desc'), visible:gBool('t-vis') })
 );
@@ -751,7 +809,7 @@ simpleCRUD('talks','Talks & Presentations',['Title','Event','Date','Type'],
     <div class="field"><label>Abstract</label><textarea id="tk-abs" rows="3">${escA(t.abstract||'')}</textarea></div>
     <div class="row"><div class="field"><label>Slides URL</label><input id="tk-slides" value="${escA(t.links?.slides||'')}"></div><div class="field"><label>Video URL</label><input id="tk-video" value="${escA(t.links?.video||'')}"></div></div>
     <div class="switch-row"><label class="toggle"><input type="checkbox" id="tk-vis" ${t.visible!==false?'checked':''}><span class="toggle-slider"></span></label><label for="tk-vis">Visible</label></div>
-    <div class="form-actions"><button class="btn-p" onclick="save_talks(${i})">ðŸ'¾ Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
+    <div class="form-actions"><button class="btn-p" onclick="save_talks(${i})">💾 Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
   </div>`,
   (i) => ({ id:g('tk-id')||uid(), title:g('tk-title'), event:g('tk-event'), eventUrl:g('tk-eurl'), date:g('tk-date'), location:g('tk-loc'), type:g('tk-type'), abstract:g('tk-abs'), links:{slides:g('tk-slides'),video:g('tk-video')}, visible:gBool('tk-vis') })
 );
@@ -767,7 +825,7 @@ simpleCRUD('awards','Awards & Honors',['Title','Organization','Year'],
     <div class="row"><div class="field"><label>Amount (optional)</label><input id="aw-amt" value="${escA(a.amount||'')}"></div><div class="field"><label>Link</label><input id="aw-link" value="${escA(a.link||'')}"></div></div>
     <div class="switch-row"><label class="toggle"><input type="checkbox" id="aw-showamt" ${a.showAmount?'checked':''}><span class="toggle-slider"></span></label><label for="aw-showamt">Show amount</label></div>
     <div class="switch-row"><label class="toggle"><input type="checkbox" id="aw-vis" ${a.visible!==false?'checked':''}><span class="toggle-slider"></span></label><label for="aw-vis">Visible</label></div>
-    <div class="form-actions"><button class="btn-p" onclick="save_awards(${i})">ðŸ'¾ Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
+    <div class="form-actions"><button class="btn-p" onclick="save_awards(${i})">💾 Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
   </div>`,
   (i) => ({ id:g('aw-id')||uid(), title:g('aw-title'), organization:g('aw-org'), year:g('aw-yr'), description:g('aw-desc'), amount:g('aw-amt'), showAmount:gBool('aw-showamt'), link:g('aw-link'), visible:gBool('aw-vis') })
 );
@@ -781,7 +839,7 @@ simpleCRUD('service','Academic Service',['Role','Venue / Organization','Year','C
     <div class="row"><div class="field"><label>Venue / Journal / Organization</label><input id="sv-venue" value="${escA(s.venue||s.organization||'')}"></div><div class="field"><label>Year(s)</label><input id="sv-yr" value="${escA(s.year||'')}"></div></div>
     <div class="row"><div class="field"><label>Category</label><select id="sv-cat"><option value="conference reviewer"${s.category==='conference reviewer'?' selected':''}>Conference Reviewer</option><option value="journal reviewer"${s.category==='journal reviewer'?' selected':''}>Journal Reviewer</option><option value="program committee"${s.category==='program committee'?' selected':''}>Program Committee</option><option value="organizing committee"${s.category==='organizing committee'?' selected':''}>Organizing Committee</option><option value="student volunteer"${s.category==='student volunteer'?' selected':''}>Student Volunteer</option></select></div><div class="field"><label>Link</label><input id="sv-link" value="${escA(s.link||'')}"></div></div>
     <div class="switch-row"><label class="toggle"><input type="checkbox" id="sv-vis" ${s.visible!==false?'checked':''}><span class="toggle-slider"></span></label><label for="sv-vis">Visible</label></div>
-    <div class="form-actions"><button class="btn-p" onclick="save_service(${i})">ðŸ'¾ Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
+    <div class="form-actions"><button class="btn-p" onclick="save_service(${i})">💾 Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
   </div>`,
   (i) => ({ id:g('sv-id')||uid(), role:g('sv-role'), venue:g('sv-venue'), organization:g('sv-venue'), year:g('sv-yr'), category:g('sv-cat'), link:g('sv-link'), visible:gBool('sv-vis') })
 );
@@ -802,12 +860,12 @@ window.editEdu = (i) => {
     <div class="row"><div class="field"><label>Degree</label><input id="ed-deg" value="${escA(e.degree||'')}"></div><div class="field"><label>Field of Study</label><input id="ed-field" value="${escA(e.field||'')}"></div></div>
     <div class="row"><div class="field"><label>Institution</label><input id="ed-inst" value="${escA(e.institution||'')}"></div><div class="field"><label>Institution URL</label><input id="ed-iurl" value="${escA(e.institutionUrl||'')}"></div></div>
     ${imgUploadField('ed-logo','Institution Logo (PNG/JPG/GIF, transparent preferred)',e.institutionLogo||'')}
-    <div class="field"><label>Year Range (e.g. 2019â€"2023 or 2023â€"Present)</label><input id="ed-yrange" value="${escA(e.yearRange||'')}"></div>
+    <div class="field"><label>Year Range (e.g. 2019–2023 or 2023–Present)</label><input id="ed-yrange" value="${escA(e.yearRange||'')}"></div>
     <div class="row"><div class="field"><label>Advisor Name</label><input id="ed-adv" value="${escA(e.advisor||'')}"></div><div class="field"><label>Advisor URL</label><input id="ed-aurl" value="${escA(e.advisorUrl||'')}"></div></div>
     <div class="row"><div class="field"><label>Thesis Title</label><input id="ed-thesis" value="${escA(e.thesisTitle||'')}"></div><div class="field"><label>Thesis URL</label><input id="ed-turl" value="${escA(e.thesisUrl||'')}"></div></div>
     <div class="row"><div class="field"><label>GPA</label><input id="ed-gpa" value="${escA(e.gpa||'')}"></div><div class="switch-row" style="margin-top:1.4rem"><label class="toggle"><input type="checkbox" id="ed-showgpa" ${e.showGpa?'checked':''}><span class="toggle-slider"></span></label><label for="ed-showgpa">Show GPA</label></div></div>
     <div class="switch-row"><label class="toggle"><input type="checkbox" id="ed-vis" ${e.visible!==false?'checked':''}><span class="toggle-slider"></span></label><label for="ed-vis">Visible</label></div>
-    <div class="form-actions"><button class="btn-p" onclick="saveEduForm(${i})">ðŸ'¾ Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
+    <div class="form-actions"><button class="btn-p" onclick="saveEduForm(${i})">💾 Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
   </div>`;
 };
 window.saveEduForm = async (i) => {
@@ -838,11 +896,11 @@ window.editExp = (i) => {
     <div class="field"><label>Title / Position *</label><input id="ex-title" value="${escA(e.title||'')}"></div>
     <div class="row"><div class="field"><label>Organization</label><input id="ex-org" value="${escA(e.organization||'')}"></div><div class="field"><label>Organization URL</label><input id="ex-ourl" value="${escA(e.organizationUrl||'')}"></div></div>
     ${imgUploadField('ex-logo','Organization Logo (PNG/JPG/GIF)',e.organizationLogo||'')}
-    <div class="row"><div class="field"><label>Duration (e.g. 2022â€"Present)</label><input id="ex-dur" value="${escA(e.duration||'')}"></div><div class="field"><label>Location</label><input id="ex-loc" value="${escA(e.location||'')}"></div></div>
+    <div class="row"><div class="field"><label>Duration (e.g. 2022–Present)</label><input id="ex-dur" value="${escA(e.duration||'')}"></div><div class="field"><label>Location</label><input id="ex-loc" value="${escA(e.location||'')}"></div></div>
     <div class="field"><label>Type</label><select id="ex-type"><option value="research"${e.type==='research'?' selected':''}>Research</option><option value="industry"${e.type==='industry'?' selected':''}>Industry</option><option value="internship"${e.type==='internship'?' selected':''}>Internship</option></select></div>
     <div class="field"><label>Description</label><textarea id="ex-desc" rows="3">${escA(e.description||'')}</textarea></div>
     <div class="switch-row"><label class="toggle"><input type="checkbox" id="ex-vis" ${e.visible!==false?'checked':''}><span class="toggle-slider"></span></label><label for="ex-vis">Visible</label></div>
-    <div class="form-actions"><button class="btn-p" onclick="saveExpForm(${i})">ðŸ'¾ Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
+    <div class="form-actions"><button class="btn-p" onclick="saveExpForm(${i})">💾 Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
   </div>`;
 };
 window.saveExpForm = async (i) => {
@@ -872,9 +930,9 @@ sections.gallery = async (ca) => {
       </div>
       <div id="gal-preview" class="img-preview" style="margin-top:0.5rem"></div>
       <div id="gal-upload-form" style="display:none;margin-top:0.75rem">
-        <div class="row"><div class="field"><label>Caption</label><input id="gal-cap" placeholder="Add a captionâ€¦"></div><div class="field"><label>Category</label><select id="gal-cat"><option value="conference">Conference</option><option value="fieldwork">Fieldwork</option><option value="lab">Lab</option><option value="workshop">Workshop</option><option value="misc">Misc</option></select></div></div>
+        <div class="row"><div class="field"><label>Caption</label><input id="gal-cap" placeholder="Add a caption…"></div><div class="field"><label>Category</label><select id="gal-cat"><option value="conference">Conference</option><option value="fieldwork">Fieldwork</option><option value="lab">Lab</option><option value="workshop">Workshop</option><option value="misc">Misc</option></select></div></div>
         <div class="field"><label>Date (YYYY-MM-DD)</label><input id="gal-date" type="date"></div>
-        <button class="btn-p" onclick="uploadGallery()">â¬† Upload to GitHub</button>
+        <button class="btn-p" onclick="uploadGallery()">⬆ Upload to GitHub</button>
       </div>
     </div>
     <h3 style="margin-bottom:0.75rem;font-size:0.875rem">Existing Photos (${data.length})</h3>
@@ -907,7 +965,7 @@ window.previewGalFiles = () => {
 
 window.uploadGallery = async () => {
   if (!_pendingGalFiles.length) return;
-  toast(`Uploading ${_pendingGalFiles.length} image(s)â€¦`, 'info');
+  toast(`Uploading ${_pendingGalFiles.length} image(s)…`, 'info');
   try {
     const cap = g('gal-cap'); const cat = g('gal-cat'); const date = g('gal-date');
     for (const file of _pendingGalFiles) {
@@ -942,7 +1000,7 @@ sections.cv = async (ca) => {
       <p style="font-size:12px;color:var(--muted);margin-bottom:0.75rem">Host your PDF on Google Drive, Dropbox, or any direct URL. Make sure sharing is set to "Anyone with link".</p>
       <div class="field"><label>CV PDF URL</label><input id="cv-url" value="${escA(p.cvUrl||'')}"></div>
       <div class="switch-row"><label class="toggle"><input type="checkbox" id="cv-vis" ${p.cvVisible!==false?'checked':''}><span class="toggle-slider"></span></label><label for="cv-vis">Show "Download CV" button on site</label></div>
-      <div class="form-actions"><button class="btn-p" onclick="saveCV()">ðŸ'¾ Save</button></div>
+      <div class="form-actions"><button class="btn-p" onclick="saveCV()">💾 Save</button></div>
     </div>`;
 };
 window.saveCV = async () => {
@@ -1083,19 +1141,19 @@ sections.seo = async (ca) => {
       <h3>Google Analytics</h3>
       <div class="switch-row"><label class="toggle"><input type="checkbox" id="ga-en" ${s.analytics?.enabled?'checked':''}><span class="toggle-slider"></span></label><label for="ga-en">Enable Google Analytics</label></div>
       <div class="field" style="margin-top:0.5rem"><label>Measurement ID (G-XXXXXXXXXX)</label><input id="ga-id" value="${escA(s.analytics?.googleAnalyticsId||'')}"></div>
-      <p style="font-size:11px;color:var(--muted);margin-top:0.25rem">Get your ID from <a href="https://analytics.google.com" target="_blank">Google Analytics â†' Admin â†' Data Streams</a></p>
+      <p style="font-size:11px;color:var(--muted);margin-top:0.25rem">Get your ID from <a href="https://analytics.google.com" target="_blank">Google Analytics → Admin → Data Streams</a></p>
     </div>
     <div class="form-panel">
       <h3>SEO</h3>
       <div class="field"><label>Meta Keywords</label><input id="seo-kw" value="${escA(s.seo?.keywords||'')}"></div>
-      <div class="field"><label>OG Image URL (1200Ã—630 recommended)</label><input id="seo-ogimg" value="${escA(s.seo?.ogImage||'')}"></div>
+      <div class="field"><label>OG Image URL (1200×630 recommended)</label><input id="seo-ogimg" value="${escA(s.seo?.ogImage||'')}"></div>
     </div>
     <div class="form-panel">
       <h3>Sitemap</h3>
       <p style="font-size:12px;color:var(--muted);margin-bottom:0.75rem">Your sitemap is at <code>${STORE.owner}.github.io/sitemap.xml</code>. After major content updates, notify Google:</p>
-      <button class="btn-o btn-sm" onclick="pingSitemap()">ðŸ"¡ Ping Google Search Console</button>
+      <button class="btn-o btn-sm" onclick="pingSitemap()">📡 Ping Google Search Console</button>
     </div>
-    <button class="btn-p" onclick="saveSEO()">ðŸ'¾ Save</button>`;
+    <button class="btn-p" onclick="saveSEO()">💾 Save</button>`;
 };
 
 window.saveSEO = async () => {
@@ -1114,11 +1172,11 @@ window.pingSitemap = () => {
   window.open(`https://www.google.com/ping?sitemap=${url}`, '_blank');
 };
 
-// â"€â"€ Utilities â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// ── Utilities ────────────────────────────────────────────────────────────────
 function escA(s) { return String(s||'').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 window.cancelForm = () => { const f=document.getElementById('edit-form'); if(f) f.innerHTML=''; };
 
-// â"€â"€ Init â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€â"€
+// ── Init ─────────────────────────────────────────────────────────────────────
 // ── Rich-text bio helpers ────────────────────────────────────────────────────
 window.bioCmd = (cmd) => { document.getElementById('p-bio')?.focus(); document.execCommand(cmd, false, null); };
 window.bioLink = () => {

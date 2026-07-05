@@ -6,7 +6,7 @@ let _cachedPubs = null;
 
 document.addEventListener('DOMContentLoaded', async () => {
   const site = await load('site');
-  const path = location.pathname.replace(/\/$/, '') || '/';
+  const path = (location.pathname.replace(/\.html$/, '').replace(/\/$/, '')) || '/';
 
   // Announcement
   const ann = site.announcement;
@@ -24,9 +24,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const nav = (site.navigation || []).filter(n => n.visible);
     const current = stored();
     const items = nav.map(n => {
-      const href = n.href === '/' ? '/' : n.href;
-      const active = path === href || (href !== '/' && path.endsWith(href.replace('.html', '')));
-      return `<li><a href="${n.href}"${active ? ' class="active"' : ''}>${n.label}</a></li>`;
+      const href = (n.href || '/').replace(/\.html$/, '');
+      const active = path === href || (href !== '/' && path === href);
+      return `<li><a href="${href}"${active ? ' class="active"' : ''}>${n.label}</a></li>`;
     }).join('');
 
     header.innerHTML = `
@@ -135,12 +135,21 @@ async function initHome(site) {
     `<a class="profile-link" href="${l.href}"${l.ext ? ' target="_blank" rel="noopener"' : ''}>${l.icon}<span>${l.label}</span></a>`
   ).join('');
 
+  const affils = (profile.affiliations || []).filter(a => a.logo || a.name);
+  const affilLogos = affils.length ? `<div class="affil-logos">${affils.map(a => {
+    const img = a.logo
+      ? `<img src="${a.logo}" alt="${a.name || ''}" title="${a.name || ''}" loading="lazy">`
+      : `<span class="affil-name-chip" title="${a.name || ''}">${a.name || ''}</span>`;
+    return a.url ? `<a href="${a.url}" target="_blank" rel="noopener" title="${a.name || ''}">${img}</a>` : img;
+  }).join('')}</div>` : '';
+
   sidebar.innerHTML = `
     ${photo}
     <h1 class="profile-name">${profile.name || ''}</h1>
     ${profile.title ? `<p class="profile-title-text">${[profile.title, profile.subtitle].filter(Boolean).join('<br>')}</p>` : ''}
     ${profile.institution ? `<div class="profile-affil">${affiliLogo}${profile.institutionUrl ? `<a href="${profile.institutionUrl}" target="_blank" rel="noopener">${profile.institution}</a>` : profile.institution}</div>` : ''}
     ${profile.department ? `<div class="profile-dept">${profile.department}</div>` : ''}
+    ${affilLogos}
     <div class="profile-links">${linksHtml}</div>`;
 
   // ── Main content sections ──
@@ -159,12 +168,12 @@ async function initHome(site) {
     pubs: () => {
       const items = (pubs || []).filter(p => p.visible !== false && p.featured).slice(0, hp.featuredPubsCount || 4);
       if (!items.length) return '';
-      return `<div class="home-section" id="hp-pubs"><div class="section-header"><h2>Selected Publications</h2><a href="/publications.html" class="see-all">See all →</a></div><div class="pub-list">${items.map(pubCard).join('')}</div></div>`;
+      return `<div class="home-section" id="hp-pubs"><div class="section-header"><h2>Selected Publications</h2><a href="/publications" class="see-all">See all →</a></div><div class="pub-list">${items.map(pubCard).join('')}</div></div>`;
     },
     projects: () => {
       const items = (projects || []).filter(p => p.visible !== false && p.featured).slice(0, hp.featuredProjectsCount || 2);
       if (!items.length) return '';
-      return `<div class="home-section"><div class="section-header"><h2>Projects</h2><a href="/projects.html" class="see-all">See all →</a></div><div class="project-grid">${items.map(projCard).join('')}</div></div>`;
+      return `<div class="home-section"><div class="section-header"><h2>Projects</h2><a href="/projects" class="see-all">See all →</a></div><div class="project-grid">${items.map(projCard).join('')}</div></div>`;
     },
     awards: () => {
       const items = (awards || []).filter(a => a.visible !== false).slice(0, 5);
@@ -178,7 +187,7 @@ async function initHome(site) {
     teaching: () => {
       const items = (teaching || []).filter(t => t.visible !== false).slice(0, 4);
       if (!items.length) return '';
-      return `<div class="home-section"><div class="section-header"><h2>Teaching</h2><a href="/teaching.html" class="see-all">See all →</a></div><div class="item-list">${items.map(t => `
+      return `<div class="home-section"><div class="section-header"><h2>Teaching</h2><a href="/teaching" class="see-all">See all →</a></div><div class="item-list">${items.map(t => `
         <div class="item-entry">
           <div><div class="item-title">${t.course || ''}</div><div class="item-sub">${[t.role, t.institution].filter(Boolean).join(' · ')}</div></div>
           <div class="item-year">${[t.semester, t.year].filter(Boolean).join(' ')}</div>
@@ -201,15 +210,20 @@ async function initHome(site) {
 
 /* ─── Publications ─── */
 async function initPublications() {
-  const pubs = await load('publications');
+  const [pubs, profile] = await loadAll('publications', 'profile');
   _cachedPubs = pubs;
   const el = document.getElementById('pub-content');
   if (!el) return;
   const visible = (pubs || []).filter(p => p.visible !== false);
   if (!visible.length) { el.innerHTML = empty('📄', 'No publications yet.'); return; }
+  const scholarUrl = profile?.links?.googleScholar;
+  const scholarNote = scholarUrl
+    ? `<div class="scholar-note">For the most up-to-date publication list and citation metrics, visit my <a href="${scholarUrl}" target="_blank" rel="noopener">Google Scholar profile →</a></div>`
+    : '';
   const cats = [...new Set(visible.map(p => p.category).filter(Boolean))];
   let activeF = 'all', q = '';
   const filterRow = `
+    ${scholarNote}
     <div class="pub-filters">
       <button class="filter-btn active" data-f="all">All (${visible.length})</button>
       ${cats.map(c => `<button class="filter-btn" data-f="${c}">${cap(c)}</button>`).join('')}
@@ -449,7 +463,7 @@ function projCard(p) {
   const linkedHtml = linkedPubs.length ? `
     <div class="proj-pubs">
       <div class="proj-pubs-label">Publications</div>
-      ${linkedPubs.map(pub => `<div class="proj-pub-item">· <a href="/publications.html">${pub.title}</a>${pub.venueShort ? ` <span class="proj-pub-venue">(${pub.venueShort})</span>` : ''}</div>`).join('')}
+      ${linkedPubs.map(pub => `<div class="proj-pub-item">· <a href="/publications">${pub.title}</a>${pub.venueShort ? ` <span class="proj-pub-venue">(${pub.venueShort})</span>` : ''}</div>`).join('')}
     </div>` : '';
   return `
     <div class="project-card">
