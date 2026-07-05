@@ -254,6 +254,27 @@ body.has-announcement main { padding-top: calc(var(--nav-h) + 42px); }
   white-space: nowrap;
 }
 
+/* Image strips on talks / awards / teaching entries */
+.item-imgs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+.item-imgs img {
+  width: 96px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  cursor: zoom-in;
+  transition: transform var(--tr), box-shadow var(--tr);
+}
+.item-imgs img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+}
+
 /* Google Scholar note on publications page */
 .scholar-note {
   font-size: 0.875rem;

@@ -274,6 +274,7 @@ async function initTeaching() {
         <div class="item-sub">${[t.role, t.institution].filter(Boolean).join(' · ')}</div>
         ${t.courseUrl ? `<div style="margin-top:0.2rem"><a href="${t.courseUrl}" target="_blank" rel="noopener" style="font-size:0.78rem">Course site →</a></div>` : ''}
         ${t.description ? `<div class="item-desc">${t.description}</div>` : ''}
+        ${itemImages(t)}
       </div>
       <div class="item-year">${[t.semester, t.year].filter(Boolean).join(' ')}</div>
     </div>`).join('')}</div>` : empty('🎓', 'Teaching history coming soon.');
@@ -296,6 +297,7 @@ async function initTalks() {
           ${t.links?.slides ? `<a href="${t.links.slides}" class="pub-link" target="_blank" rel="noopener">Slides</a>` : ''}
           ${t.links?.video ? `<a href="${t.links.video}" class="pub-link" target="_blank" rel="noopener">Video</a>` : ''}
         </div>
+        ${itemImages(t)}
       </div>
       <div class="item-year">${fmtDate(t.date)}</div>
     </div>`).join('')}</div>` : empty('🎤', 'Talks coming soon.');
@@ -314,6 +316,7 @@ async function initAwards() {
         <div class="item-title">${a.title}${a.link ? ` <a href="${a.link}" target="_blank" rel="noopener" style="font-size:0.78rem">→</a>` : ''}</div>
         <div class="item-sub">${a.organization || ''}</div>
         ${a.description ? `<div class="item-desc">${a.description}</div>` : ''}
+        ${itemImages(a)}
       </div>
       <div class="item-year">${a.year || ''}</div>
     </div>`).join('')}</div>` : empty('🏆', 'Awards coming soon.');
@@ -484,6 +487,29 @@ function fmtDate(s) {
   try { return new Date(s + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', year: 'numeric' }); }
   catch { return s; }
 }
+
+// Image strip for talks/awards/teaching entries; click opens the shared lightbox
+function itemImages(item) {
+  const imgs = item.images || [];
+  if (!imgs.length) return '';
+  return `<div class="item-imgs">${imgs.map(u =>
+    `<img src="${u}" alt="" loading="lazy" onclick="showImgLB('${u}')">`).join('')}</div>`;
+}
+
+window.showImgLB = (url) => {
+  let lb = document.getElementById('img-lb');
+  if (!lb) {
+    document.body.insertAdjacentHTML('beforeend',
+      `<div class="lightbox" id="img-lb" onclick="if(event.target===this)this.classList.remove('open')">
+        <button class="lb-close" onclick="document.getElementById('img-lb').classList.remove('open')">✕</button>
+        <img id="img-lb-img" src="" alt="">
+      </div>`);
+    lb = document.getElementById('img-lb');
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+  }
+  document.getElementById('img-lb-img').src = url;
+  lb.classList.add('open');
+};
 
 function cap(s) { return s ? s[0].toUpperCase() + s.slice(1) : ''; }
 function empty(ico, msg) { return `<div class="empty-state"><div class="ico">${ico}</div>${msg}</div>`; }

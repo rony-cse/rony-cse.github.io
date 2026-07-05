@@ -213,38 +213,80 @@ function b64ToUtf8(b64) {
   return new TextDecoder('utf-8').decode(bytes);
 }
 
+// Session caches: GitHub reads lag behind writes (eventual consistency), so
+// after a save we serve our own copy instead of re-fetching stale data.
+const dataCache = {};  // path -> parsed data (live reference, list mutations stay in sync)
+const shaCache = {};   // path -> latest blob sha (updated from every write response)
+
 async function readJSON(path) {
+  if (dataCache[path] !== undefined) return { data: dataCache[path], sha: shaCache[path] };
   const d = await ghGet(path);
-  return { data: JSON.parse(b64ToUtf8(d.content)), sha: d.sha };
+  const data = JSON.parse(b64ToUtf8(d.content));
+  dataCache[path] = data; shaCache[path] = d.sha;
+  return { data, sha: d.sha };
+}
+
+// Saving indicator: pill shown while any write is in flight
+let _pendingSaves = 0;
+function savingOn() {
+  _pendingSaves++;
+  if (!document.getElementById('saving-ind')) {
+    const el = document.createElement('div');
+    el.id = 'saving-ind';
+    el.style.cssText = 'position:fixed;top:10px;right:14px;z-index:1000;background:var(--accent);color:var(--accent-fg);padding:0.3rem 0.85rem;border-radius:20px;font-size:12px;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,0.2)';
+    el.textContent = '⏳ Saving…';
+    document.body.appendChild(el);
+  }
+}
+function savingOff() {
+  _pendingSaves = Math.max(0, _pendingSaves - 1);
+  if (_pendingSaves === 0) document.getElementById('saving-ind')?.remove();
 }
 
 async function writeJSON(path, data, sha, msg) {
-  const enc = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
-  const body = { message: msg || `Update ${path}`, content: enc, branch: STORE.branch };
-  if (sha) body.sha = sha;
-  const r = await fetch(`${API}/repos/${STORE.owner}/${STORE.repo}/contents/${ghPath(path)}`, {
-    method: 'PUT',
-    headers: { 'Authorization': `Bearer ${STORE.token}`, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json' },
-    body: JSON.stringify(body)
-  });
-  if (!r.ok) { const e = await r.json().catch(()=>({})); throw new Error(e.message || `HTTP ${r.status}`); }
-  return r.json();
+  savingOn();
+  try {
+    const doPut = async (useSha) => {
+      const enc = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+      const body = { message: msg || `Update ${path}`, content: enc, branch: STORE.branch };
+      if (useSha) body.sha = useSha;
+      return fetch(`${API}/repos/${STORE.owner}/${STORE.repo}/contents/${ghPath(path)}`, {
+        method: 'PUT',
+        headers: { 'Authorization': `Bearer ${STORE.token}`, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json' },
+        body: JSON.stringify(body)
+      });
+    };
+    let r = await doPut(shaCache[path] || sha);
+    if (r.status === 409 || r.status === 422) {
+      // stale sha — fetch the current one and retry once
+      const fresh = await ghGet(path).catch(() => null);
+      r = await doPut(fresh?.sha);
+    }
+    if (!r.ok) { const e = await r.json().catch(()=>({})); throw new Error(e.message || `HTTP ${r.status}`); }
+    const res = await r.json();
+    dataCache[path] = data;
+    shaCache[path] = res.content.sha;
+    return res;
+  } finally { savingOff(); }
 }
 
 async function uploadFile(path, b64, msg) {
-  const content = b64.replace(/^data:[^;]+;base64,/, '');
-  let sha = null;
-  try { const ex = await ghGet(path); sha = ex.sha; } catch(_) {}
-  const body = { message: msg || `Upload ${path}`, content, branch: STORE.branch };
-  if (sha) body.sha = sha;
-  const r = await fetch(`${API}/repos/${STORE.owner}/${STORE.repo}/contents/${ghPath(path)}`, {
-    method: 'PUT',
-    headers: { 'Authorization': `Bearer ${STORE.token}`, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json' },
-    body: JSON.stringify(body)
-  });
-  if (!r.ok) { const e = await r.json().catch(()=>({})); throw new Error(e.message || 'Upload failed'); }
-  const res = await r.json();
-  return res.content.download_url;
+  savingOn();
+  try {
+    const content = b64.replace(/^data:[^;]+;base64,/, '');
+    let sha = null;
+    try { const ex = await ghGet(path); sha = ex.sha; } catch(_) {}
+    const body = { message: msg || `Upload ${path}`, content, branch: STORE.branch };
+    if (sha) body.sha = sha;
+    const r = await fetch(`${API}/repos/${STORE.owner}/${STORE.repo}/contents/${ghPath(path)}`, {
+      method: 'PUT',
+      headers: { 'Authorization': `Bearer ${STORE.token}`, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github.v3+json' },
+      body: JSON.stringify(body)
+    });
+    if (!r.ok) { const e = await r.json().catch(()=>({})); throw new Error(e.message || 'Upload failed'); }
+    const res = await r.json();
+    return res.content.download_url;
+  } finally { savingOff(); }
 }
 
 // ── Toast ────────────────────────────────────────────────────────────────────
@@ -746,7 +788,7 @@ window.delNews = async (i) => { if (!confirm('Delete?')) return; window._news.sp
 window.visNews = async (i) => { window._news[i].visible=window._news[i].visible===false; const f=await readJSON('data/news.json'); await writeJSON('data/news.json',window._news,f.sha,'Toggle news visibility'); renderSection('news'); };
 
 // Generic simple CRUD builder
-function simpleCRUD(key, title, columns, renderRow, formFn, parseFn) {
+function simpleCRUD(key, title, columns, renderRow, formFn, parseFn, withImages = false) {
   sections[key] = async (ca) => {
     const { data } = await readJSON(`data/${key}.json`);
     window[`_${key}`] = data;
@@ -758,6 +800,7 @@ function simpleCRUD(key, title, columns, renderRow, formFn, parseFn) {
   window[`edit_${key}`] = (i) => {
     const item = i>=0 ? window[`_${key}`][i] : { id:uid(), visible:true };
     document.getElementById('edit-form').innerHTML = formFn(item, i);
+    if (withImages) initItemImages(item.images || []);
   };
   window[`del_${key}`] = async (i) => {
     if (!confirm('Delete?')) return;
@@ -773,11 +816,53 @@ function simpleCRUD(key, title, columns, renderRow, formFn, parseFn) {
   window[`save_${key}`] = async (i) => {
     try {
       const item = parseFn(i);
+      if (withImages) item.images = await resolveItemImages(key);
       if (i>=0) window[`_${key}`][i]=item; else window[`_${key}`].unshift(item);
       const f = await readJSON(`data/${key}.json`); await writeJSON(`data/${key}.json`, window[`_${key}`], f.sha, `Update ${key}`);
-      toast('Saved!','ok'); renderSection(key);
+      toast('Saved!','ok'); window._itemImages = null; renderSection(key);
     } catch(e) { toast('Error: '+e.message,'err'); }
   };
+}
+
+// ── Multi-image editor (talks / awards / teaching) ──────────────────────────
+function initItemImages(existing) {
+  window._itemImages = (existing || []).map(u => ({ url: u }));
+  const fa = document.querySelector('#edit-form .form-actions');
+  if (!fa) return;
+  fa.insertAdjacentHTML('beforebegin', `
+    <div class="field">
+      <label>Images (optional — shown as a small strip, click to enlarge)</label>
+      <div id="item-img-list" style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.4rem"></div>
+      <label class="btn-o btn-sm" style="cursor:pointer;display:inline-block">+ Add Images<input type="file" accept="image/*" multiple style="display:none" onchange="itemImgAdd(this)"></label>
+      <p class="upload-note">JPG, PNG, GIF · Max 5 MB each · multiple selection allowed</p>
+    </div>`);
+  renderItemImages();
+}
+function renderItemImages() {
+  const el = document.getElementById('item-img-list');
+  if (!el) return;
+  el.innerHTML = (window._itemImages || []).map((im, i) => `
+    <div class="img-preview-item"><img src="${im.b64 || im.url}" style="width:80px;height:56px;object-fit:cover"><button onclick="window._itemImages.splice(${i},1);renderItemImages()">✕</button></div>`).join('');
+}
+window.renderItemImages = renderItemImages;
+window.itemImgAdd = async (input) => {
+  for (const f of input.files) {
+    if (f.size > 5 * 1024 * 1024) { toast(f.name + ': too large (max 5 MB)', 'err'); continue; }
+    window._itemImages.push({ b64: await toB64(f) });
+  }
+  renderItemImages();
+  input.value = '';
+};
+async function resolveItemImages(prefix) {
+  const out = [];
+  for (const im of (window._itemImages || [])) {
+    if (im.url) out.push(im.url);
+    else if (im.b64) {
+      const ext = im.b64.match(/data:image\/(\w+)/)?.[1] || 'jpg';
+      out.push(await uploadFile(`uploads/${prefix}/${uid()}.${ext}`, im.b64, 'Upload image'));
+    }
+  }
+  return out;
 }
 
 // Teaching
@@ -794,7 +879,8 @@ simpleCRUD('teaching','Teaching',['Course','Role','Institution','Semester'],
     <div class="switch-row"><label class="toggle"><input type="checkbox" id="t-vis" ${t.visible!==false?'checked':''}><span class="toggle-slider"></span></label><label for="t-vis">Visible</label></div>
     <div class="form-actions"><button class="btn-p" onclick="save_teaching(${i})">💾 Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
   </div>`,
-  (i) => ({ id:g('t-id')||uid(), course:g('t-course'), courseCode:g('t-code'), role:g('t-role'), institution:g('t-inst'), semester:g('t-sem'), year:g('t-yr'), courseUrl:g('t-url'), enrollment:g('t-enroll'), description:g('t-desc'), visible:gBool('t-vis') })
+  (i) => ({ id:g('t-id')||uid(), course:g('t-course'), courseCode:g('t-code'), role:g('t-role'), institution:g('t-inst'), semester:g('t-sem'), year:g('t-yr'), courseUrl:g('t-url'), enrollment:g('t-enroll'), description:g('t-desc'), visible:gBool('t-vis') }),
+  true
 );
 
 // Talks
@@ -811,7 +897,8 @@ simpleCRUD('talks','Talks & Presentations',['Title','Event','Date','Type'],
     <div class="switch-row"><label class="toggle"><input type="checkbox" id="tk-vis" ${t.visible!==false?'checked':''}><span class="toggle-slider"></span></label><label for="tk-vis">Visible</label></div>
     <div class="form-actions"><button class="btn-p" onclick="save_talks(${i})">💾 Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
   </div>`,
-  (i) => ({ id:g('tk-id')||uid(), title:g('tk-title'), event:g('tk-event'), eventUrl:g('tk-eurl'), date:g('tk-date'), location:g('tk-loc'), type:g('tk-type'), abstract:g('tk-abs'), links:{slides:g('tk-slides'),video:g('tk-video')}, visible:gBool('tk-vis') })
+  (i) => ({ id:g('tk-id')||uid(), title:g('tk-title'), event:g('tk-event'), eventUrl:g('tk-eurl'), date:g('tk-date'), location:g('tk-loc'), type:g('tk-type'), abstract:g('tk-abs'), links:{slides:g('tk-slides'),video:g('tk-video')}, visible:gBool('tk-vis') }),
+  true
 );
 
 // Awards
@@ -827,7 +914,8 @@ simpleCRUD('awards','Awards & Honors',['Title','Organization','Year'],
     <div class="switch-row"><label class="toggle"><input type="checkbox" id="aw-vis" ${a.visible!==false?'checked':''}><span class="toggle-slider"></span></label><label for="aw-vis">Visible</label></div>
     <div class="form-actions"><button class="btn-p" onclick="save_awards(${i})">💾 Save</button><button class="btn-o" onclick="cancelForm()">Cancel</button></div>
   </div>`,
-  (i) => ({ id:g('aw-id')||uid(), title:g('aw-title'), organization:g('aw-org'), year:g('aw-yr'), description:g('aw-desc'), amount:g('aw-amt'), showAmount:gBool('aw-showamt'), link:g('aw-link'), visible:gBool('aw-vis') })
+  (i) => ({ id:g('aw-id')||uid(), title:g('aw-title'), organization:g('aw-org'), year:g('aw-yr'), description:g('aw-desc'), amount:g('aw-amt'), showAmount:gBool('aw-showamt'), link:g('aw-link'), visible:gBool('aw-vis') }),
+  true
 );
 
 // Service
@@ -1174,7 +1262,7 @@ window.pingSitemap = () => {
 
 // ── Utilities ────────────────────────────────────────────────────────────────
 function escA(s) { return String(s||'').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-window.cancelForm = () => { const f=document.getElementById('edit-form'); if(f) f.innerHTML=''; };
+window.cancelForm = () => { const f=document.getElementById('edit-form'); if(f) f.innerHTML=''; window._itemImages = null; };
 
 // ── Init ─────────────────────────────────────────────────────────────────────
 // ── Rich-text bio helpers ────────────────────────────────────────────────────
