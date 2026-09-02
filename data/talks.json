@@ -1,5 +1,23 @@
 [
   {
+    "id": "mtjtqjml3e2g7",
+    "title": "Jamuna TV’s Voice program",
+    "event": "",
+    "eventUrl": "",
+    "date": "",
+    "location": "",
+    "type": "invited talk",
+    "abstract": "During a discussion on Jamuna TV’s Voice program, I had the opportunity to engage with esteemed professors and fellow students on the pressing challenges Bangladesh faces in achieving sustainable development. The conversation focused on key areas such as climate change, economic growth, and technological innovation, with an emphasis on how the country can adopt effective strategies to address these challenges and foster long-term sustainable development.",
+    "links": {
+      "slides": "",
+      "video": ""
+    },
+    "visible": true,
+    "images": [
+      "https://raw.githubusercontent.com/rony-cse/rony-cse.github.io/newsite/uploads/talks/mtjtwvzme7ilq.png"
+    ]
+  },
+  {
     "id": "mtjtif7hppdj0",
     "title": "Jamuna Television: Sokaler Bangladesh",
     "event": "",
