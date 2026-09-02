@@ -1,5 +1,23 @@
 [
   {
+    "id": "mtjtif7hppdj0",
+    "title": "Jamuna Television: Sokaler Bangladesh",
+    "event": "",
+    "eventUrl": "https://www.youtube.com/watch?v=iuqAIMUWIdM",
+    "date": "",
+    "location": "",
+    "type": "invited talk",
+    "abstract": "I had the honor of being invited to Jamuna TV, one of Bangladesh’s leading mainstream television channels, where I discussed the growing significance of robotics in the country. As the President of the Dhaka University of Engineering & Technology Robotics Club, I shared insights into the evolving landscape of robotics technology in Bangladesh, the challenges we face, and how robotics can impact various sectors. I also promoted the National Robotics Fest, a key event for young engineers and robotics enthusiasts to showcase their skills and innovations.",
+    "links": {
+      "slides": "",
+      "video": ""
+    },
+    "visible": true,
+    "images": [
+      "https://raw.githubusercontent.com/rony-cse/rony-cse.github.io/newsite/uploads/talks/mtjtp0w5015rz.jpeg"
+    ]
+  },
+  {
     "id": "talk001",
     "title": "Robotics Workshop: Embedded Systems and Autonomous Robots",
     "event": "Cadet College Robotics Workshop",
