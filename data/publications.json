@@ -1,5 +1,41 @@
 [
   {
+    "id": "mwnj42d4eyebs",
+    "title": "Transformers in computer vision: a PRISMA-based systematic review, taxonomy and future perspectives",
+    "authors": [
+      "Jahid Hasan Rony",
+      "Aminur Rahaman",
+      "Md. Shakhawat Hossain"
+    ],
+    "highlightAuthor": "Jahid Hasan Rony",
+    "venue": "Springer:  Artificial Intelligence Review",
+    "venueShort": "",
+    "year": 2026,
+    "volume": "",
+    "issue": "",
+    "pages": "",
+    "category": "journal",
+    "status": "published",
+    "rank": "Q1",
+    "abstract": "Transformers reshaped computer vision by enabling global modeling of visual relationships through self-attention. Their rapid adoption across diverse vision tasks has created a need for an up-to-date systematic review. Following PRISMA 2020, we searched IEEE Xplore, ACM Digital Library, Scopus, Web of Science, and Google Scholar for English-language studies published from 2017 to June 10, 2026. We included accessible studies that applied transformer or attention-based methods to computer vision and met predefined publication and reporting-quality. Two reviewers independently screened the records, and reporting quality was assessed using a five-item checklist. Because the studies differed in tasks, datasets, metrics, and experimental settings, we compared their findings through narrative synthesis rather than meta-analysis. Of 2,721 records identified, 163 studies across nine computer vision domains were included. We examined architectural evolution and pre-training strategies and compared transformers with CNNs in terms of performance, efficiency, and robustness. The findings show a progression toward hierarchical, efficient, self-supervised, multimodal, and foundation-model architectures, although CNNs remain competitive in data-limited and resource-constrained settings. Unlike earlier surveys, this review combines a PRISMA-guided methodology with broad coverage of recent advances and proposes a dual-axis taxonomy based on architecture and application domain. The conclusions are limited by experimental differences, restriction to English-language studies, citation-based preprint selection, and restricted Google Scholar screening. This review provides a systematic, time-bounded reference for major vision transformer paradigms and applications.",
+    "keywords": [],
+    "bibtex": "@article{rony2026transformers,\n  title={Transformers in computer vision: a PRISMA-based systematic review, taxonomy and future perspectives},\n  author={Rony, Jahid Hasan and Rahaman, Muhammad Aminur and Hossain, Md Shakhawat},\n  journal={Artificial Intelligence Review},\n  volume={1},\n  pages={3},\n  year={2026},\n  publisher={Springer}\n}",
+    "links": {
+      "pdf": "https://link.springer.com/article/10.1007/s10462-026-11749-6",
+      "arxiv": "",
+      "code": "",
+      "project": "",
+      "slides": "",
+      "video": "",
+      "poster": "",
+      "doi": ""
+    },
+    "thumbnail": "",
+    "award": "",
+    "featured": false,
+    "visible": false
+  },
+  {
     "id": "mr3895k45vxzd",
     "title": "SwiftMSeg: Lightweight Multi-Scale Local Global Context Modeling with Transformer for Medical Image Segmentation",
     "authors": [
